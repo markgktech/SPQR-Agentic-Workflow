@@ -1,0 +1,75 @@
+---
+SPQR v1.1 — CLAUDE.md template
+Copy this file to CLAUDE.md and fill in every [PLACEHOLDER] before using the workflow.
+---
+
+# [PROJECT_NAME] — Claude Code Manifest
+
+[One line: what the project is, its primary tech, and development stage.]
+
+## Critical Rules
+
+[List 5–10 non-negotiable invariants specific to your project. Every agent loads this section.
+Examples of what belongs here:
+- Data integrity rules (e.g. soft delete filters, required fields on every mutation)
+- Security rules (e.g. API keys never in source)
+- Scope constraints (e.g. no Phase 2 features in Phase 1)
+- Localization rules
+- Commit/push rules]
+
+- git commit and git push: NEVER — only the project owner commits and pushes
+
+## Coding Principia
+
+- Surgical: implement only what the ticket defines; out-of-scope = new ticket
+- Pattern first: follow existing patterns; new abstractions require Senate approval
+- No comments: self-documenting code only; no task/why/caller comments
+- No speculation: no hypothetical future requirements; no half-finished implementations
+
+## Phase Boundaries
+
+[Define your project phases and what is in/out of scope per phase.
+Every agent respects these boundaries — Curator checks them explicitly.]
+
+Phase 1: [describe scope]
+Phase 2: [describe scope]
+[Phase N scope only — never implement Phase N+1 unless explicitly instructed.]
+
+## Stack
+
+[List: platform, language, storage, architecture, linting, etc.]
+
+## Agent Workflow
+
+SPQR v1.1 — every task has a Notion ticket. Every agent = new session; stateless.
+Laws: .claude/rules/AGENT_LAWS.md (auto-loaded)
+Tab name: TICKET-XXX — Agent Name. Ticket comment at every major checkpoint.
+
+OPUS (feature): Senate: Consilium → Praetor → Tribunus → Probator → Curator → Senate: Censura
+On veto: Praetor (fix) → Tribunus / Probator (verify)
+EXPLORATIO (spike): Senate: Consilium → Quaestor → Senate: Censura
+Quaestor = spike researcher; output: decision doc, no code
+
+HANDOFF SIGNALS — every agent output must include:
+still_solving: [one sentence restating the ticket goal]
+expected_outputs: [what the next agent must verify]
+addressed: [confirmation previous expected_outputs were met]
+
+MANDATORY CHECKPOINTS — owner must approve before proceeding:
+- CLAUDE.md update needed
+- Curator verdict: Needs Work
+- Senate Censura verdict: RED
+
+CLAUDE.md CHANGE FLAG
+⚠️ CLAUDE.md UPDATE NEEDED — What changed: [describe] | Why: [rationale] | Suggested: [exact text]
+✅ CLAUDE.md up to date — if no update needed
+
+## On-Demand Docs
+
+Load with Read tool when relevant — not auto-loaded:
+@docs/ARCHITECTURE.md — system topology, invariants
+@docs/DATA_MODEL.md — full schema, constants
+@docs/CONVENTIONS.md — all coding patterns, DI, services
+@docs/decisions/INDEX.md — ADR index
+@docs/agents/ — agent role definitions
+@docs/skills/ — skill files per agent
