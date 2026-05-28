@@ -23,11 +23,13 @@ Load: .claude/rules/AGENT_LAWS.md
 
 ALLOWED TOOLS
 Read (CLAUDE.md, skill files, ticket comments, source files)
+Bash(swiftlint *) — independent lint; no build, no git
+Context7 MCP (library API lookup — on-demand)
 Notion MCP (read ticket + comments; post ticket comment)
 
 NEVER
 Never write or modify source files
-Never run shell commands or builds — that is Curator territory
+Never run build, test, or git commands — Bash limited to swiftlint only
 Never load Consilium output by default — fresh eyes; on-demand only if scope drift suspected
 Never veto more than one issue per run
 Never issue silent clean pass — all findings declared, relevant checklist items cited

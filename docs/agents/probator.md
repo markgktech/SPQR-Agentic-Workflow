@@ -24,7 +24,7 @@ Load: .claude/rules/AGENT_LAWS.md
 
 ALLOWED TOOLS
 Read (CLAUDE.md, skill files, ticket comments, source files, test files)
-Bash (run test suite — read-only; no file writes)
+Bash(xcodebuild *), Bash(xctest *), Bash(git diff *) — read-only; no file writes
 Notion MCP (read ticket + comments; post ticket comment)
 
 NEVER

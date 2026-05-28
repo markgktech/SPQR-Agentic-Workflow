@@ -23,8 +23,16 @@ ALLOWED TOOLS
 Read (CLAUDE.md, skill files, ticket, Notion comments, source files)
 Edit, Write (source files within worktree only)
 Bash (build, lint, test runs)
+Context7 MCP (library API lookup — on-demand)
 Notion MCP (read ticket + comments; post ticket comment; create child pages under the ticket)
 Isolation: worktree — never write outside worktree
+
+SENSITIVE OP
+Require owner HITL before executing:
+- Notion page delete
+- Notion page content overwrite (full replace)
+- File delete outside worktree
+When in doubt, treat as sensitive — HITL.
 
 NEVER
 Never write code before owner approves approach in discussion

@@ -1,4 +1,4 @@
-# SPQR v1.0 — Sequential Agentic Workflow
+# SPQR v1.1 — Sequential Agentic Workflow
 
 A structured, sequential multi-agent development workflow built on Claude Code and Notion. Every task has a ticket. Every agent runs in a stateless session. The external record is truth.
 
@@ -30,7 +30,7 @@ Senate: Consilium  →  Quaestor  →  Senate: Censura
 |-------|------|----------|
 | Senate | Design authority (Consilium) and post-execution review authority (Censura). Three deliberation personas in one session. | Both |
 | Praetor | Implements the feature ticket in a worktree-isolated session. Never writes code before the owner approves approach. | OPUS |
-| Tribunus | Independent code reviewer. Read-only. One veto per pipeline run. | OPUS |
+| Tribunus | Independent code reviewer. Runs swiftlint independently. One veto per pipeline run. | OPUS |
 | Probator | Independent QA verifier. Runs the test suite. One veto per pipeline run. | OPUS |
 | Curator | Operational steward — build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | OPUS |
 | Quaestor | Spike researcher. Produces a structured decision document. Never writes code. | EXPLORACIO |
@@ -60,12 +60,15 @@ Every agent operates under the same four laws, in priority order:
 
 5. **Update session-starters.md** — replace `[PROJECT_PATH]` with your actual project path.
 
+6. **Set up MCP servers** — register Context7 MCP in your Claude Code settings. Session-starters.md specifies the `--allowedTools` flags per agent — verify these match your setup before first run.
+
 ---
 
 ## Dependencies
 
 - **Claude Code** (claude.ai/code or CLI)
 - **Notion MCP** — agents read tickets and post comments via Notion MCP
+- **Context7 MCP** — agents load current library documentation on-demand during implementation and review
 - **git worktree** — Praetor runs in an isolated worktree per ticket
 
 ---
@@ -109,9 +112,29 @@ docs/
     ├── collegium-veto.md
     ├── ticket-comment.md
     ├── doc-maintenance.md
-    └── code-review-checklist.md
+    ├── code-review-checklist.md
+    └── debugging-tribunus-input.md
 CLAUDE.md.template             — fill this in for your project
+LESSONS.md                     — pipeline retrospective log; written by Censura after every run
 ```
+
+---
+
+## Version History
+
+### v1.1 (2026-05)
+- LESSONS.md retrospective log — Censura writes one entry per pipeline run; suggests retrospective at 10 entries
+- Devil's Advocate role — Tomi designates a DA persona per Consilium session; argument captured in output
+- Granular Bash permissions — Tribunus: swiftlint only; Probator: xcodebuild + xctest + git diff
+- Context7 MCP — Praetor and Tribunus load current library docs on-demand
+- Sensitive op HITL — Praetor confirms before Notion delete or file delete outside worktree
+- Parent ticket tracing — Censura sets parent_ticket when creating follow-up tickets (requires Notion DB self-referential relation)
+- ADR proposal field — Censura surfaces ADR candidates at ticket close
+- Standalone Debugging Tribunus — dedicated session starter and skill file for non-pipeline debugging
+- senate.md Notion MCP write declared (was assumed, not specified in v1.0)
+
+### v1.0 (2025)
+- Initial release
 
 ---
 

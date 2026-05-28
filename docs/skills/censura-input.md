@@ -12,8 +12,9 @@ LOAD ORDER
 2. CLAUDE.md
 3. Ticket (full text + all Notion comments, including Consilium handoff comment)
 4. Executor output: Praetor Renuntiatio (OPUS) or Quaestor spike document (EXPLORACIO)
-5. Relevant On-Demand Docs (same set as Consilium)
-6. censura-discussion.md
+5. doc-maintenance.md — collect all ⚠️ flags; validate format before discussion
+6. Relevant On-Demand Docs (same set as Consilium)
+7. censura-discussion.md
 
 PRE-CHECK (before discussion starts)
 Load Consilium expected_outputs from handoff comment.

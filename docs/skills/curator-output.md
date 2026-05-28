@@ -12,6 +12,14 @@ NEEDS ATTENTION PROTOCOL
 Every Needs Attention item must be explicitly listed in ticket comment.
 Censura loads these as mandatory input — vague or implicit items are invalid.
 
+CLAUDE.md AREA
+If claude=NEEDS ATTENTION or NEEDS WORK: output exact flag per doc-maintenance.md format.
+⚠️ CLAUDE.md UPDATE NEEDED
+What changed: [one sentence]
+Why: [one sentence]
+Suggested addition: [exact text — copy-paste ready]
+Vague flags ("something about X should be added") are invalid — HIGH finding.
+
 TICKET COMMENT
 Post using ticket-comment.md protocol.
 Required fields:

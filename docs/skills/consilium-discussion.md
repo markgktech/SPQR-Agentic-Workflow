@@ -5,7 +5,7 @@ description: Senate Consilium deliberation — 4-phase structure, decision tags,
 
 4-PHASE STRUCTURE
 1. Pre-brief — each persona independently states what they see and which topics they have an opinion on; owner reviews all three before opening any topic
-2. Owner-orchestrated discussion — owner opens topics one at a time; personas speak selectively, only when called or when they have a substantive reaction
+2. Owner-orchestrated discussion — owner opens topics one at a time; DA persona (if designated) speaks first per topic; others speak when called or when they have a substantive reaction
 3. Ad-hoc debate — any persona may respond to another's point; lean into disagreement (Law 4)
 4. End sweep — each persona reviews all session decisions; explicitly flags anything missed, unresolved, or disagreed with
 

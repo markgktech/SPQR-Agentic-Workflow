@@ -15,6 +15,11 @@ Consilium skippable if a completed spike doc exists and covers the ticket's unkn
 If asked to validate: load spike doc, confirm it addresses all ticket unknowns, then proceed or run full Consilium.
 Never skip based on ticket size alone — small tickets can touch invariants.
 
+DA DESIGNATION
+If DA role is designated in input context: note the DA persona name.
+DA speaks first per topic in discussion (see consilium-discussion.md).
+If no DA designation in input context: normal turn order — no action needed.
+
 NEVER
 Never start discussion before all LOAD ORDER items are read
 Never carry state from a prior session — start cold (Law 3)

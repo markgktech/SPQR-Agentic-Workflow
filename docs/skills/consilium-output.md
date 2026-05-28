@@ -8,6 +8,7 @@ Post as Notion comment on ticket (ticket-comment.md protocol), addressed to Prae
 
 still_solving: [one sentence restating ticket goal]
 mode: CONSILIUM
+da_designation: NONE | [persona name — designated DA for this session]
 verdict: APPROVED | APPROVED_WITH_RISK | BLOCKED
 decisions:
   - [DECIDED|BLOCK|RISK|OPEN] [HIGH|MED|LOW] [REVERSIBLE|HARD TO REVERSE] — [one sentence]
