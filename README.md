@@ -80,6 +80,7 @@ Every agent operates under the same four laws, in priority order:
 └── rules/
     └── AGENT_LAWS.md          — four laws, auto-loaded every session
 docs/
+├── LESSONS.md                 — pipeline retrospective log; written by Censura after every run
 ├── agents/
 │   ├── senate.md
 │   ├── praetor.md
@@ -115,7 +116,7 @@ docs/
     ├── code-review-checklist.md
     └── debugging-tribunus-input.md
 CLAUDE.md.template             — fill this in for your project
-LESSONS.md                     — pipeline retrospective log; written by Censura after every run
+CLAUDE.md.template             — fill this in for your project
 ```
 
 ---

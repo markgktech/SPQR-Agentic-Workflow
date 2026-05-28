@@ -35,7 +35,7 @@ Set parent_ticket relation to current ticket ID on each created ticket.
 
 LESSONS.md WRITE
 Execute before posting Notion ticket comment — sequence: write entry → then post comment.
-Load LESSONS.md. If file does not exist: create it with the standard header.
+Load docs/LESSONS.md. If file does not exist: create it with the standard header.
 Count entries since last --- divider. If no divider found: count all entries.
 Write one entry: [YYYY-MM-DD] [TICKET-ID] [GREEN|YELLOW|RED] — [one sentence: what worked or what failed]
 If count reaches 10: suggest retrospective to owner before writing entry — pipeline does not block.
