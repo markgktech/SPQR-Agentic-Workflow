@@ -243,7 +243,7 @@
         <mxCell id="6S870EO1x6cLyfISw6w4-137" parent="1" style="swimlane;startSize=0;" value="" vertex="1">
           <mxGeometry height="200" width="560" x="620" y="-830" as="geometry" />
         </mxCell>
-        <mxCell id="6S870EO1x6cLyfISw6w4-138" parent="6S870EO1x6cLyfISw6w4-137" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=23;" value="Exploracio (Spiking - task research" vertex="1">
+        <mxCell id="6S870EO1x6cLyfISw6w4-138" parent="6S870EO1x6cLyfISw6w4-137" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=23;" value="Exploracio (Spiking - task research" vertex="1">
           <mxGeometry height="30" width="430" x="10" y="10" as="geometry" />
         </mxCell>
         <mxCell id="6S870EO1x6cLyfISw6w4-269" edge="1" parent="6S870EO1x6cLyfISw6w4-137" source="6S870EO1x6cLyfISw6w4-138" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-138">
@@ -254,7 +254,7 @@
             <mxRectangle height="40" width="50" x="1240" y="-1190" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="6S870EO1x6cLyfISw6w4-144" parent="6S870EO1x6cLyfISw6w4-142" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=23;" value="Opus - Development" vertex="1">
+        <mxCell id="6S870EO1x6cLyfISw6w4-144" parent="6S870EO1x6cLyfISw6w4-142" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=23;" value="Opus - Development" vertex="1">
           <mxGeometry height="30" width="250" x="10" y="10" as="geometry" />
         </mxCell>
         <mxCell id="6S870EO1x6cLyfISw6w4-145" connectable="0" parent="6S870EO1x6cLyfISw6w4-142" style="group" value="" vertex="1">
