@@ -1,0 +1,606 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="JFLBprkHoMmRzrTV_8lZ">
+    <mxGraphModel dx="1928" dy="2955" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="6S870EO1x6cLyfISw6w4-1" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=WeFZPpBi.B~T;" value="Whiteboarding" vertex="1">
+          <mxGeometry height="75" width="120" x="120" y="1305" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-2" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=HfFZ0qkdOieK;" value="Dev spike execution" vertex="1">
+          <mxGeometry height="75" width="120" x="300" y="1305" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-3" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=agFZJYghbJDR;" value="SPIKING" vertex="1">
+          <mxGeometry height="530" width="150" x="-90" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-4" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=0gFZ3sYhI7H1;" value="Output: Comment" vertex="1">
+          <mxGeometry height="60" width="120" x="120" y="1380" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-5" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=XhFZ~MLMU5zU;" value="Output: Ticket update" vertex="1">
+          <mxGeometry height="60" width="120" x="300" y="1380" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-23" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-6" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;shadow=1;fontSize=16.7;spacing=9;strokeColor=none;strokeOpacity=100;fillColor=#ffe342;strokeWidth=0;lucidId=_hFZoywa~5M-;" value="Do task and AFTER validate with whiteboarding results" vertex="1">
+          <mxGeometry height="100" width="180" x="270" y="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-7" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=siFZ9keTyvTX;" value="Master Review" vertex="1">
+          <mxGeometry height="75" width="120" x="465" y="1305" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-9" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=~iFZ7hKx6Atd;" value="Summary: concerns and ideas" vertex="1">
+          <mxGeometry height="90" width="120" x="300" y="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-10" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-5" style="html=1;jettySize=18;whiteSpace=wrap;fontSize=13;strokeColor=#3a414a;strokeOpacity=100;strokeWidth=0.8;rounded=1;arcSize=12;edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;lucidId=njFZ9gQuLSft;" target="6S870EO1x6cLyfISw6w4-9" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-11" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=OjFZMRm_oDbC;" value="Requirement" vertex="1">
+          <mxGeometry height="90" width="120" x="165" y="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-12" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=UjFZrsEItZGU;" value="Task breakdown" vertex="1">
+          <mxGeometry height="90" width="120" x="435" y="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-13" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-5" style="html=1;jettySize=18;whiteSpace=wrap;fontSize=13;strokeColor=#3a414a;strokeOpacity=100;strokeWidth=0.8;rounded=1;arcSize=12;edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;lucidId=bkFZXgRtceqi;" target="6S870EO1x6cLyfISw6w4-12" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-14" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-5" style="html=1;jettySize=18;whiteSpace=wrap;fontSize=13;strokeColor=#3a414a;strokeOpacity=100;strokeWidth=0.8;rounded=1;arcSize=12;edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;lucidId=ekFZIlCxwYgC;" target="6S870EO1x6cLyfISw6w4-11" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-15" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-1" style="html=1;jettySize=18;whiteSpace=wrap;fontSize=13;strokeColor=#3a414a;strokeOpacity=100;strokeWidth=0.8;rounded=1;arcSize=12;edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;lucidId=nkFZBS-LSDC5;" target="6S870EO1x6cLyfISw6w4-2" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-16" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-2" style="html=1;jettySize=18;whiteSpace=wrap;fontSize=13;strokeColor=#3a414a;strokeOpacity=100;strokeWidth=0.8;rounded=1;arcSize=12;edgeStyle=orthogonalEdgeStyle;startArrow=none;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;lucidId=okFZ5ErtGNE8;" target="6S870EO1x6cLyfISw6w4-7" value="">
+          <mxGeometry height="100" relative="1" width="100" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-17" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=agFZJYghbJDR;" value="Dev" vertex="1">
+          <mxGeometry height="300" width="150" x="-90" y="1800" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-19" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=16.7;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=XhFZ~MLMU5zU;" value="Output: Comment" vertex="1">
+          <mxGeometry height="60" width="120" x="465" y="1380" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-20" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=13;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=0gFZ3sYhI7H1;" value="Input:&amp;nbsp;&lt;br&gt;Ticket&lt;br&gt;Discussion" vertex="1">
+          <mxGeometry height="85" width="120" x="120" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-22" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=13;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=0gFZ3sYhI7H1;" value="Input:&amp;nbsp;&lt;br&gt;&lt;div&gt;Handoff&lt;/div&gt;&lt;div&gt;Ticket&lt;/div&gt;Discussion" vertex="1">
+          <mxGeometry height="85" width="120" x="300" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-24" parent="1" style="html=1;overflow=block;blockSpacing=1;whiteSpace=wrap;fontSize=13;spacing=9;strokeOpacity=100;rounded=1;absoluteArcSize=1;arcSize=9;fillColor=#unset;strokeWidth=NaN;lucidId=0gFZ3sYhI7H1;" value="Input:&amp;nbsp;&lt;br&gt;&lt;div&gt;Handoff&lt;/div&gt;&lt;div&gt;Ticket&lt;/div&gt;Discussion" vertex="1">
+          <mxGeometry height="85" width="120" x="465" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-25" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Don&#39;t be Dory&amp;nbsp;&lt;br&gt;(Context drift)" vertex="1">
+          <mxGeometry height="60" width="120" x="1120" y="-1310" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Anti Meeseeks (Execution bias)" vertex="1">
+          <mxGeometry height="60" width="120" x="990" y="-1310" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Stay in character (Interrupt recovery)" vertex="1">
+          <mxGeometry height="60" width="120" x="860" y="-1310" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-29" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Agent not to hold open tasks implicitly: note creation" vertex="1">
+          <mxGeometry height="60" width="120" x="1120" y="-1250" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-30" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Agent not to execute before finishing preparation" vertex="1">
+          <mxGeometry height="60" width="120" x="990" y="-1250" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-31" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Hogy lehetne a discussiont optimalizálni hogy ne legyen kérdés flood?" vertex="1">
+          <mxGeometry height="60" width="120" x="-350" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Hogy épüljön fel a laws rész és honnan fogva folyamat és az hova tartozik?" vertex="1">
+          <mxGeometry height="60" width="120" x="-350" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Agent not to deviate from the process" vertex="1">
+          <mxGeometry height="60" width="120" x="860" y="-1250" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-34" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Agent MUST get confirmation from user before discussion schedule deralis - HARD requirement (limit)" vertex="1">
+          <mxGeometry height="180" width="120" x="860" y="-1180" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-35" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Agent MUST acknowledge discussion with owner is part of the preparation&lt;br&gt;Discussion ends when owner says it ends" vertex="1">
+          <mxGeometry height="180" width="120" x="990" y="-1180" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-36" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="Don&#39;t be Dory" vertex="1">
+          <mxGeometry height="40" width="120" x="660" y="-1245" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-37" parent="1" style="triangle;whiteSpace=wrap;html=1;rotation=-91;" value="" vertex="1">
+          <mxGeometry height="80" width="60" x="689" y="-1315" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-38" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="Anti Meeseeks" vertex="1">
+          <mxGeometry height="40" width="160" x="640" y="-1205" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-39" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="STAY in character" vertex="1">
+          <mxGeometry height="40" width="200" x="620" y="-1165" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-40" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Agent MUST write incremental Notion comment at each major checkpoint, not only at session end. Comment is the external memory, not the agent&#39;s context." vertex="1">
+          <mxGeometry height="180" width="120" x="1120" y="-1180" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-41" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Be like Spock&lt;br&gt;(Anti-sycophancy)" vertex="1">
+          <mxGeometry height="60" width="120" x="1250" y="-1310" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-42" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Agent to prepare and engage in discussion" vertex="1">
+          <mxGeometry height="60" width="120" x="1250" y="-1250" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-43" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Agent MUST think alongside the owner: arrive with a view, stay active, build on ideas. Ask to fill gaps only. Call out uncertainty. Update when challenged, don&#39;t dig in." vertex="1">
+          <mxGeometry height="180" width="120" x="1250" y="-1180" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-44" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Be like Spock" vertex="1">
+          <mxGeometry height="30" width="60" x="690" y="-1275" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-50" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="A passive or yes-man adds no value - it only mirrors what the owner already thinks." vertex="1">
+          <mxGeometry height="70" width="120" x="1250" y="-1000" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-51" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="The agent&#39;s memory is unreliable: external record is truth." vertex="1">
+          <mxGeometry height="70" width="120" x="1120" y="-1000" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-52" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&amp;nbsp;Fast execution with incomplete context is worse than slow." vertex="1">
+          <mxGeometry height="70" width="120" x="990" y="-1000" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-53" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Trust the process else challenge it but do not deviate" vertex="1">
+          <mxGeometry height="70" width="120" x="860" y="-1000" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-55" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Law 1" vertex="1">
+          <mxGeometry height="20" width="120" x="860" y="-1330" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-56" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Law 2" vertex="1">
+          <mxGeometry height="20" width="120" x="990" y="-1330" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-58" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;Law 4&lt;/div&gt;" vertex="1">
+          <mxGeometry height="20" width="120" x="1250" y="-1330" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-59" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Law 3" vertex="1">
+          <mxGeometry height="20" width="120" x="1120" y="-1330" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-60" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Every agent in this workflow operates under the same constraints. They are ordered, non-negotiable, and derived from one principle: autonomy without constraint is liability.&lt;div&gt;Each law is subordinate to the one above it. In conflict, the higher law is absolute.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="510" x="860" y="-1400" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-61" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" value="4 Laws of Agentic Workflow" vertex="1">
+          <mxGeometry height="40" width="510" x="860" y="-1440" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-62" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="3 personalities in 1 agent" vertex="1">
+          <mxGeometry height="60" width="120" x="640" y="-410" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-67" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-64">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-68" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-65">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-73" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-71">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-64" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" value="Tomi" vertex="1">
+          <mxGeometry height="60" width="120" x="500" y="-280" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-65" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" value="Zsombi" vertex="1">
+          <mxGeometry height="60" width="120" x="640" y="-280" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-69" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Principal engineer" vertex="1">
+          <mxGeometry height="40" width="120" x="500" y="-160" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-70" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Engineering manager" vertex="1">
+          <mxGeometry height="40" width="120" x="640" y="-160" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-71" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" value="Peti" vertex="1">
+          <mxGeometry height="60" width="120" x="780" y="-280" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-72" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Maintenance" vertex="1">
+          <mxGeometry height="40" width="120" x="780" y="-160" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-79" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pipeline:&amp;nbsp;&lt;br&gt;Senate" vertex="1">
+          <mxGeometry height="60" width="120" x="840" y="-570" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-80" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=30;" value="Workflow mapping" vertex="1">
+          <mxGeometry height="30" width="320" x="90" y="-790" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-86" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-62">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="-500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-117" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-97">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-87" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="Caesar" vertex="1">
+          <mxGeometry height="30" width="120" x="640" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-88" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="Cato" vertex="1">
+          <mxGeometry height="30" width="120" x="780" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-89" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="Cicero" vertex="1">
+          <mxGeometry height="30" width="120" x="500" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-91" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="Rich Hickey" vertex="1">
+          <mxGeometry height="30" width="120" x="500" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-92" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="Kelsey Hightower" vertex="1">
+          <mxGeometry height="30" width="120" x="640" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-93" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="Charity Majors" vertex="1">
+          <mxGeometry height="30" width="120" x="780" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-94" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Challenges whether you&#39;re solving the right problem. Anti-complexity, first-principles thinker. Never accepts a solution before questioning the premise." vertex="1">
+          <mxGeometry height="160" width="120" x="500" y="-120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-95" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pragmatic, delivery-focused, bridges theory and practice. Always looking for the shortest path to &quot;working and shipped." vertex="1">
+          <mxGeometry height="160" width="120" x="640" y="-120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-96" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Thinks about what breaks in production before it&#39;s built. Stability-first, skeptical of hype, &quot;you build it you run it." vertex="1">
+          <mxGeometry height="160" width="120" x="780" y="-120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-101" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-98">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-102" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-99">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-97" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Skills for planning" vertex="1">
+          <mxGeometry height="60" width="120" x="1020" y="-410" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-98" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Consilium" vertex="1">
+          <mxGeometry height="60" width="120" x="950" y="-280" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-99" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Censura" vertex="1">
+          <mxGeometry height="60" width="120" x="1085" y="-280" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-105" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="INPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="950" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-106" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="DISCUSSION SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1085" y="-90" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-107" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="OUTPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1085" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-108" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="INPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1085" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-109" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="DISCUSSION SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="950" y="-100" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-110" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="OUTPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="950" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-111" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Load all context before anything else — ticket, comments, CLAUDE.md, DECISIONS.md, phase boundary. If anything is missing, stop." vertex="1">
+          <mxGeometry height="90" width="120" x="950" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-112" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Three personas debate independently. Owner is not above challenge — cite source and correct. Discussion stays open until owner explicitly closes it. Every decision gets a confidence level, reversibility&lt;br&gt;&amp;nbsp; tag, and blocker-or-opinion classification. New unknowns don&#39;t expand scope — they become new SPIKE tickets." vertex="1">
+          <mxGeometry height="190" width="120" x="950" y="-70" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-113" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Locked decisions, blockers, assumptions, dissent, and new unknowns — all in structured format. Handoff posted to Notion addressed to Praetor. Flag any CLAUDE.md changes needed." vertex="1">
+          <mxGeometry height="130" width="120" x="950" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-114" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Load ticket, all comments, CLAUDE.md, and Praetor output. Do not reload own prior Consilium decisions — context isolation is intentional. Confirm the original ticket goal." vertex="1">
+          <mxGeometry height="100" width="120" x="1085" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-115" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Three personas review Praetor output independently. Challenge against CLAUDE.md, DECISIONS.md, and the original ticket goal. Owner is not above challenge here either. Use [HIGH/MED/LOW Impact, HIGH/MED/LOW&lt;br&gt;&amp;nbsp; &amp;nbsp;Effort] for every finding. Log dissent. Stay open until owner explicitly closes." vertex="1">
+          <mxGeometry height="180" width="120" x="1085" y="-60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-116" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="GREEN / YELLOW / RED verdict with findings in structured format. Confirm Praetor&#39;s expected_outputs were met. Handoff posted to Notion addressed to Project Owner. Flag any CLAUDE.md changes needed." vertex="1">
+          <mxGeometry height="140" width="120" x="1085" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-131" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="90" width="120" x="640" y="-760" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-125" parent="6S870EO1x6cLyfISw6w4-131" style="rounded=0;whiteSpace=wrap;html=1;" value="Senate" vertex="1">
+          <mxGeometry height="60" width="120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-128" parent="6S870EO1x6cLyfISw6w4-131" style="rounded=0;whiteSpace=wrap;html=1;" value="Consilium" vertex="1">
+          <mxGeometry height="30" width="120" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-132" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="90" width="120" x="840" y="-760" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-126" parent="6S870EO1x6cLyfISw6w4-132" style="rounded=0;whiteSpace=wrap;html=1;" value="Questor" vertex="1">
+          <mxGeometry height="60" width="120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-129" parent="6S870EO1x6cLyfISw6w4-132" style="rounded=0;whiteSpace=wrap;html=1;" value="Relatio" vertex="1">
+          <mxGeometry height="30" width="120" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-133" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="90" width="120" x="1040" y="-760" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-127" parent="6S870EO1x6cLyfISw6w4-133" style="rounded=0;whiteSpace=wrap;html=1;" value="Senate" vertex="1">
+          <mxGeometry height="60" width="120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-130" parent="6S870EO1x6cLyfISw6w4-133" style="rounded=0;whiteSpace=wrap;html=1;" value="Censura" vertex="1">
+          <mxGeometry height="30" width="120" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-134" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-125" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-126">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-135" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-126" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-127">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-137" parent="1" style="swimlane;startSize=0;" value="" vertex="1">
+          <mxGeometry height="200" width="560" x="620" y="-830" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-138" parent="6S870EO1x6cLyfISw6w4-137" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=23;" value="Exploracio (Spiking - task research" vertex="1">
+          <mxGeometry height="30" width="430" x="10" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-269" edge="1" parent="6S870EO1x6cLyfISw6w4-137" source="6S870EO1x6cLyfISw6w4-138" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-138">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-142" parent="1" style="swimlane;startSize=0;" value="" vertex="1">
+          <mxGeometry height="200" width="560" x="1210" y="-830" as="geometry">
+            <mxRectangle height="40" width="50" x="1240" y="-1190" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-144" parent="6S870EO1x6cLyfISw6w4-142" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=23;" value="Opus - Development" vertex="1">
+          <mxGeometry height="30" width="250" x="10" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-145" connectable="0" parent="6S870EO1x6cLyfISw6w4-142" style="group" value="" vertex="1">
+          <mxGeometry height="90" width="120" x="30" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-146" parent="6S870EO1x6cLyfISw6w4-145" style="rounded=0;whiteSpace=wrap;html=1;" value="Senate" vertex="1">
+          <mxGeometry height="60" width="120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-147" parent="6S870EO1x6cLyfISw6w4-145" style="rounded=0;whiteSpace=wrap;html=1;" value="Consilium" vertex="1">
+          <mxGeometry height="30" width="120" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-148" connectable="0" parent="6S870EO1x6cLyfISw6w4-142" style="group" value="" vertex="1">
+          <mxGeometry height="90" width="120" x="220" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-149" parent="6S870EO1x6cLyfISw6w4-148" style="rounded=0;whiteSpace=wrap;html=1;" value="Praetor" vertex="1">
+          <mxGeometry height="60" width="120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-150" parent="6S870EO1x6cLyfISw6w4-148" style="rounded=0;whiteSpace=wrap;html=1;" value="Renuntiatio" vertex="1">
+          <mxGeometry height="30" width="120" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-151" connectable="0" parent="6S870EO1x6cLyfISw6w4-142" style="group" value="" vertex="1">
+          <mxGeometry height="90" width="120" x="410" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-152" parent="6S870EO1x6cLyfISw6w4-151" style="rounded=0;whiteSpace=wrap;html=1;" value="Senate" vertex="1">
+          <mxGeometry height="60" width="120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-153" parent="6S870EO1x6cLyfISw6w4-151" style="rounded=0;whiteSpace=wrap;html=1;" value="Censura" vertex="1">
+          <mxGeometry height="30" width="120" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-267" edge="1" parent="6S870EO1x6cLyfISw6w4-142" source="6S870EO1x6cLyfISw6w4-146" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-149">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-268" edge="1" parent="6S870EO1x6cLyfISw6w4-142" source="6S870EO1x6cLyfISw6w4-149" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-152">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-181" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-166" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-167">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-182" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-166" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-168">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-166" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pipeline:&amp;nbsp;&lt;br&gt;Questor" vertex="1">
+          <mxGeometry height="60" width="120" x="1380" y="-570" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-179" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-167" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-174">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-167" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="1 personality in 1 agent" vertex="1">
+          <mxGeometry height="60" width="120" x="1290" y="-410" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-183" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-168" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-180">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-168" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Skills for planning" vertex="1">
+          <mxGeometry height="60" width="120" x="1460" y="-410" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-174" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" value="Timi" vertex="1">
+          <mxGeometry height="60" width="120" x="1290" y="-280" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-175" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Staff engineer" vertex="1">
+          <mxGeometry height="40" width="120" x="1290" y="-160" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-176" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="Cornelia" vertex="1">
+          <mxGeometry height="30" width="120" x="1290" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-177" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="Julia Evans" vertex="1">
+          <mxGeometry height="30" width="120" x="1290" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-178" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Systematic and evidence-driven. Decomposes every unknown into chunks before drawing conclusions. Researches wide, explains simply, documents precisely." vertex="1">
+          <mxGeometry height="160" width="120" x="1290" y="-120" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-180" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Relatio" vertex="1">
+          <mxGeometry height="60" width="120" x="1460" y="-280" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-184" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="INVESTIGATE SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1460" y="-220" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-186" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;" value="OUTPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1460" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-188" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Pre-flight (mandate, ticket, CLAUDE.md, DECISIONS.md — stop if missing); chunk decomposition; research + source citation; independent self-reflection (logical fallacies, edge cases — own view first, then&lt;br&gt;&amp;nbsp; vs. Consilium mandate; scope drift = new SPIKE); checkpoint state — resumable on redirect. Present high-level first; per finding: irreversibility, blast radius, confidence. Show reasoning, not conclusions.&lt;br&gt;&amp;nbsp; &amp;nbsp;Open until owner explicitly closes." vertex="1">
+          <mxGeometry height="260" width="120" x="1460" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-191" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Record owner decision as structured artifact: approved scope, exclusions, redirects. Update chunk list on redirect → loop to research. On approval → proceed to spike document." vertex="1">
+          <mxGeometry height="120" width="120" x="1460" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-192" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=30;" value="Agent personalities" vertex="1">
+          <mxGeometry height="30" width="320" x="105" y="-155" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-260" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-196" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-204">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-261" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-196" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-205">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-262" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-196" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-206">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-263" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-196" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-207">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-196" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pipeline: Collegium" vertex="1">
+          <mxGeometry height="60" width="120" x="1870" y="-580" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-198" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Agentic workflow buildup" vertex="1">
+          <mxGeometry height="60" width="120" x="-160" y="-590" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-199" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Mixture of Roles (Senate Pipeline)" vertex="1">
+          <mxGeometry height="60" width="120" x="-250" y="-500" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-200" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Sequential Pipeline (Praetor)" vertex="1">
+          <mxGeometry height="60" width="120" x="-100" y="-500" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-204" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Praetor" vertex="1">
+          <mxGeometry height="60" width="120" x="1640" y="-420" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-205" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Tribunus" vertex="1">
+          <mxGeometry height="60" width="120" x="1790" y="-420" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-206" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Probator" vertex="1">
+          <mxGeometry height="60" width="120" x="1930" y="-420" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-207" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Curator" vertex="1">
+          <mxGeometry height="60" width="120" x="2070" y="-420" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-235" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-208" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-213">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-208" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Dev Engineer" vertex="1">
+          <mxGeometry height="30" width="120" x="1640" y="-360" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-254" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-209" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-232">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-209" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Peer Reviewer" vertex="1">
+          <mxGeometry height="30" width="120" x="1790" y="-360" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-259" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-210" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-238">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-210" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Quality Assurance" vertex="1">
+          <mxGeometry height="30" width="120" x="1930" y="-360" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-264" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-211" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-252">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-211" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Operations" vertex="1">
+          <mxGeometry height="30" width="120" x="2070" y="-360" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-213" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="INPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1640" y="-290" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-214" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Load context. Form own solution before reading Consilium output — sycophancy guard. Reconcile only after independent draft is done." vertex="1">
+          <mxGeometry height="90" width="120" x="1640" y="-260" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-215" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="CLAUDE MD HAVE to BE updated with coding principle section" vertex="1">
+          <mxGeometry height="60" width="120" x="-370" y="-340" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-216" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="DISCUSSION SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1640" y="-170" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-217" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Present approach. No code until owner approves. Redirect = new ticket, not scope expansion." vertex="1">
+          <mxGeometry height="80" width="120" x="1640" y="-140" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-218" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="SWIFT PATTERNS" vertex="1">
+          <mxGeometry height="30" width="120" x="1640" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-219" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Reference for iOS/Swift conventions established in this project. Load before writing any new Swift code. Replicate existing patterns — never invent new ones." vertex="1">
+          <mxGeometry height="100" width="120" x="1640" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-220" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="VETO SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1640" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-256" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-221" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-237">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-221" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Shared veto format for all review agents. Preloaded so Praetor recognizes a valid veto on arrival. Response must be targeted — not a general rewrite.&amp;nbsp;" vertex="1">
+          <mxGeometry height="110" width="120" x="1640" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-222" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="SWIFT DATA PATT." vertex="1">
+          <mxGeometry height="30" width="120" x="1640" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-223" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Reference for SwiftData query, mutation, and relationship patterns. Load before touching any @Model or context.save() call. Pattern-first — no improvisation." vertex="1">
+          <mxGeometry height="110" width="120" x="1640" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-224" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="REVISION SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1640" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-225" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Load veto. Fix only the flagged issue — no cleanup, no scope creep. Document what changed and what was explicitly not touched." vertex="1">
+          <mxGeometry height="90" width="120" x="1640" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-226" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="OUTPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1790" y="-180" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-227" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Declare all findings before deciding. MED/HIGH = veto. Clean pass must cite verified checklist items — silence is invalid." vertex="1">
+          <mxGeometry height="80" width="120" x="1790" y="-150" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-228" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="OUTPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1640" y="-60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-229" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Implement ticket scope only — nothing beyond it. Log every touched file in delta doc. Update updatedAt on every mutation." vertex="1">
+          <mxGeometry height="90" width="120" x="1640" y="-30" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-232" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="INPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1790" y="-290" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-233" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Load delta doc only — no Consilium context, fresh eyes. Map changed files. Run code-review-checklist against each." vertex="1">
+          <mxGeometry height="80" width="120" x="1790" y="-260" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-236" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="VETO SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1790" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-255" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-237" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-249">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-237" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Shared veto format for all review agents. Preloaded so Praetor recognizes a valid veto on arrival. Response must be targeted — not a general rewrite." vertex="1">
+          <mxGeometry height="100" width="120" x="1790" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-238" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="INPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1930" y="-290" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-239" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Load delta doc. Identify every changed code path that needs coverage. Run existing test suite before forming any opinion." vertex="1">
+          <mxGeometry height="70" width="120" x="1930" y="-260" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-242" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="CODE REVIEW" vertex="1">
+          <mxGeometry height="30" width="120" x="1790" y="-70" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-243" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Existing skill. Loaded during review — apply each item explicitly against the delta. No implicit &quot;looks fine.&quot;" vertex="1">
+          <mxGeometry height="80" width="120" x="1790" y="-40" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-244" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="IOS TESTING SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1930" y="-60" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-245" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Existing skill. Testing patterns for SwiftUI, SwiftData, and iOS. Load before evaluating any test coverage." vertex="1">
+          <mxGeometry height="70" width="120" x="1930" y="-30" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-246" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="OUTPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1930" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-247" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Report test results explicitly — pass/fail per changed path. Missing coverage on a changed path = finding. Any failure or MED/HIGH gap triggers veto." vertex="1">
+          <mxGeometry height="105" width="120" x="1930" y="-165" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-248" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="VETO SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="1930" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-249" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Shared veto format for all review agents. Preloaded so Praetor recognizes a valid veto on arrival. Response must be targeted — not a general rewrite." vertex="1">
+          <mxGeometry height="100" width="120" x="1930" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-250" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="OUTPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="2070" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-251" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Issue verdict per area: Ready / Needs Attention / Needs Work. Every area explicitly verified — silence is not a pass." vertex="1">
+          <mxGeometry height="80" width="120" x="2070" y="-160" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-252" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="INPUT SKILL" vertex="1">
+          <mxGeometry height="30" width="120" x="2070" y="-290" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-253" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=10;" value="Load delta doc. Run build and lint — no prior agent opinions, operational lens only. Check each area before forming verdict." vertex="1">
+          <mxGeometry height="70" width="120" x="2070" y="-260" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-266" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-127" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-149">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6S870EO1x6cLyfISw6w4-270" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=30;" value="Consistency rules" vertex="1">
+          <mxGeometry height="30" width="320" x="120" y="-1440" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
