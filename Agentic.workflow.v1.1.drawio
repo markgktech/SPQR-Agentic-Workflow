@@ -79,7 +79,7 @@
         <mxCell id="6S870EO1x6cLyfISw6w4-59" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Law 3" vertex="1">
           <mxGeometry height="20" width="120" x="1120" y="-1330" as="geometry" />
         </mxCell>
-        <mxCell id="6S870EO1x6cLyfISw6w4-60" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Every agent in this workflow operates under the same constraints. They are ordered, non-negotiable, and derived from one principle: autonomy without constraint is liability.&lt;div&gt;Each law is subordinate to the one above it. In conflict, the higher law is absolute.&lt;/div&gt;" vertex="1">
+        <mxCell id="6S870EO1x6cLyfISw6w4-60" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Every agent in this workflow operates under the same constraints. They are ordered, non-negotiable, and derived from one principle: autonomy without constraint is liability.&lt;div&gt;Each law is subordinate to the one above it. In conflict, the lower law is absolute:&amp;nbsp;&lt;br&gt;Law 1 &amp;gt; Law 2 &amp;gt; Law 3 &amp;gt; Law 4.&lt;/div&gt;" vertex="1">
           <mxGeometry height="70" width="510" x="860" y="-1400" as="geometry" />
         </mxCell>
         <mxCell id="6S870EO1x6cLyfISw6w4-61" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=17;" value="4 Laws of Agentic Workflow" vertex="1">
@@ -115,7 +115,7 @@
         <mxCell id="6S870EO1x6cLyfISw6w4-72" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Maintenance" vertex="1">
           <mxGeometry height="40" width="120" x="780" y="-160" as="geometry" />
         </mxCell>
-        <mxCell id="6S870EO1x6cLyfISw6w4-79" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pipeline:&amp;nbsp;&lt;br&gt;Senate" vertex="1">
+        <mxCell id="6S870EO1x6cLyfISw6w4-79" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pipeline:&amp;nbsp;&lt;br&gt;Exploratio - Senate" vertex="1">
           <mxGeometry height="60" width="120" x="840" y="-570" as="geometry" />
         </mxCell>
         <mxCell id="6S870EO1x6cLyfISw6w4-80" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=30;" value="Workflow mapping" vertex="1">
@@ -296,7 +296,7 @@
         <mxCell id="6S870EO1x6cLyfISw6w4-182" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-166" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="6S870EO1x6cLyfISw6w4-168">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="6S870EO1x6cLyfISw6w4-166" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pipeline:&amp;nbsp;&lt;br&gt;Questor" vertex="1">
+        <mxCell id="6S870EO1x6cLyfISw6w4-166" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pipeline:&amp;nbsp;&lt;br&gt;Exploratio - Questor" vertex="1">
           <mxGeometry height="60" width="120" x="1380" y="-570" as="geometry" />
         </mxCell>
         <mxCell id="6S870EO1x6cLyfISw6w4-179" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-167" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="6S870EO1x6cLyfISw6w4-174">
@@ -356,7 +356,7 @@
         <mxCell id="6S870EO1x6cLyfISw6w4-263" edge="1" parent="1" source="6S870EO1x6cLyfISw6w4-196" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="6S870EO1x6cLyfISw6w4-207">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="6S870EO1x6cLyfISw6w4-196" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pipeline: Collegium" vertex="1">
+        <mxCell id="6S870EO1x6cLyfISw6w4-196" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Pipeline:&amp;nbsp;&lt;br&gt;Opus - Collegium" vertex="1">
           <mxGeometry height="60" width="120" x="1870" y="-580" as="geometry" />
         </mxCell>
         <mxCell id="6S870EO1x6cLyfISw6w4-204" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Praetor" vertex="1">
