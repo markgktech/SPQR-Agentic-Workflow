@@ -26,17 +26,23 @@ Senate: Consilium  →  Praetor  →  Tribunus  →  Probator  →  Curator  →
 
 ## Agents
 
-| Agent | Roman Origin | Role | IT Equivalent | Pipeline |
-|-------|-------------|------|---------------|----------|
-| Senate — Consilium | Legislative council | Design authority. Three deliberation personas in one session. | Tech Lead / Solution Architect | Both |
-| Senate — Censura | Censors — guardians of conduct | Post-execution review authority. Verdict only. | Engineering Manager | Both |
-| Praetor | Executive magistrate | Implements the feature ticket in a worktree-isolated session. Never writes code before the owner approves approach. | Software Engineer | OPUS |
-| Tribunus | Tribune — veto holder | Independent code reviewer. Runs swiftlint independently. One veto per pipeline run. | Senior Engineer (code reviewer) | OPUS |
-| Probator | Examiner / quality inspector | Independent QA verifier. Runs the test suite. One veto per pipeline run. | QA Engineer | OPUS |
-| Curator | Public works superintendent | Operational steward — build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | DevOps / SRE | OPUS |
-| Quaestor | Investigator / questioner | Spike researcher. Produces a structured decision document. Never writes code. | Technical Analyst / Research Engineer | EXPLORATIO |
+| Agent | IT Equivalent | Role | Pipeline |
+|-------|---------------|------|----------|
+| Senate — Consilium | Tech Lead / Solution Architect | Design authority. Three deliberation personas in one session. | Both |
+| Senate — Censura | Engineering Manager | Post-execution review authority. Verdict only. | Both |
+| Praetor | Software Engineer | Implements the feature ticket in a worktree-isolated session. Never writes code before the owner approves approach. | OPUS |
+| Tribunus | Senior Engineer (code reviewer) | Independent code reviewer. Runs swiftlint independently. One veto per pipeline run. | OPUS |
+| Probator | QA Engineer | Independent QA verifier. Runs the test suite. One veto per pipeline run. | OPUS |
+| Curator | DevOps / SRE | Operational steward — build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | OPUS |
+| Quaestor | Technical Analyst / Research Engineer | Spike researcher. Produces a structured decision document. Never writes code. | EXPLORATIO |
 
 **Senate deliberation model:** The Senate runs as three distinct personas in a single session — [Name 1], [Name 2], and [Name 3]. Each arrives with an independent position, challenges the others, and synthesizes toward a decision. One persona acts as Devil's Advocate per Consilium session. Persona names are customizable in `session-starters.md` — not in the agent files, keeping them project-specific without forking the core workflow.
+
+| Persona | Customize as | Roman inspiration | IT inspiration | IT Role | Focus |
+|---------|-------------|-------------------|----------------|---------|-------|
+| 1 | [Name 1] | Cicero | Rich Hickey | Principal Engineer | First-principles, anti-complexity — questions the premise before accepting any solution |
+| 2 | [Name 2] | Caesar | Kelsey Hightower | Engineering Manager | Pragmatic, delivery-focused — shortest path to working and shipped |
+| 3 | [Name 3] | Cato | Charity Majors | SRE / Maintenance | Stability-first, skeptical of hype — thinks about what breaks in production before it's built |
 
 ---
 
