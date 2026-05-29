@@ -36,7 +36,7 @@ Senate: Consilium  →  Praetor  →  Tribunus  →  Probator  →  Curator  →
 | Curator | DevOps / SRE | Operational steward — build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | OPUS |
 | Quaestor | Technical Analyst / Research Engineer | Spike researcher. Produces a structured decision document. Never writes code. | EXPLORATIO |
 
-**Personalized agents**
+## Personalized agents
 
 **Senate deliberation model:** The Senate runs as three distinct personas in a single session — [Name 1], [Name 2], and [Name 3]. Each arrives with an independent position, challenges the others, and synthesizes toward a decision. One persona acts as Devil's Advocate per Consilium session. Persona names are customizable in `session-starters.md` — not in the agent files, keeping them project-specific without forking the core workflow.
 
@@ -46,7 +46,7 @@ Senate: Consilium  →  Praetor  →  Tribunus  →  Probator  →  Curator  →
 | Senate Member 2 | [Name 2] | Caesar | Kelsey Hightower | Engineering Manager | Pragmatic, delivery-focused — shortest path to working and shipped |
 | Senate Member 3 | [Name 3] | Cato | Charity Majors | SRE / Maintenance | Stability-first, skeptical of hype — thinks about what breaks in production before it's built |
 | Quaestor | [Name 4] | — | Julia Evans | Staff Engineer | Systematic and evidence-driven. Decomposes every unknown into chunks before drawing conclusions. Researches wide, explains simply, documents precisely. |
-| Other agents (Praetor, Tribunus, Probator, Curator) | — | — | — | — | No personalization — role is execution-focused and fully defined by agent file; no deliberation persona required. |
+| Other agents | — | — | — | — | No personalization — role is execution-focused and fully defined by agent file; no deliberation persona required. |
 
 ---
 
