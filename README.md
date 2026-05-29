@@ -10,30 +10,33 @@ SPQR is a development pipeline where each stage of the software delivery cycle i
 
 Two pipelines:
 
+**EXPLORATIO** — research / spike:
+```
+Senate: Consilium  →  Quaestor  →  Senate: Censura
+  (scope)             (research)     (verdict)
+```
+
 **OPUS** — feature development:
 ```
 Senate: Consilium  →  Praetor  →  Tribunus  →  Probator  →  Curator  →  Senate: Censura
   (design)            (build)     (review)      (QA)         (ops)        (verdict)
 ```
 
-**EXPLORACIO** — research / spike:
-```
-Senate: Consilium  →  Quaestor  →  Senate: Censura
-  (scope)             (research)     (verdict)
-```
-
 ---
 
 ## Agents
 
-| Agent | Role | Pipeline |
-|-------|------|----------|
-| Senate | Design authority (Consilium) and post-execution review authority (Censura). Three deliberation personas in one session. | Both |
-| Praetor | Implements the feature ticket in a worktree-isolated session. Never writes code before the owner approves approach. | OPUS |
-| Tribunus | Independent code reviewer. Runs swiftlint independently. One veto per pipeline run. | OPUS |
-| Probator | Independent QA verifier. Runs the test suite. One veto per pipeline run. | OPUS |
-| Curator | Operational steward — build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | OPUS |
-| Quaestor | Spike researcher. Produces a structured decision document. Never writes code. | EXPLORACIO |
+| Agent | Roman Origin | Role | IT Equivalent | Pipeline |
+|-------|-------------|------|---------------|----------|
+| Senate — Consilium | Legislative council | Design authority. Three deliberation personas in one session. | Tech Lead / Solution Architect | Both |
+| Senate — Censura | Censors — guardians of conduct | Post-execution review authority. Verdict only. | Engineering Manager | Both |
+| Praetor | Executive magistrate | Implements the feature ticket in a worktree-isolated session. Never writes code before the owner approves approach. | Software Engineer | OPUS |
+| Tribunus | Tribune — veto holder | Independent code reviewer. Runs swiftlint independently. One veto per pipeline run. | Senior Engineer (code reviewer) | OPUS |
+| Probator | Examiner / quality inspector | Independent QA verifier. Runs the test suite. One veto per pipeline run. | QA Engineer | OPUS |
+| Curator | Public works superintendent | Operational steward — build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | DevOps / SRE | OPUS |
+| Quaestor | Investigator / questioner | Spike researcher. Produces a structured decision document. Never writes code. | Technical Analyst / Research Engineer | EXPLORATIO |
+
+**Senate deliberation model:** The Senate runs as three distinct personas in a single session — [Name 1], [Name 2], and [Name 3]. Each arrives with an independent position, challenges the others, and synthesizes toward a decision. One persona acts as Devil's Advocate per Consilium session. Persona names are customizable in `session-starters.md` — not in the agent files, keeping them project-specific without forking the core workflow.
 
 ---
 
