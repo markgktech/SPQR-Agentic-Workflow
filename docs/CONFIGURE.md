@@ -21,6 +21,9 @@ This file explains every placeholder in the SPQR skill and agent files, and how 
 | `[SPIKE_DOCUMENT_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md`, `docs/skills/spike-document.md` | Notion page ID of your Spike Document template |
 | `[SPIKE_DOC_PARENT_PAGE_ID]` | `docs/skills/quaestor-relatio-output.md`, `docs/skills/censura-ticketing-input.md` | Notion page ID of the parent page where spike docs are created as sub-pages |
 
+| `[Master Persona 1]` | `docs/upgrade/session-starter.md`, `docs/upgrade/roundtable.md` | First name of your Dev Process Architect persona for workflow upgrade roundtable |
+| `[Master Persona 2]` | `docs/upgrade/session-starter.md`, `docs/upgrade/roundtable.md` | First name of your Agentic Trends Expert persona for workflow upgrade roundtable |
+
 **Senate personas** (`[Name 1]`–`[Name 3]`) appear together in each file. Each persona covers a fixed review angle: premise validity, delivery scope, and production risk. Choose names that are meaningful to your team — real names, fictional characters, or industry figures all work.
 
 ---

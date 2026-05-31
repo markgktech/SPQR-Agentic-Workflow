@@ -104,7 +104,7 @@ Before filling anything in, open `docs/CONFIGURE.md` — it lists every placehol
 
 4. **Set up Notion**: each ticket needs a Notion page. Agents read tickets and post structured comments as checkpoints. Ticket creation also requires Notion templates (one per type: Spike, Feature, Bug, Doc) and a spike doc parent page — see `docs/CONFIGURE.md` for the full list of IDs needed.
 
-5. **Update session-starters.md**: fill in `[PROJECT_PATH]` with your project root and the PERSONAS section with your persona names.
+5. **Update session-starters.md**: fill in `[PROJECT_PATH]` with your project root and the PERSONAS section with your persona names. If you plan to run workflow upgrades, also fill in `[Master Persona 1]` and `[Master Persona 2]` in `docs/upgrade/session-starter.md`.
 
 6. **Set up MCP servers**: register Context7 MCP in your Claude Code settings. Session-starters.md specifies the `--allowedTools` flags per agent; verify these match your setup before first run.
 
@@ -167,12 +167,25 @@ docs/
     ├── censura-ticketing-discussion.md
     ├── censura-ticketing-output.md
     └── quaestor-doc-execute.md
+├── upgrade/
+│   ├── session-starter.md     (master orchestrator prompt for workflow upgrades)
+│   ├── roundtable.md
+│   ├── decision-making.md
+│   ├── planning.md
+│   ├── execution.md
+│   ├── context-window.md
+│   └── wrap-up.md
 CLAUDE.md.template             (fill this in for your project)
 ```
 
 ---
 
 ## Version History
+
+### v1.2.1 (2026-05)
+- Upgrade Way of Working: new `docs/upgrade/` folder with master orchestrator session starter and six skill files covering roundtable, decision making, planning, execution order, context window management, and wrap-up
+- README: Ticket system, Configuration, and Upgrading SPQR sections added
+- CONFIGURE.md: `[Master Persona 1]` and `[Master Persona 2]` placeholders added for upgrade roundtable personas
 
 ### v1.2 (2026-05)
 - Ticket creation automated: Quaestor proposes → Censura validates → owner approves → Notion tickets created; shared ticket-slicing.md skill (two modes)
@@ -194,6 +207,29 @@ CLAUDE.md.template             (fill this in for your project)
 
 ### v1.0 (2025)
 - Initial release
+
+---
+
+## Upgrading SPQR
+
+SPQR is designed to evolve. When gaps surface — through Censura retrospectives, spike findings, or operational experience — the upgrade process turns them into versioned improvements applied consistently across all files.
+
+**Why a structured process?**
+- Workflow changes touch many files at once; ad hoc edits cause inconsistencies
+- Each upgrade is documented in Notion before execution — reviewable and traceable
+- Changes apply to your project repo first, then sync to the generic template
+
+**How it works:**
+1. Open DOC tickets for each identified gap or improvement
+2. Load the master orchestrator session from `docs/upgrade/session-starter.md`
+3. Master agent runs a roundtable → builds a decision log → groups changes into execution sets
+4. Each group runs in a separate agent session driven by a written brief
+5. Results reviewed; open items become new tickets
+
+**When to run an upgrade:**
+- After Censura surfaces recurring friction in the retrospective log
+- When a spike reveals a gap in the current workflow
+- When syncing your project fork back to the generic template
 
 ---
 
