@@ -61,6 +61,25 @@ Every agent operates under the same four laws, in priority order:
 
 ---
 
+## Ticket system
+
+Every unit of work maps to one of four ticket types:
+
+| Type | Purpose |
+|------|---------|
+| **Spike** | Research and exploration — produces a structured decision document |
+| **Feature** | New functionality — runs the full OPUS pipeline |
+| **Bug** | Defect captured during QA — fed back into OPUS |
+| **Doc** | Workflow documentation maintenance — handled by Quaestor |
+
+**Ticket creation is automated, owner-gated.** After every spike, Quaestor proposes follow-up tickets. Censura validates them in a dedicated ticketing phase. No ticket is created in your ticket system until the owner explicitly approves:
+
+```
+Quaestor proposes  →  Censura validates  →  Owner approves  →  Tickets created
+```
+
+---
+
 ## How to adopt
 
 Before filling anything in, open `docs/CONFIGURE.md` — it lists every placeholder in the workflow, which file it lives in, and what to put in it.
