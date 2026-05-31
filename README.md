@@ -104,7 +104,7 @@ Before filling anything in, open `docs/CONFIGURE.md` — it lists every placehol
 
 4. **Set up Notion**: each ticket needs a Notion page. Agents read tickets and post structured comments as checkpoints. Ticket creation also requires Notion templates (one per type: Spike, Feature, Bug, Doc) and a spike doc parent page — see `docs/CONFIGURE.md` for the full list of IDs needed.
 
-5. **Update session-starters.md**: fill in `[PROJECT_PATH]` with your project root and the PERSONAS section with your persona names. If you plan to run workflow upgrades, also fill in `[Master Persona 1]` and `[Master Persona 2]` in `docs/upgrade/session-starter.md`.
+5. **Update session-starters.md**: fill in `[PROJECT_PATH]` with your project root and the PERSONAS section with your persona names. If you plan to run workflow upgrades, also fill in `[Master Persona 1]` and `[Master Persona 2]` in `docs/upgrade/session-starter.md`, and fill in `[SPQR_REPO_PATH]` with the absolute path to your SPQR template repo on disk — needed when writing sync group briefs.
 
 6. **Set up MCP servers**: register Context7 MCP in your Claude Code settings. Session-starters.md specifies the `--allowedTools` flags per agent; verify these match your setup before first run.
 
@@ -136,7 +136,7 @@ docs/
 │   ├── curator.md
 │   ├── quaestor.md
 │   └── session-starters.md
-└── skills/
+├── skills/
     ├── consilium-input.md
     ├── consilium-discussion.md
     ├── consilium-output.md

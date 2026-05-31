@@ -27,7 +27,7 @@ Every brief uses typed format:
 
 GROUP: [name]
 ORDER: N/N
-REPO: Foodoire | SPQR | Both
+REPO: [YOUR_PROJECT] | SPQR | Both
 NOTION_REF: [URL of this group's sub-page]
 RATIONALE: [one line — why this is one group]
 FILL_CHANGES_MADE: yes
@@ -41,7 +41,7 @@ FILES:
 Brief must be complete enough that the execution agent can start without clarifying questions. If writing the brief surfaces ambiguity, resolve it before handing off — ambiguity found during planning is far cheaper than ambiguity found mid-execution.
 
 BRIEF LENGTH
-A brief should be writable in under 10 minutes. If it takes longer, the group is too large or too ambiguous. Split along file ownership boundaries or resolve the ambiguity first.
+A brief is too large if it requires more than 7 FILES entries or a RATIONALE longer than one line. If either threshold is hit, split along file ownership boundaries or resolve the ambiguity first.
 
 NEVER
 - Split file ownership across groups
