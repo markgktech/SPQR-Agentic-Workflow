@@ -80,6 +80,18 @@ Quaestor proposes  →  Censura validates  →  Owner approves  →  Tickets cre
 
 ---
 
+## Configuration
+
+SPQR ships as a generic template — every project-specific detail is a named placeholder. Before running any pipeline, those placeholders need to be filled in: persona names, project path, ticket system IDs. `docs/CONFIGURE.md` is the single inventory: every placeholder, which files contain it, and what to put there.
+
+**Why CONFIGURE.md exists.** Without it, placeholders are scattered across a dozen skill and agent files. CONFIGURE.md means one place to configure, not a grep session across the repo.
+
+**Notion is the reference implementation, but not required.** Any ticket system with linkable tickets and comment writing works — Linear, GitHub Issues, Jira, or plain markdown files committed to the repo. CONFIGURE.md Section 3 covers the alternatives.
+
+**An agent can perform the configuration.** Provide a project brief, point the agent at `docs/CONFIGURE.md`, and it will substitute all placeholders across the relevant files. Recommended approach for new project setup.
+
+---
+
 ## How to adopt
 
 Before filling anything in, open `docs/CONFIGURE.md` — it lists every placeholder in the workflow, which file it lives in, and what to put in it.
