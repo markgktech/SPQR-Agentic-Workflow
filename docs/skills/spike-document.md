@@ -5,7 +5,7 @@ description: Spike Document output format — Quaestor writes, Senate Censura re
 
 PURPOSE
 Canonical output artifact of the EXPLORACIO pipeline. Quaestor creates and fills as a Notion child page under the spike ticket. Senate Censura reads during review.
-Template: https://www.notion.so/36c68d5de1e8819a824fdfdbb2afff1b
+Template: [SPIKE_DOCUMENT_TEMPLATE_ID]
 
 STRUCTURE
 

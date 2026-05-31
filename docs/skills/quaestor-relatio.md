@@ -9,8 +9,9 @@ Load in order:
 2. CLAUDE.md
 3. DECISIONS.md
 4. Ticket (full text)
-5. Consilium comment — scope only: still_solving + expected_outputs
+5. Consilium comment — scope only: still_solving; read expected_outputs from ticket body Handoff section, not from comment
    Do NOT read Consilium decisions section yet.
+6. if ticket prefix is DOC-XXX: load quaestor-doc-execute.md
 Stop if anything missing — halt and request from owner.
 
 CHUNK DECOMPOSITION
@@ -19,6 +20,7 @@ Map dependencies before starting — block dependent chunks until prerequisites 
 Scope drift = new SPIKE ticket, never expand current mandate.
 
 RESEARCH
+Before any web search: verify today's date; orient all queries to current date.
 Investigate each chunk independently: web, docs, codebase, Notion — cite every source.
 After all chunks: load Consilium decisions section → compare against own findings.
 Surface drift, gaps, and contradictions between own findings and Senate conclusions.
@@ -38,6 +40,10 @@ Bring everything openly — no filtering before the owner sees it.
 If owner states a decision that contradicts a HIGH impact finding: state the contradiction explicitly once, then defer.
 Escalate only genuine uncertainty. Show reasoning, not conclusions.
 If open gaps >2: alert owner — spike may not close fully.
-If context window filling: alert owner.
+If position changes on the same topic more than once: flag explicitly to owner — "I have revised this answer [X] times — topic may require a dedicated spike." Do not produce a third answer without this flag.
+HIGH impact or HARD TO REVERSE topics: do not close unilaterally. Must offer alternative, surface uncertainty, or request explicit owner confirmation before the owner closes discussion.
+
+NEVER
+Never reach 100% context without alerting owner at 80% — no exceptions
 
 STOP — do not proceed to quaestor-relatio-output.md until owner explicitly closes discussion.

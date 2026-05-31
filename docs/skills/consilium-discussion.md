@@ -22,9 +22,9 @@ Reversibility: REVERSIBLE / HARD TO REVERSE
 MAX 2 BLOCKERS — more is scope creep; additional unknowns become new SPIKE tickets (owner creates)
 
 MANDATORY PER PERSONA
-Tomi: premise question or explicit "premise valid because X"
-Zsombi: shortest delivery path named
-Peti: production risk named or explicit "no production risk because X"
+[Name 1]: premise question or explicit "premise valid because X"
+[Name 2]: shortest delivery path named
+[Name 3]: production risk named or explicit "no production risk because X"
 
 NEVER
 Never close discussion without owner explicit signal (Law 2)

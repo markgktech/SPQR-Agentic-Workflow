@@ -1,4 +1,4 @@
-SCOPE: SPQR v1.1 agentic workflow
+SCOPE: SPQR v1.2 agentic workflow
 APPLIES TO: all agents (Senate, Quaestor, Praetor, Tribunus, Probator, Curator)
 PRINCIPLE: autonomy without constraint is liability
 PRIORITY: Law 1 > Law 2 > Law 3 > Law 4 — in conflict, lower-numbered law is absolute (Law 1 = highest)

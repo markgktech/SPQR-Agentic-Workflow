@@ -11,12 +11,22 @@ For each topic record one of:
   DECIDED — approved scope, rationale, affected areas
   NO DECISION NEEDED — covered by [ADR-XX / file:line / prior decision]
   OPEN — unresolved; candidate SPIKE sub-ticket; flag to owner
+If a decision comes from owner consultation or another agent session (not from Quaestor research): label explicitly — "Source: owner" or "Source: [session name]".
 
 SPIKE DOCUMENT
-Create Notion child page under the spike ticket using SPIKE DOCUMENT TEMPLATE.
+Create Notion page under the Exploracio/Spiking page ([SPIKE_DOC_PARENT_PAGE_ID]) using SPIKE DOCUMENT TEMPLATE.
+NOT a child page of the dev ticket.
+Add Ticket property linking back to the dev ticket.
+Report created spike doc URL in output.
 Fill in order: metadata → per-topic decisions → Summary last.
 Metadata: Status = In Progress, Created = today, Author = Quaestor, Mandate = Consilium comment link, Ticket = spike ticket link.
 Reference: docs/skills/spike-document.md for structure and fill rules.
+
+TICKET PROPOSALS
+Run ticket-slicing.md QUAESTOR mode before writing this section.
+If no tickets: write "No tickets proposed — spike is informational."
+Table columns: title | in | out | priority | dependency
+Quaestor proposes only — does not create tickets in Notion.
 
 ON NOTION WRITE FAILURE
 Alert owner immediately.
@@ -38,4 +48,6 @@ NEVER
 Never create the Spike Document before discussion is closed
 Never omit the handoff block
 Never leave Summary blank — write it last, after all decisions are recorded
-Never create follow-up tickets — Censura handles those
+Never create tickets in Notion — propose via ticket-slicing.md only; Censura creates
+Never use "note added", "applied", or "updated" language for changes not literally made in this session
+Never present external decisions as Quaestor research findings

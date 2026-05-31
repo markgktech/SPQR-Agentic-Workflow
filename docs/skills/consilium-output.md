@@ -15,9 +15,12 @@ decisions:
 assumptions: [list — empty if none]
 dissent: [minority positions not adopted — empty if none]
 new_unknowns: [SPIKE tickets needed — empty if none; owner creates]
-expected_outputs: [what Praetor or Quaestor must deliver or verify]
 claude_md_flag: NONE | [preliminary change description]
 unresolved_conflict: [significant persona disagreement flagged for next agent — empty if none]
+
+TICKET BODY HANDOFF
+Write expected_outputs to the ticket body Handoff section — not to the comment:
+expected_outputs: [what Praetor or Quaestor must deliver or verify]
 
 VERDICT RULES
 BLOCKED: any BLOCK finding unresolved
@@ -26,7 +29,7 @@ APPROVED: all DECIDED or no findings
 
 EXPLORACIO HANDOFF NOTE
 Quaestor reads this comment in two passes:
-Pass 1 (scope only — before own research): still_solving + expected_outputs
+Pass 1 (scope only — before own research): still_solving from comment; expected_outputs from ticket body Handoff section
 Pass 2 (after all chunks researched): decisions section
 Never embed decisions inside still_solving — sections must stay separable.
 
@@ -35,3 +38,4 @@ Never omit the handoff block — even on trivial tickets
 Never set APPROVED with unresolved BLOCK
 Never include implementation details — design deliberation only
 Never omit unresolved_conflict if personas disagreed significantly on a finding
+Never omit expected_outputs from ticket body Handoff section

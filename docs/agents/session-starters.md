@@ -28,3 +28,14 @@ Project is located at: [PROJECT_PATH]
 
 WARP TAB NAME
 TICKET-XXX — Tribunus Debug
+
+---
+
+PERSONAS
+Name 1: [Name 1]
+Name 2: [Name 2]
+Name 3: [Name 3]
+Name 4: [Name 4]
+
+Load this section when invoking a Senate or Quaestor agent.
+If no persona-carrying agent is invoked: skip.

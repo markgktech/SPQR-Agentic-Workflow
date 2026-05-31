@@ -1,4 +1,4 @@
-# SPQR v1.1: Sequential Agentic Workflow
+# SPQR v1.2: Sequential Agentic Workflow
 
 A structured, sequential multi-agent development workflow built on Claude Code and Notion. Every task has a ticket. Every agent runs in a stateless session. The external record is truth.
 
@@ -63,15 +63,17 @@ Every agent operates under the same four laws, in priority order:
 
 ## How to adopt
 
+Before filling anything in, open `docs/CONFIGURE.md` — it lists every placeholder in the workflow, which file it lives in, and what to put in it.
+
 1. **Fill in CLAUDE.md**: copy `CLAUDE.md.template`, fill every `[PLACEHOLDER]` with your project's rules, stack, and phase boundaries. This is the single most important step; every agent loads it.
 
 2. **Provide project skill files**: the workflow references `[project-skill-files]` and `[project-testing-guidelines]` in several places. Replace these with your actual domain skill files (e.g. language patterns, framework conventions, testing scope rules).
 
 3. **Fill in code-review-checklist.md**: the `PROJECT CRITICAL RULES` section contains a placeholder. Populate it from your CLAUDE.md Critical Rules.
 
-4. **Set up Notion**: each ticket needs a Notion page. Agents read the ticket and post structured comments as checkpoints.
+4. **Set up Notion**: each ticket needs a Notion page. Agents read tickets and post structured comments as checkpoints. Ticket creation also requires Notion templates (one per type: Spike, Feature, Bug, Doc) and a spike doc parent page — see `docs/CONFIGURE.md` for the full list of IDs needed.
 
-5. **Update session-starters.md**: replace `[PROJECT_PATH]` with your actual project path.
+5. **Update session-starters.md**: fill in `[PROJECT_PATH]` with your project root and the PERSONAS section with your persona names.
 
 6. **Set up MCP servers**: register Context7 MCP in your Claude Code settings. Session-starters.md specifies the `--allowedTools` flags per agent; verify these match your setup before first run.
 
@@ -93,6 +95,7 @@ Every agent operates under the same four laws, in priority order:
 └── rules/
     └── AGENT_LAWS.md          (four laws, auto-loaded every session)
 docs/
+├── CONFIGURE.md               (placeholder reference — start here when setting up)
 ├── LESSONS.md                 (pipeline retrospective log; written by Censura after every run)
 ├── agents/
 │   ├── senate.md
@@ -127,13 +130,25 @@ docs/
     ├── ticket-comment.md
     ├── doc-maintenance.md
     ├── code-review-checklist.md
-    └── debugging-tribunus-input.md
+    ├── debugging-tribunus-input.md
+    ├── ticket-slicing.md
+    ├── censura-ticketing-input.md
+    ├── censura-ticketing-discussion.md
+    ├── censura-ticketing-output.md
+    └── quaestor-doc-execute.md
 CLAUDE.md.template             (fill this in for your project)
 ```
 
 ---
 
 ## Version History
+
+### v1.2 (2026-05)
+- Ticket creation automated: Quaestor proposes → Censura validates → owner approves → Notion tickets created; shared ticket-slicing.md skill (two modes)
+- Censura two-phase model: VERIFY (existing) + TICKETING phase (3 new skill files)
+- Agent hygiene: 8 fixes from SPIKE-004 — handoff accuracy, date validation, context alerts, spike doc location, discussion depth calibration
+- DOC process: new quaestor-doc-execute.md for DOC-type ticket handling with per-fix re-verification
+- SPQR repo public-ready: all project-specific data replaced with named placeholders; CONFIGURE.md setup guide added
 
 ### v1.1 (2026-05)
 - LESSONS.md retrospective log: Censura writes one entry per pipeline run; suggests retrospective at 10 entries

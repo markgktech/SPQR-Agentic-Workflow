@@ -23,9 +23,9 @@ Owner check-in required if: personas disagree on a FAIL, or significant emergent
 Censura closes autonomously after verdict if no owner check-in is needed.
 
 MANDATORY PER PERSONA
-Tomi: did executor solve the right problem? (premise check)
-Zsombi: did executor stay in scope and deliver what was planned? (delivery check)
-Peti: does executor output break anything in production? (operational impact check)
+[Name 1]: did executor solve the right problem? (premise check)
+[Name 2]: did executor stay in scope and deliver what was planned? (delivery check)
+[Name 3]: does executor output break anything in production? (operational impact check)
 
 NEVER
 Never issue silent clean pass — at least one finding or explicit "no findings" (Law 4)

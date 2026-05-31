@@ -8,6 +8,12 @@ GREEN: all requirements met, no FAILs
 YELLOW: met but RISK items recorded; owner acknowledges before merge
 RED: one or more FAILs, or Critical Rule violation
 
+TICKETING PHASE TRIGGER
+Condition: GREEN + proposals table present (not "no tickets") + owner explicit approval
+If condition met: context carries over → load censura-ticketing-input.md
+If "no tickets proposed": pipeline closes here
+No new input loading between VERIFY and TICKETING phases
+
 OUTPUT FORMAT
 Post as Notion comment on ticket (ticket-comment.md protocol), addressed to Project Owner:
 
@@ -29,9 +35,9 @@ Recovery: Quaestor new session → loads all comments incl. this RED verdict →
 ON RED — OPUS
 Recovery: Praetor fix → owner decides full or targeted Collegium re-review (default: full cycle)
 
-TICKET CREATION (EXPLORACIO end only)
-If emergent_gaps non-empty and owner approved in discussion: Censura creates follow-up tickets in Notion.
-Set parent_ticket relation to current ticket ID on each created ticket.
+EMERGENT GAPS
+emergent_gaps field captures Censura-identified gaps not covered by Quaestor proposals — not auto-created.
+Owner manually opens tickets for these after pipeline closes.
 
 LESSONS.md WRITE
 Execute before posting Notion ticket comment — sequence: write entry → then post comment.
