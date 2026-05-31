@@ -36,7 +36,7 @@ Senate: Consilium  →  Praetor  →  Tribunus  →  Probator  →  Curator  →
 | Curator | DevOps / SRE | Operational steward: build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | OPUS |
 | Quaestor | Technical Analyst / Research Engineer | Spike researcher. Produces a structured decision document. Never writes code. | EXPLORATIO |
 
-## Personalized agents
+**Deliberation personas**
 
 **Senate deliberation model:** The Senate runs as three distinct personas in a single session: [Name 1], [Name 2], and [Name 3]. Each arrives with an independent position, challenges the others, and synthesizes toward a decision. One persona acts as Devil's Advocate per Consilium session. Persona names are customizable in `session-starters.md`, not in the agent files, keeping them project-specific without forking the core workflow.
 
