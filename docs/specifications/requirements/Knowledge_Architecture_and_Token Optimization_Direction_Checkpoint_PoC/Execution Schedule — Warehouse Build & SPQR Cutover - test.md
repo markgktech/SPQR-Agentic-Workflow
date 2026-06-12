@@ -6,7 +6,7 @@
 
 **Versioning:** v1.5 = Knowledge Warehouse (this arc) · v1.4 = independent small batch · v2.0 = Semi-Automated Pipeline (roadmap unchanged, consumes v1.5)
 
-**Document status:** Test draft — agent-proposed alternative rendering of the owner's high-level schedule; not authoritative
+**Document status:** SUPERSEDED (2026-06-12) — replaced by "Execution Plan — Warehouse Initiation Project" in `docs/specifications/delivery_notes/Warehouse_Initiation_Project/`. Do not plan from this file; kept for historical reference only.
 
 **Date:** 2026-06-11
 Session ID: e88fbe53-7c5f-4bdf-8fc4-e5453e91240b (Fable generic)
@@ -44,10 +44,12 @@ Session ID: e88fbe53-7c5f-4bdf-8fc4-e5453e91240b (Fable generic)
   - B5 — audit tripwires: orphan watch, missing-recommended-edge, relates-to overuse
 - **Exit check:** vertical slice proven with 10–15 hand-made test nodes; reconcile rebuild reproduces the index byte-identically.
 
-## Parallel track — v1.4 small batch (during Phase 1–2)
+## Post-warehouse batch — v1.5.1 (after Phase 5 cutover)
 
-- Independent of the warehouse, ships as its own SPQR update while the build runs: SAW-1, SAW-16, SAW-17, SAW-29 bug pipeline, model-usage switch area, git-process formalization remainder.
-- SAW-27 telemetry thin layer rides here too, but designed to consume the S4 trace once it exists — not a parallel measuring system.
+- **Owner decision (2026-06-12):** the v1.4 parallel track is dropped. Reason: several v1.4 items touch warehouse-adjacent behaviour (SAW-1, SAW-28 — both now obsolete); running a parallel batch before the warehouse lands creates unnecessary merge complexity and double work. Clean items carry forward to v1.5.1, executed after warehouse cutover.
+- **SAW-1 — obsolete:** Censura "apply directly" behaviour is superseded by the v1.5 warehouse write path (propose → gate → Senate → ingest). Closed in Notion 2026-06-12.
+- **SAW-28 — obsolete:** live-decision manifest absorbed by warehouse (auto-generated index + scoped TOC + append-only supersedes edges). Closed in Notion 2026-06-12.
+- **v1.5.1 carry-forward:** SAW-17, SAW-26, SAW-27, SAW-29; model-usage switch area; git-process formalization remainder. SAW-27 telemetry thin layer designed to consume the S4 trace — not a parallel measuring system.
 
 ## Phase 2 — Migration (first load)
 
@@ -64,7 +66,7 @@ Session ID: e88fbe53-7c5f-4bdf-8fc4-e5453e91240b (Fable generic)
   - per-archetype query-policy blocks in agent files (budgets + the SCRUTINIZE DENY)
   - antechamber discipline + revise-wake + Senate ingest-judgment path (G7/G4)
   - new handoff process + SAW-26 verification-on-handoff (handoff carries trace + antechamber state → warehouse-coupled)
-  - SAW-28 review: expected verdict *absorbed by warehouse* (auto-generated index + scoped TOC supersede the live-manifest idea) — close or rescope, don't redesign blind
+  - SAW-28: closed — obsolete, absorbed by warehouse (see post-warehouse batch note above)
   - documentation regime switch-over rules; generic-first → Foodoire import (G10)
 - **Exit check:** one full SPQR run (a real ticket) executed against the warehouse in test-run regime, flat docs untouched.
 

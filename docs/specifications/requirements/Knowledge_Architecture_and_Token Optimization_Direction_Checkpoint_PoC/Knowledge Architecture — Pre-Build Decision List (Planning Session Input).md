@@ -4,7 +4,7 @@
 
 **Component:** Knowledge warehouse — open decisions left between the PoC arc (S3–S8) and implementation
 
-**Document status:** Open — input for the warehouse-build planning session (schedule item 1.1)
+**Document status:** Closed (2026-06-12) — all items consumed by the planning session and its amendments. Per-item outcomes folded back below. Authoritative record: "Planning Decisions — Warehouse Initiation Project" in `docs/specifications/delivery_notes/Warehouse_Initiation_Project/`.
 
 **Phase:** Pre-build (the PoC arc is closed; nothing here reopens an S3–S8 decision)
 
@@ -25,7 +25,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 # Fixed inputs — owner decisions already taken (2026-06-11, do not re-litigate)
 
 - **Source of truth is the Obsidian/git flat-file structure.** Notion copies are dead projections; Notion keeps ticketing only (FDP, SAW).
-- **Update split:** one big **v1.5** = warehouse build + SPQR prepared to run on the warehouse; everything not warehouse-coupled goes to a separate independent batch (**v1.4**, may ship in parallel with the build). v1.3 is closed/committed as baseline before v1.5.
+- **Update split:** one big **v1.5** = warehouse build + SPQR prepared to run on the warehouse; everything not warehouse-coupled goes to a separate independent batch (**v1.4**, may ship in parallel with the build). v1.3 is closed/committed as baseline before v1.5. *[Updated 2026-06-12: the v1.4 parallel track was dropped — clean items carry forward to v1.5.1 after cutover; SAW-1 and SAW-28 obsoleted. See Execution Plan, "Post-warehouse batch".]*
 - **Versioning (2026-06-12):** the warehouse rollout is named **v1.5 — Knowledge Warehouse**; **v2.0 stays Semi-Automated Pipeline** on the roadmap and in the SAW epics — no renumbering. Rationale: renumbering existing epics/tickets/roadmap docs invites record drift; the warehouse is a 1.x-era substrate change (the manual pipeline stays manual), and v2.0 will consume it. The number "v1.5" was once an informal internal shorthand during the v1.1 era and never entered the record — officially unused, now claimed.
 - **The old flat docs are NOT pruned for now.** S8 Phase 4 (prose-pruning) is deferred indefinitely: the warehouse run is a test run, the flat docs stay intact as fallback, and a full warehouse reset must remain possible if the content comes out distorted. Recorded as a deliberate deviation from the S8 P4 invariant — accepted cost: a dual-source window in which flat docs remain authoritative and the warehouse is a candidate, until an explicit owner cutover call.
 - **First live write-path exercise:** after migration, the badly-updated flat-doc gaps from the dev-ticket runs are fed in as a backfill batch (schedule item 4, "process bugs"). This is the S8 backfill provenance class running as the first hot-path test.
@@ -40,6 +40,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** S7 carried item.
 - **Candidate (non-binding):** per-call process. Simpler, no daemon management, crash-safe by construction (state lives in markdown + SQLite, never in the process), and matches the single-writer gate model. A persistent server buys latency we don't need at ~10k nodes.
 - **Blocks:** all robot code (B-phase).
+- **Outcome:** decided — per-call CLI process (candidate accepted). See Planning Decisions G1.
 
 ### G2 — Agent-to-robot binding
 
@@ -47,6 +48,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** unowned — implementation-shaping.
 - **Candidate (non-binding):** CLI first (one binary/script, structured JSON out), optionally wrapped as an MCP tool later. The contract (S4) is the stable seam; the binding is swappable by design. Pairs naturally with G1=per-call.
 - **Blocks:** query-interface build (B3) and the ingest skill design (v1.5).
+- **Outcome:** decided — CLI first, MCP wrapper only on concrete need (candidate accepted). See Planning Decisions G2.
 
 ### G3 — Robot write/commit policy vs the owner git rule
 
@@ -54,6 +56,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** S7 substrate decision × standing owner rule; surfaced in the gap review.
 - **Candidate (non-binding):** the robot writes files but never commits; the owner batch-commits at checkpoints (e.g. after each ingest batch / migration phase). Keeps the rule intact; the unversioned window is acceptable because markdown-write + SQLite-index are already crash-consistent (S7), and the warehouse is in test-run regime anyway. Fold this into schedule item 3.1.11 (git-process formalization) as one decision.
 - **Blocks:** write-gate build (B4); migration runbook.
+- **Outcome:** decided — robot writes files, never commits; owner batch-commits at checkpoints (candidate accepted). See Planning Decisions G3; git working mode detailed in amendment A5.
 
 ### G6 — Antechamber physical store
 
@@ -61,6 +64,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** fell between S6 and S7.
 - **Candidate (non-binding):** markdown antechamber directory (e.g. `warehouse/antechamber/`), mirrored into the index like everything else. Rationale: the index must stay 100% derived/disposable — putting the only copy of pending proposals in it breaks that invariant. This is the one Group-1 item where the candidate direction contradicts an earlier casual suggestion (SQLite table) — discuss, don't rubber-stamp.
 - **Blocks:** write-gate + antechamber build (B4); migration resumability (S8 checkpoint relies on the antechamber).
+- **Outcome:** decided — markdown antechamber directory outside the warehouse dir (candidate accepted); physical layout concretized as `project_memory/` parent with `warehouse/` + `antechamber/` siblings. See Planning Decisions G6 + amendment A3.
 
 ### G8 — Archetype identity for query-policy enforcement
 
@@ -68,6 +72,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** S4 implementation seam, unowned.
 - **Candidate (non-binding):** self-declared `--archetype` parameter in v1, logged in the trace (so a bypass is at least visible in retro), upgrade to enforced identity only if the trace shows violations. Honest about the trust level; zero infrastructure now.
 - **Blocks:** query-interface build (B3).
+- **Outcome:** decided — self-declared `--archetype` parameter, trace-logged (candidate accepted). See Planning Decisions G8.
 
 ## Group 2 — blocks v1.5 SPQR-cutover planning (close in 3.1 planning, or here if time allows)
 
@@ -77,6 +82,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** S4 → S6 dropped handoff.
 - **Candidate (non-binding):** a grant is a one-shot token the owner issues in-session (a line the owner types / a file the owner touches), consumed by the robot on the next round. Detail it inside the v1.5 wake/escalation design (G7) — same machinery.
 - **Blocks:** v1.5 agent-process design; not the core build.
+- **Outcome:** decided — folded into G7 as designed: one-shot owner-issued grant, consumed by the robot on the next round. See Planning Decisions G7+G4.
 
 ### G5 — Scope-vocabulary governance
 
@@ -84,6 +90,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** S5 → S6 dropped handoff.
 - **Candidate (non-binding):** new scope = a Senate-gated proposal class (never auto-ingested, regardless of promotion state), because a scope value is schema-adjacent, not content. At migration, the vocabulary is re-derived wholesale under the owner bootstrap-gate (see G11).
 - **Blocks:** v1.5 ingest skill + the migration triage.
+- **Outcome:** decided — new scope values are owner-gated: agent flags to the Senate, owner makes the final call. See Planning Decisions G5.
 
 ### G7 — Wake/escalation mechanics (the biggest v1.5 design item)
 
@@ -91,6 +98,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** S6 SPQR-side, explicitly descoped to the SPQR update.
 - **Candidate (non-binding):** queue + session-starter check (no daemon): the antechamber IS the queue; every SPQR session-starter includes a "check pending warehouse items addressed to your ticket+agent" step; Senate-pending items surface to the owner at session start. Deterministic, zero infra, fits Law 3 (external record over memory). Design this FIRST in the v1.5 planning — D-phase items hang on it.
 - **Blocks:** v1.5 everything (handoff, Senate judgment, revise loop).
+- **Outcome:** decided — antechamber-as-queue + session-starter check, daemon-free (candidate accepted). See Planning Decisions G7+G4.
 
 ### G10 — Seed vs local packaging mechanism
 
@@ -98,6 +106,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** S1 cross-cutting concept, never broken down.
 - **Candidate (non-binding):** v1 = plain copy at import (matching the existing SPQR template practice), schema_version stamped per node; a schema bump ships as a re-fold transform script in the seed. Submodules add git complexity the owner workflow doesn't want.
 - **Blocks:** v1.5 packaging + the Foodoire import step.
+- **Outcome:** closed by amendment — direction reversed twice and settled as **generic-first**: robot + DDL + test suite built in the generic SPQR repo, imported to Foodoire by plain copy (Execution Plan Phase 1.5); submodules rejected; `schema_version` per node, schema bumps ship as re-fold transform scripts. See Planning Decisions A1 + A2.
 
 ### G9 — Ticket→session-id map artifact
 
@@ -105,8 +114,11 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Origin:** S3/S5 external reference, dangling.
 - **Candidate (non-binding):** one append-only markdown table in the vault (ticket · agent · session tab-name · date), maintained by session-starter discipline. Cheap; only exists to make provenance reconstructable.
 - **Blocks:** nothing hard — provenance reconstruction quality.
+- **Outcome:** deferred — ticket reference is sufficient; session-id pulled from an external source when needed. Not a build blocker. See Planning Decisions, "Deferred".
 
 ## Group 3 — runbook additions & parked items (no discussion needed, just carry)
+
+*Outcome (2026-06-12): all carried as planned — G11 is an explicit line in Execution Plan Phase 2 (scope-vocabulary re-derive); the P4 deferral is a standing principle of the Execution Plan (test-run regime); G12 and the measurement lane remain parked (Execution Plan, "Parked lane").*
 
 - **G11 — scope re-derive step:** S5's mandatory guard ("re-derive the scope vocabulary against real content at migration; do not force-fit the provisional list") is not yet an explicit migration-runbook line. Add to Phase 0/1 of the S8 runbook when migration is ticketed.
 - **P4 deferral (recorded):** S8 Phase 4 prose-pruning is deferred by owner decision (see Fixed inputs). The migration ticket set must exclude P4; cutover gets its own later decision point.
@@ -122,6 +134,8 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 
 # References
 
+- **Planning Decisions — Warehouse Initiation Project** (`docs/specifications/delivery_notes/Warehouse_Initiation_Project/`) — the authoritative decision record the outcomes above point to
+- **Execution Plan — Warehouse Initiation Project** (same folder) — the active plan that consumes these decisions
 - Session 3–8 docs (this folder) — origin of each dropped handoff, cited per item
 - Session Roadmap: Open-Question Map & Critical Decisions (this folder) — the arc this backlog post-dates
 - Post-arc gap review, 2026-06-10 session — where G1–G12 were identified
