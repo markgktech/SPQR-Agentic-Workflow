@@ -14,3 +14,9 @@ Thumbs.db
 
 ## Obsidian file not needed
 .obsidian
+
+# Warehouse derived index — disposable projection of the markdown truth (S7); never versioned
+index.sqlite
+index.sqlite-wal
+index.sqlite-shm
+__pycache__/
