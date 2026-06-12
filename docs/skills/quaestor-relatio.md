@@ -14,6 +14,10 @@ Load in order:
 6. if ticket prefix is DOC-XXX: load quaestor-doc-execute.md
 Stop if anything missing — halt and request from owner.
 
+FETCH STRATEGY
+Verification skip: Notion create/write returns success + URL → confirmed; do not re-fetch to verify a routine write. BUT do verify after a structurally complex / format-sensitive write (multi-section content, code blocks).
+WebFetch no-go: external URLs only; skip Notion-internal links, private/auth-gated repos, and other vendor-gated URLs — 403 expected.
+
 CHUNK DECOMPOSITION
 Break mandate into chunks: one chunk = one researchable question with a concrete, independently verifiable finding.
 Map dependencies before starting — block dependent chunks until prerequisites complete.
@@ -22,6 +26,10 @@ Scope drift = new SPIKE ticket, never expand current mandate.
 RESEARCH
 Before any web search: verify today's date; orient all queries to current date.
 Investigate each chunk independently: web, docs, codebase, Notion — cite every source.
+Verify external claims — never inherit. Consilium claims about external facts (API behaviour, bug fixes, platform release outcomes, library/framework guarantees) must be independently verified during research, not accepted as given. Scope: decision-bearing external claims only — a claim a recommendation/decision rests on; skip incidental mentions. Search for a primary source (release notes / official spec or standards proposal / vendor session or documentation) and tag the outcome:
+  ACCEPTED — primary source found and cited.
+  REFUTED — primary source contradicts the claim → flag as a finding; the Consilium claim is wrong, not merely unverified.
+  UNKNOWN — no source either way → escalate; never silently inherit.
 After all chunks: load Consilium decisions section → compare against own findings.
 Surface drift, gaps, and contradictions between own findings and Senate conclusions.
 

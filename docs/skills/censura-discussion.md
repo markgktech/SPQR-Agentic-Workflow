@@ -20,6 +20,15 @@ Emergent findings become candidate new SPIKE sub-tickets or DEV tickets — owne
 CONVERGENCE
 Personas compare findings and resolve disagreements.
 Owner check-in required if: personas disagree on a FAIL, or significant emergent gap found.
+
+STOP-BRANCH (gate — evaluate before committing the verdict or writing any output; not a retrospective annotation)
+If the check-in condition is met, stop here before the OUTPUT/verdict step — the gaps gate the output, they are not "owner will see them later":
+1. Stop before writing the CONVERGENCE summary or any output block.
+2. Present each emergent gap with its finding tag (RISK/NOTE) and one sentence.
+3. State: "Owner check-in required — waiting for explicit closure before proceeding to output."
+4. Wait.
+Resume: only after the owner explicitly closes with an affirmative ("go" / "engage") — then proceed to the OUTPUT step; verdict stands, now carrying the acknowledged gaps.
+
 Censura closes autonomously after verdict if no owner check-in is needed.
 
 MANDATORY PER PERSONA

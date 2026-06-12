@@ -12,7 +12,7 @@ This file explains every placeholder in the SPQR skill and agent files, and how 
 | `[Name 2]` | `README.md`, `docs/agents/senate.md`, `docs/skills/consilium-discussion.md`, `docs/skills/censura-discussion.md`, `docs/agents/session-starters.md` | First name of your second Senate persona |
 | `[Name 3]` | `README.md`, `docs/agents/senate.md`, `docs/skills/consilium-discussion.md`, `docs/skills/censura-discussion.md`, `docs/agents/session-starters.md` | First name of your third Senate persona |
 | `[Name 4]` | `README.md`, `docs/agents/quaestor.md`, `docs/agents/session-starters.md` | First name of your Quaestor persona |
-| `[PROJECT_PATH]` | `docs/agents/session-starters.md` | Absolute path to your project root directory (e.g. `/Users/you/Projects/myapp`) |
+| `[PROJECT_PATH]` | `docs/agents/session-starters.md`, `docs/retro/session-starter.md` | Absolute path to your project root directory (e.g. `/Users/you/Projects/myapp`) |
 | `[PROJECT_BOUNDARIES]` | `docs/skills/ticket-slicing.md` | Project-specific ticket slicing rules — layer and entity boundaries. **Silent failure risk if left empty** — the agent will not slice tickets correctly without this. |
 | `[SPIKE_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md` | Notion page ID of your Spike ticket template |
 | `[FEATURE_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md` | Notion page ID of your Feature ticket template |
@@ -20,8 +20,11 @@ This file explains every placeholder in the SPQR skill and agent files, and how 
 | `[DOC_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md` | Notion page ID of your Doc ticket template |
 | `[SPIKE_DOCUMENT_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md`, `docs/skills/spike-document.md` | Notion page ID of your Spike Document template |
 | `[SPIKE_DOC_PARENT_PAGE_ID]` | `docs/skills/quaestor-relatio-output.md`, `docs/skills/censura-ticketing-input.md` | Notion page ID of the parent page where spike docs are created as sub-pages |
+| `[RETRO_PARENT_ID]` | `docs/retro/output.md` | Notion page ID of the parent page under which each RETROACTIO retro is created as a sub-page. Example value (Foodoire Retroactio parent): `37268d5de1e8808091b6f9c3cd66b648` |
+| `[RETRO_TEMPLATE_ID]` | `docs/retro/output.md` | Notion page ID of your Retrospective template page — the Retrospector mirrors its sections exactly. Example value (Foodoire): `37268d5de1e8819cada8f75817cb790b` |
+| `[RETRO_SESSION_STARTER_ID]` | `docs/retro/session-starter.md` | Notion page ID of the "Session starter — Retro agent" page that mirrors the in-repo retro session starter. Example value (Foodoire): `37268d5de1e881ae9822f3b82755d7f8` |
 | `[MEMORY_PATH]` | `docs/upgrade/upgrade-agent.md` | Absolute path to your MEMORY.md file on disk (e.g. `/Users/you/.claude/projects/your-project/memory/MEMORY.md`) |
-| `[SPQR_REPO_PATH]` | `docs/upgrade/upgrade-agent.md` | Absolute path to your SPQR template repo on disk (e.g. `/Users/you/Projects/Marks-agentic-workflow-SPQR`). Needed for sync group briefs during upgrades. |
+| `[SPQR_REPO_PATH]` | `docs/upgrade/upgrade-agent.md` | Absolute path to your SPQR template repo on disk (e.g. `/Users/you/Projects/spqr-workflow`). Needed for sync group briefs during upgrades. |
 | `[Master Persona 1]` | `docs/upgrade/upgrade-agent.md` | First name of your Dev Process Architect persona for workflow upgrade roundtable |
 | `[Master Persona 2]` | `docs/upgrade/upgrade-agent.md` | First name of your Agentic Trends Expert persona for workflow upgrade roundtable |
 

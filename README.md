@@ -1,4 +1,4 @@
-# SPQR v1.2: Sequential Agentic Workflow
+# SPQR v1.3: Sequential Agentic Workflow
 
 A structured, sequential multi-agent development workflow built on Claude Code and Notion. Every task has a ticket. Every agent runs in a stateless session. The external record is truth.
 
@@ -8,7 +8,7 @@ A structured, sequential multi-agent development workflow built on Claude Code a
 
 SPQR is a development pipeline where each stage of the software delivery cycle is handled by a dedicated Claude Code agent. Agents do not share session memory; they pass state through structured Notion ticket comments. This makes the pipeline auditable, resumable, and contamination-free between stages.
 
-Two pipelines:
+Three pipelines:
 
 **EXPLORATIO**: research / spike:
 ```
@@ -22,6 +22,12 @@ Senate: Consilium  →  Praetor  →  Tribunus  →  Probator  →  Curator  →
   (design)            (build)     (review)      (QA)         (ops)        (verdict)
 ```
 
+**RETROACTIO**: cross-run retrospective:
+```
+Retrospector
+  (process-health review across runs — single agent, owner-initiated, no handoff chain)
+```
+
 ---
 
 ## Agents
@@ -31,10 +37,11 @@ Senate: Consilium  →  Praetor  →  Tribunus  →  Probator  →  Curator  →
 | Senate: Consilium | Tech Lead / Solution Architect | Design authority. Three deliberation personas in one session. | Both |
 | Senate: Censura | Engineering Manager | Post-execution review authority. Verdict only. | Both |
 | Praetor | Software Engineer | Implements the feature ticket in a worktree-isolated session. Never writes code before the owner approves approach. | OPUS |
-| Tribunus | Senior Engineer (code reviewer) | Independent code reviewer. Runs swiftlint independently. One veto per pipeline run. | OPUS |
+| Tribunus | Senior Engineer (code reviewer) | Independent code reviewer. Runs the project linter independently. One veto per pipeline run. | OPUS |
 | Probator | QA Engineer | Independent QA verifier. Runs the test suite. One veto per pipeline run. | OPUS |
 | Curator | DevOps / SRE | Operational steward: build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | OPUS |
 | Quaestor | Technical Analyst / Research Engineer | Spike researcher. Produces a structured decision document. Never writes code. | EXPLORATIO |
+| Retrospector | Agile Coach / Process Lead | Cross-run process-health reviewer. Single agent, single session, no handoff chain. Produces a Notion retro page; flags candidates only, no code, no tickets. | RETROACTIO |
 
 **Deliberation personas**
 
@@ -115,7 +122,7 @@ Before filling anything in, open `docs/CONFIGURE.md` — it lists every placehol
 - **Claude Code** (claude.ai/code or CLI)
 - **Notion MCP**: agents read tickets and post comments via Notion MCP
 - **Context7 MCP**: agents load current library documentation on-demand during implementation and review
-- **git worktree**: Praetor runs in an isolated worktree per ticket
+- **git worktree**: Praetor runs in an isolated worktree; branch granularity follows the deliverable (Consilium sets the ticket Branch property, Praetor consumes it)
 
 ---
 
@@ -167,6 +174,12 @@ docs/
     ├── censura-ticketing-discussion.md
     ├── censura-ticketing-output.md
     └── quaestor-doc-execute.md
+├── retro/
+│   ├── retrospector.md        (Retrospector agent identity)
+│   ├── session-starter.md     (paste prompt — milestone + tickets in scope)
+│   ├── input.md               (pre-flight — load order, git boundary)
+│   ├── discussion.md          (HITL gate — owner closes with "go")
+│   └── output.md              (Notion retro page, template-exact)
 ├── upgrade/
 │   ├── session-starter.md     (paste prompt — scope + paths)
 │   ├── upgrade-agent.md       (master agent definition — identity, config, pipeline, skills)
@@ -183,6 +196,16 @@ CLAUDE.md.template             (fill this in for your project)
 
 ## Version History
 
+### v1.3 (2026-06)
+- RETROACTIO pipeline: new Retrospector agent — single-agent, single-session cross-run process-health review; new `docs/retro/` folder (5 files: agent, input, discussion HITL gate, output, session-starter). Triggers: owner milestone + LESSONS.md 10-entry counter (signals, no auto-trigger). Includes a rule-rot pass; flags candidates only — no code, no tickets (DOC-18)
+- Censura CONVERGENCE stop-branch: co-located gate evaluated before verdict commitment; owner check-in required on a significant emergent gap, resume only on explicit owner closure (DOC-15)
+- Quaestor external-claim verification: decision-bearing external claims must be verified against a primary source during research, never inherited — ACCEPTED / REFUTED / UNKNOWN (DOC-16)
+- Fetch strategy / token hygiene: `quaestor-relatio.md` FETCH STRATEGY — skip re-fetch on routine writes (verify after format-sensitive ones); WebFetch external URLs only (DOC-14)
+- session_id resumability: `ticket-comment.md` now carries session_id on every checkpoint comment; never omitted (DOC-17)
+- Branch strategy: branch granularity follows the deliverable, not per-ticket; Consilium decides scope and sets the ticket Branch property, Praetor consumes it; worktree teardown gate (commit or stash before removal)
+- CONFIGURE.md: three new retro placeholders (`[RETRO_PARENT_ID]`, `[RETRO_TEMPLATE_ID]`, `[RETRO_SESSION_STARTER_ID]`)
+- Generic-template hygiene: genericized residual iOS tooling references (swiftlint / xcodebuild) in the README (SAW-16)
+
 ### v1.2.1 (2026-05)
 - Upgrade Way of Working: new `docs/upgrade/` folder with master orchestrator session starter and six skill files covering roundtable, decision making, planning, execution order, context window management, and wrap-up
 - README: Ticket system, Configuration, and Upgrading SPQR sections added
@@ -198,7 +221,7 @@ CLAUDE.md.template             (fill this in for your project)
 ### v1.1 (2026-05)
 - LESSONS.md retrospective log: Censura writes one entry per pipeline run; suggests retrospective at 10 entries
 - Devil's Advocate role: one persona designated as DA per Consilium session; argument captured in output
-- Granular Bash permissions: Tribunus (swiftlint only), Probator (xcodebuild + xctest + git diff)
+- Granular Bash permissions: Tribunus (linter only), Probator (build + test + git diff)
 - Context7 MCP: Praetor and Tribunus load current library docs on-demand
 - Sensitive op HITL: Praetor confirms before Notion delete or file delete outside worktree
 - Parent ticket tracing: Censura sets parent_ticket when creating follow-up tickets (requires Notion DB self-referential relation)

@@ -1,0 +1,23 @@
+# SPQR secret-scan config — default ruleset + SPQR-specific token formats.
+# Auto-detected by gitleaks when run from repo root.
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "notion-integration-token"
+description = "Notion integration token (ntn_ / legacy secret_)"
+regex = '''(ntn_|secret_)[A-Za-z0-9]{32,}'''
+keywords = ["ntn_", "secret_"]
+
+[[rules]]
+id = "posthog-project-key"
+description = "PostHog project API key"
+regex = '''phc_[A-Za-z0-9]{40,}'''
+keywords = ["phc_"]
+
+[[rules]]
+id = "anthropic-api-key"
+description = "Anthropic API key"
+regex = '''sk-ant-[A-Za-z0-9_-]{20,}'''
+keywords = ["sk-ant-"]
