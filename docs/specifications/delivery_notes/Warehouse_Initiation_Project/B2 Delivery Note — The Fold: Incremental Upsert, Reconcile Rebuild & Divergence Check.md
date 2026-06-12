@@ -8,6 +8,10 @@
 
 **Date:** 2026-06-13
 
+**Usage:** claude-fable-5:  4.8k input, 63.5k output, 3.7m cache read, 171.0k cache write ($10.30)
+
+**Session ID**: d4a7f782-d457-42d7-9e5a-1dfea91b6f65
+
 **Dependency gate at session start:** B1 delivery note present with exit status GREEN (65/65 tests). PASS.
 
 ---
