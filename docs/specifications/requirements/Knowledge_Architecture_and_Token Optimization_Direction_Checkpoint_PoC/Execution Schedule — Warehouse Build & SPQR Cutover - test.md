@@ -2,11 +2,14 @@
 
 **Epic:** SPQR Agentic Workflow — knowledge architecture & token optimization
 
-**Component:** Execution schedule — warehouse build, migration, SPQR v2.0 cutover
+**Component:** Execution schedule — warehouse build, migration, SPQR v1.5 cutover
+
+**Versioning:** v1.5 = Knowledge Warehouse (this arc) · v1.4 = independent small batch · v2.0 = Semi-Automated Pipeline (roadmap unchanged, consumes v1.5)
 
 **Document status:** Test draft — agent-proposed alternative rendering of the owner's high-level schedule; not authoritative
 
 **Date:** 2026-06-11
+Session ID: e88fbe53-7c5f-4bdf-8fc4-e5453e91240b (Fable generic)
 
 **Purpose:** Show how the agent would structure the schedule and its documentation. The owner's "Project quick notes" remains the working plan; this is a comparison artifact.
 
@@ -15,17 +18,20 @@
 # Principles the schedule follows
 
 - **Build → load → cutover, in that order.** Agents can't follow a query policy against a warehouse that doesn't exist, and shouldn't meet an empty one.
-- **Cutover is atomic in nature:** everything an agent needs to live on the warehouse ships in one update (v2.0); everything else waits (v2.1). Split rule: *does it touch a file or process the cutover rewrites? → v2.0; else → v2.1.*
+- **Cutover is atomic in nature:** everything an agent needs to live on the warehouse ships in one update (v1.5); everything else goes to the independent v1.4 batch, which may ship in parallel with the build. Split rule: *does it touch a file or process the cutover rewrites? → v1.5; else → v1.4.*
 - **Test-run regime until explicit cutover:** flat docs stay authoritative and intact (S8 P4 pruning deferred); the warehouse is a candidate that must earn trust; full reset stays possible.
 - **Each phase ends with a fold-back** (status into this schedule + the decision list), per the established per-session rule.
 
 # Schedule
 
-## Phase 0 — Baseline (now, zero new scope)
+## Phase 0 — Baseline (now, zero new scope) - DONE
 
 - Commit/push v1.3 as-is + readme update. Clean baseline before the big jump.
+	- DONE 
 - Mark Notion knowledge copies as dead projections (banner); Notion = ticketing only (FDP, SAW).
+	- DONE (by Mark manually, main folder only okay to go this way now)
 - Interim documentation regime active (see below).
+	- Files uploaded to Git
 
 ## Phase 1 — Warehouse core build
 
@@ -38,6 +44,11 @@
   - B5 — audit tripwires: orphan watch, missing-recommended-edge, relates-to overuse
 - **Exit check:** vertical slice proven with 10–15 hand-made test nodes; reconcile rebuild reproduces the index byte-identically.
 
+## Parallel track — v1.4 small batch (during Phase 1–2)
+
+- Independent of the warehouse, ships as its own SPQR update while the build runs: SAW-1, SAW-16, SAW-17, SAW-29 bug pipeline, model-usage switch area, git-process formalization remainder.
+- SAW-27 telemetry thin layer rides here too, but designed to consume the S4 trace once it exists — not a parallel measuring system.
+
 ## Phase 2 — Migration (first load)
 
 - S8 runbook P0–P3 only (P4 pruning explicitly excluded — deferred to Phase 5).
@@ -45,10 +56,10 @@
 - Owner-led parts: committed-vs-exploratory triage, backfill authoring, batch semantic review (bootstrap gate).
 - **Exit check:** final reconcile clean; owner batch review done; warehouse content spot-checked against flat docs.
 
-## Phase 3 — SPQR v2.0 planning + execution (the cutover update)
+## Phase 3 — SPQR v1.5 planning + execution (the cutover update)
 
-- **3.1 Planning session** — consumes Decision List Group 2, **G7 (wake/escalation) first** — everything else hangs on it; G4 folds into G7; SAW ticket/epic alignment, version number.
-- **v2.0 scope (warehouse-coupled only):**
+- **3.1 Planning session** — consumes Decision List Group 2, **G7 (wake/escalation) first** — everything else hangs on it; G4 folds into G7; SAW ticket/epic alignment.
+- **v1.5 scope (warehouse-coupled only):**
   - warehouse-ingest skill (the S8 proposer contract realized)
   - per-archetype query-policy blocks in agent files (budgets + the SCRUTINIZE DENY)
   - antechamber discipline + revise-wake + Senate ingest-judgment path (G7/G4)
@@ -62,11 +73,11 @@
 - Feed the badly-updated flat-doc gaps from the dev-ticket runs as a **backfill batch** — the S8 backfill provenance class as the first hot-path test of propose → gate → Senate → ingest.
 - Retro on the run: trace review (WRONG-ENTRY/ABSENT rates), flag sweep, first calibration data for the parked measurement lane.
 
-## Phase 5 — Cutover decision + v2.1
+## Phase 5 — Cutover decision
 
 - **Owner cutover call:** warehouse earned trust? → execute S8 P4 (prose-pruning), warehouse becomes canonical. If not → reset path: wipe warehouse, fix, re-run Phase 2 (cheap by design — migration is a bulk write-path run).
-- **v2.1 batch (independent items):** SAW-1, SAW-16, SAW-17, SAW-29 bug pipeline, model-usage switch area, git-process formalization remainder, SAW-27 telemetry thin layer (built to consume the S4 trace, not parallel to it).
 - Deferred decisions stay deferred: multi-step prompting (not yet), sorting/orchestrator agent (not yet — consistent with the parked CONSULT lane).
+- **Next era:** v2.0 — Semi-Automated Pipeline (roadmap unchanged) builds on what v1.5 leaves behind: the S4 trace feeds the observability layer, PROV-O provenance feeds reasoning-trace/decision-provenance (roadmap G1), the hierarchical-memory item is partially absorbed by the warehouse, and the deterministic robot is the layer a thin orchestrator will route around.
 
 # Interim documentation regime (Phase 0 → cutover)
 

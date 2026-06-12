@@ -20,12 +20,13 @@
 
 # Overview
 
-The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) found a set of items that fell between sessions: most are "session A handed it to session B, session B never picked it up" cases, the rest are implementation-shaping decisions no session owned. This page is the single backlog for them, grouped by **when they block**: Group 1 blocks the warehouse core build, Group 2 blocks the v2.0 SPQR-cutover planning, Group 3 is runbook additions and parked bookkeeping. Each item carries the problem framing, its origin, a non-binding candidate direction, and what waits on it. The planning session should walk Group 1 to closure; Group 2 may close here or in the v2.0 planning session; Group 3 needs no discussion, only carrying.
+The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) found a set of items that fell between sessions: most are "session A handed it to session B, session B never picked it up" cases, the rest are implementation-shaping decisions no session owned. This page is the single backlog for them, grouped by **when they block**: Group 1 blocks the warehouse core build, Group 2 blocks the v1.5 SPQR-cutover planning, Group 3 is runbook additions and parked bookkeeping. Each item carries the problem framing, its origin, a non-binding candidate direction, and what waits on it. The planning session should walk Group 1 to closure; Group 2 may close here or in the v1.5 planning session; Group 3 needs no discussion, only carrying.
 
 # Fixed inputs — owner decisions already taken (2026-06-11, do not re-litigate)
 
 - **Source of truth is the Obsidian/git flat-file structure.** Notion copies are dead projections; Notion keeps ticketing only (FDP, SAW).
-- **Update split:** one big **v2.0** = warehouse build + SPQR prepared to run on the warehouse; everything not warehouse-coupled goes to a later smaller batch (v2.1). v1.3 is closed/committed as baseline before v2.0.
+- **Update split:** one big **v1.5** = warehouse build + SPQR prepared to run on the warehouse; everything not warehouse-coupled goes to a separate independent batch (**v1.4**, may ship in parallel with the build). v1.3 is closed/committed as baseline before v1.5.
+- **Versioning (2026-06-12):** the warehouse rollout is named **v1.5 — Knowledge Warehouse**; **v2.0 stays Semi-Automated Pipeline** on the roadmap and in the SAW epics — no renumbering. Rationale: renumbering existing epics/tickets/roadmap docs invites record drift; the warehouse is a 1.x-era substrate change (the manual pipeline stays manual), and v2.0 will consume it. The number "v1.5" was once an informal internal shorthand during the v1.1 era and never entered the record — officially unused, now claimed.
 - **The old flat docs are NOT pruned for now.** S8 Phase 4 (prose-pruning) is deferred indefinitely: the warehouse run is a test run, the flat docs stay intact as fallback, and a full warehouse reset must remain possible if the content comes out distorted. Recorded as a deliberate deviation from the S8 P4 invariant — accepted cost: a dual-source window in which flat docs remain authoritative and the warehouse is a candidate, until an explicit owner cutover call.
 - **First live write-path exercise:** after migration, the badly-updated flat-doc gaps from the dev-ticket runs are fed in as a backfill batch (schedule item 4, "process bugs"). This is the S8 backfill provenance class running as the first hot-path test.
 
@@ -45,7 +46,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Problem:** How does an agent physically call `open_scope` / `find` / `fetch` / `traverse`? MCP tool vs CLI over Bash. No session decided this. It touches W3 (portability): MCP is a standard but runtime-flavored; a CLI is universally callable from any runtime.
 - **Origin:** unowned — implementation-shaping.
 - **Candidate (non-binding):** CLI first (one binary/script, structured JSON out), optionally wrapped as an MCP tool later. The contract (S4) is the stable seam; the binding is swappable by design. Pairs naturally with G1=per-call.
-- **Blocks:** query-interface build (B3) and the ingest skill design (v2.0).
+- **Blocks:** query-interface build (B3) and the ingest skill design (v1.5).
 
 ### G3 — Robot write/commit policy vs the owner git rule
 
@@ -68,35 +69,35 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 - **Candidate (non-binding):** self-declared `--archetype` parameter in v1, logged in the trace (so a bypass is at least visible in retro), upgrade to enforced identity only if the trace shows violations. Honest about the trust level; zero infrastructure now.
 - **Blocks:** query-interface build (B3).
 
-## Group 2 — blocks v2.0 SPQR-cutover planning (close in 3.1 planning, or here if time allows)
+## Group 2 — blocks v1.5 SPQR-cutover planning (close in 3.1 planning, or here if time allows)
 
 ### G4 — Continuation-grant issuance mechanism
 
 - **Problem:** S4 fixed that budget exhaustion is an owner-escalation halt and a fresh budget needs an owner-issued continuation grant enforced by the robot as a consent-gate — then handed the *issuance mechanism* (how the owner grants, what the grant artifact is) to "S6/SPQR-level." S6 never picked it up.
 - **Origin:** S4 → S6 dropped handoff.
-- **Candidate (non-binding):** a grant is a one-shot token the owner issues in-session (a line the owner types / a file the owner touches), consumed by the robot on the next round. Detail it inside the v2.0 wake/escalation design (G7) — same machinery.
-- **Blocks:** v2.0 agent-process design; not the core build.
+- **Candidate (non-binding):** a grant is a one-shot token the owner issues in-session (a line the owner types / a file the owner touches), consumed by the robot on the next round. Detail it inside the v1.5 wake/escalation design (G7) — same machinery.
+- **Blocks:** v1.5 agent-process design; not the core build.
 
 ### G5 — Scope-vocabulary governance
 
 - **Problem:** S5 fixed that scope is a controlled vocabulary and "new values are a governed act (S6)" — S6 never addressed it. Who may mint a new scope value, and through what act? Free minting fragments the deterministic filter (the exact failure the controlled vocabulary prevents); too-heavy governance makes every novel topic an escalation.
 - **Origin:** S5 → S6 dropped handoff.
 - **Candidate (non-binding):** new scope = a Senate-gated proposal class (never auto-ingested, regardless of promotion state), because a scope value is schema-adjacent, not content. At migration, the vocabulary is re-derived wholesale under the owner bootstrap-gate (see G11).
-- **Blocks:** v2.0 ingest skill + the migration triage.
+- **Blocks:** v1.5 ingest skill + the migration triage.
 
-### G7 — Wake/escalation mechanics (the biggest v2.0 design item)
+### G7 — Wake/escalation mechanics (the biggest v1.5 design item)
 
 - **Problem:** S6's state machine says `revise` "wakes the proposing agent" and the robot "escalates to the Senate" — but in the Claude-session world there is no daemon that wakes anyone. The whole S6 write path hangs on this mechanism existing. Candidate shapes: a pending-queue the next session checks at start (session-starter discipline), an owner-mediated notification, or a scheduled sweep.
 - **Origin:** S6 SPQR-side, explicitly descoped to the SPQR update.
-- **Candidate (non-binding):** queue + session-starter check (no daemon): the antechamber IS the queue; every SPQR session-starter includes a "check pending warehouse items addressed to your ticket+agent" step; Senate-pending items surface to the owner at session start. Deterministic, zero infra, fits Law 3 (external record over memory). Design this FIRST in the v2.0 planning — D-phase items hang on it.
-- **Blocks:** v2.0 everything (handoff, Senate judgment, revise loop).
+- **Candidate (non-binding):** queue + session-starter check (no daemon): the antechamber IS the queue; every SPQR session-starter includes a "check pending warehouse items addressed to your ticket+agent" step; Senate-pending items surface to the owner at session start. Deterministic, zero infra, fits Law 3 (external record over memory). Design this FIRST in the v1.5 planning — D-phase items hang on it.
+- **Blocks:** v1.5 everything (handoff, Senate judgment, revise loop).
 
 ### G10 — Seed vs local packaging mechanism
 
 - **Problem:** The robot code + generic schema live in the generic SPQR repo (the seed); Foodoire grows local content. The schedule fixes the direction (generic first → import to Foodoire) but not the mechanism: how does a project consume the robot — copy, submodule, or path reference? How does an umbilical-cord schema update reach a live project warehouse (schema_version exists for this, but the update *procedure* doesn't)?
 - **Origin:** S1 cross-cutting concept, never broken down.
 - **Candidate (non-binding):** v1 = plain copy at import (matching the existing SPQR template practice), schema_version stamped per node; a schema bump ships as a re-fold transform script in the seed. Submodules add git complexity the owner workflow doesn't want.
-- **Blocks:** v2.0 packaging + the Foodoire import step.
+- **Blocks:** v1.5 packaging + the Foodoire import step.
 
 ### G9 — Ticket→session-id map artifact
 
@@ -115,7 +116,7 @@ The S3–S8 arc closed the architecture, but a post-arc gap review (2026-06-10) 
 # Recommendations
 
 - **Planning session 1.1 consumes Group 1 as its decision agenda** — five items, each pre-framed; the session's job is closure, not rediscovery. Walk them in order G1 → G2 → G3 → G6 → G8 (G1+G2 shape everything after).
-- **Group 2 belongs to the v2.0 planning session (3.1)** — G7 first; G4 folds into G7's design; G5 and G10 are independent.
+- **Group 2 belongs to the v1.5 planning session (3.1)** — G7 first; G4 folds into G7's design; G5 and G10 are independent.
 - **Candidates are non-binding** (ticket problem-framing rule): the problem and origin are the fixed part; challenge the candidate directions freely.
 - **On closure, fold results back** into this page (status per item) and into the parent direction map — the per-session fold-back rule continues to apply.
 
