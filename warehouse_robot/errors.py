@@ -24,3 +24,8 @@ class ConfigError(RobotError):
 
 class SchemaError(RobotError):
     """SQLite index bootstrap failure (including a missing FTS5 module)."""
+
+
+class FoldError(RobotError):
+    """Fold failure — a node file that cannot be mirrored into the index,
+    or an unreadable previous index during reconcile carry-over."""

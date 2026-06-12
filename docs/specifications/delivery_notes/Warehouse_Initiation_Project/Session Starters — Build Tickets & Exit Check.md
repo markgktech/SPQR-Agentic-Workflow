@@ -129,9 +129,18 @@ VERIFICATION TASKS (all against disposable instances, A4 discipline):
    proposal walked through its full state machine incl. antechamber
    (B4), and the audit tripwires on a deliberately broken fixture
    (orphan, missing edge) (B5).
-3. Reconcile rebuild: rebuild the index from markdown and verify it
-   reproduces the previous index BYTE-IDENTICALLY. This is the hard
-   exit criterion.
+3. Reconcile rebuild — the A8 two-part exit criterion (Planning
+   Decisions amendment A8):
+   a. Rebuild determinism: run the reconcile rebuild TWICE from the
+      same markdown tree and verify the two index files are
+      BYTE-IDENTICAL. This is the hard byte criterion.
+   b. Live-vs-rebuild equivalence: compare the live (incrementally
+      built) index against a fresh rebuild via the canonical logical
+      digest (ordered dump-hash of derived tables). Whole-file byte
+      comparison between live and rebuilt indexes is NOT the
+      criterion — it is impossible by construction (see A8).
+   Environmental constraint (A8): run the byte comparison with the
+   same Python/SQLite build that produced the indexes.
 4. Negative checks: canonical project_memory/warehouse/ path stayed
    empty and untouched; no test artifact is visible to git; the robot
    never invoked git.

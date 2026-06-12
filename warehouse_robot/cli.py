@@ -7,13 +7,19 @@ files; it never runs git (G3).
 Usage:
     python3 -m warehouse_robot init --warehouse-root PATH --prefix PREFIX
                                     [--antechamber-root PATH]
+    python3 -m warehouse_robot check --warehouse-root PATH
+    python3 -m warehouse_robot reconcile --warehouse-root PATH [--fresh]
+
+The incremental upsert (the fold's hot path) has NO CLI command by design —
+it is a library API consumed by the B4 serializing gate; a public fold
+command would open a gate-bypassing write path.
 """
 
 import argparse
 import sys
 from pathlib import Path
 
-from . import config, schema, store
+from . import config, fold, schema, store
 from .errors import ConfigError, RobotError
 from .ids import PREFIX_RE
 
@@ -51,6 +57,33 @@ def build_parser():
         help="antechamber directory (default: 'antechamber' sibling of the warehouse root, A3)",
     )
     p_init.set_defaults(func=cmd_init)
+
+    p_check = subparsers.add_parser(
+        "check", help="cheap divergence check: markdown vs derived index, per file"
+    )
+    p_check.add_argument(
+        "--warehouse-root",
+        required=True,
+        help="warehouse root directory (mandatory; no default exists)",
+    )
+    p_check.set_defaults(func=cmd_check)
+
+    p_reconcile = subparsers.add_parser(
+        "reconcile",
+        help="full rebuild of the derived index from markdown (cold reconcile path)",
+    )
+    p_reconcile.add_argument(
+        "--warehouse-root",
+        required=True,
+        help="warehouse root directory (mandatory; no default exists)",
+    )
+    p_reconcile.add_argument(
+        "--fresh",
+        action="store_true",
+        help="discard trace/antechamber carry-over (recovery from a corrupt "
+        "index; the trace is lost — A8 accepted cost)",
+    )
+    p_reconcile.set_defaults(func=cmd_reconcile)
     return parser
 
 
@@ -96,12 +129,29 @@ def cmd_init(args):
     print(f"  derived index  : {index_path} (disposable, gitignored)")
 
 
+def cmd_check(args):
+    report = fold.check(Path(args.warehouse_root))
+    for line in report.lines():
+        print(line)
+    return 0 if report.clean else 1
+
+
+def cmd_reconcile(args):
+    result = fold.rebuild(Path(args.warehouse_root), fresh=args.fresh)
+    print("reconcile rebuild complete")
+    print(f"  nodes folded        : {result.node_count}")
+    print(f"  edges folded        : {result.edge_count}")
+    print(f"  trace rows carried  : {result.carried_trace}")
+    print(f"  antechamber carried : {result.carried_antechamber}")
+    print(f"  logical digest      : {result.digest}")
+
+
 def main(argv=None):
     parser = build_parser()
     args = parser.parse_args(argv)
     try:
-        args.func(args)
+        result = args.func(args)
     except RobotError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
-    return 0
+    return 0 if result is None else result

@@ -99,6 +99,21 @@ project_memory/
 
 **Status:** The "clean baseline before warehouse code hits the repo" constraint is satisfied: Foodoire DEV-001–003 cycle closed and merged to `main`, casing fix applied (`Docs/` → `docs/`), `.obsidian` untracked and gitignored, worktree removed, branch deleted both locally and on origin.
 
+## A8 — Phase 1 exit criterion: byte-identity defined as a two-part check (2026-06-13)
+
+**Decision:** The Execution Plan's Phase 1 exit criterion "reconcile rebuild reproduces the index byte-identically" is defined as a **two-part check**:
+
+1. **Rebuild determinism (byte-level):** two reconcile rebuilds from the same markdown tree (and the same carried-over state, see below) produce **byte-identical** index files. This is the hard byte criterion.
+2. **Live-vs-rebuild equivalence (logical digest):** the live, incrementally-built index and a fresh reconcile rebuild are compared via a **canonical logical digest** — an ordered dump-hash of the derived tables (`nodes`, `edges`, FTS content, `id_counter`, `meta`). Byte comparison between them is not required and not meaningful.
+
+**Why a literal whole-file byte comparison is impossible:** the live index legitimately contains state that is not derived from warehouse markdown (trace rows, the antechamber mirror), `meta.created_at` is a creation-time value, and SQLite page layout depends on insertion order — an incrementally-built file can never be byte-identical to a freshly rebuilt one.
+
+**Carry-over rule:** on reconcile rebuild, `trace` and `antechamber` rows are carried over verbatim from the previous index in deterministic order — they are not derivable from warehouse markdown (the trace is the S7 measurement proxy; the antechamber mirror's re-derivation is B4's concern). If the index file itself is lost, the trace is lost with it — an accepted cost of the S7 "disposable index" principle.
+
+**Environmental constraint:** byte-identity is only guaranteed within one SQLite build (page format, FTS5 version). The exit-check byte comparison must run with the same Python/SQLite build that produced the indexes.
+
+**Origin:** surfaced as a contradiction during B2 planning (B1 delivery note open question #4 anticipated the WAL part); owner-approved 2026-06-13.
+
 ---
 
 # References

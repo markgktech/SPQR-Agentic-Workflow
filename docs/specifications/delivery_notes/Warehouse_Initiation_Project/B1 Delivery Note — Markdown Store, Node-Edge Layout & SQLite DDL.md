@@ -8,6 +8,10 @@
 
 **Date:** 2026-06-12
 
+**Usage:** claude-fable-5:  4.2k input, 92.7k output, 2.7m cache read, 138.8k cache write ($10.11)
+
+**Session ID**: f382f6e2-ab16-4d3f-8781-2efaf1d57c9b
+
 **Dependency gate at session start:** B1 has no dependencies; no prior delivery notes existed. PASS.
 
 ---

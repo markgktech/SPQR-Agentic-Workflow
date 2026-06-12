@@ -174,19 +174,31 @@ def connect(db_path):
     return conn
 
 
-def create_index(db_path, project_prefix, schema_version):
-    """Create and seed a fresh index file; refuses to touch an existing one."""
+def create_index(db_path, project_prefix, schema_version, created_at=None, wal=True):
+    """Create and seed a fresh index file; refuses to touch an existing one.
+
+    `created_at` defaults to now; the B2 reconcile rebuild passes the value
+    carried over from the previous index so that successive rebuilds stay
+    byte-identical (A8 determinism criterion).
+
+    `wal=False` creates the index in rollback-journal mode: the B2 rebuild
+    builds its tmp index that way because WAL checkpoint bookkeeping bumps
+    the header file-change-counter non-deterministically; the rebuild
+    switches to WAL as its final canonicalization step before the rename.
+    """
     db_path = Path(db_path)
     if db_path.exists():
         raise SchemaError(f"index already exists: {db_path} (the index is never overwritten in place)")
     check_fts5()
     conn = connect(db_path)
     try:
-        conn.execute("PRAGMA journal_mode = WAL")
+        if wal:
+            conn.execute("PRAGMA journal_mode = WAL")
         with conn:
             for statement in DDL:
                 conn.execute(statement)
-            created_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            if created_at is None:
+                created_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
             conn.executemany(
                 "INSERT INTO meta (key, value) VALUES (?, ?)",
                 [
