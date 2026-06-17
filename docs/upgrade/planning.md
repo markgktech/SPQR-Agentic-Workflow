@@ -14,26 +14,28 @@ Order is dependency-driven, not category-driven. General pattern:
 2. generic repo sync group after (depends on project-specific being done)
 3. documentation-only or cross-cutting groups last (when they have no upstream dependency)
 If a group has no dependency on anything before it, its position is flexible — place it where it causes least disruption.
+NOTE — pending: generic→project propagation redesign. The generic-sync ordering above (and the sync group itself) is unchanged by this rework and under review in a separate session. Do not redesign it here.
 
-NOTION UPGRADE DOC
-Before execution starts, the master creates:
-- one main page for the upgrade (title, overview, implementation groups)
-- one sub-page per execution group (brief + Changes Made section)
-The execution agent fills in Changes Made. The master fills in everything else.
-Creating sub-pages is part of planning, not documentation of a completed plan — naming groups and scopes surfaces dependencies and ordering issues. If you cannot name a group cleanly, the grouping is wrong.
+RUN CONTAINER
+Before execution starts, the master creates the run container at docs/spqr_self/upgrades/<version>/, from templates:
+- the MAIN folder-note <version>.md (from templates/run_main_template.md): title, summary, why-now, covered SAW tickets, implementation groups
+- one ordered group sub-md per execution group, NN-<slug>.md (from templates/group_submd_template.md): the brief + a "## Changes Made — _(pending execution)_" sentinel
+The master pre-creates every group sub-md (with the sentinel) at planning. The execution agent fills in only its own sub-md's Changes Made; the MAIN folder-note is master-write-only.
+Creating the sub-md files is part of planning, not documentation of a completed plan — naming groups and scopes surfaces dependencies and ordering issues. If you cannot name a group cleanly, the grouping is wrong.
 
 BRIEF FORMAT
-Every brief uses typed format:
+Every brief uses typed format (it lives in the group sub-md's Brief section):
 
 GROUP: [name]
 ORDER: N/N
 REPO: [YOUR_PROJECT] | SPQR | Both
-NOTION_REF: [URL of this group's sub-page]
+RUN_CONTAINER: [absolute path to the version folder]
+RUN_DOC: [absolute path to this group's sub-md]
 RATIONALE: [one line — why this is one group]
 FILL_CHANGES_MADE: yes
 PRE_FLIGHT:
-  [skill file or Notion URL the execution agent must load]
-  [skill file or Notion URL the execution agent must load]
+  [skill file or repo path the execution agent must load]
+  [skill file or repo path the execution agent must load]
 FILES:
   [filename]: [what changes — one line]
   [filename]: [what changes — one line]
@@ -47,5 +49,5 @@ NEVER
 - Split file ownership across groups
 - Brief execution agent without PRE_FLIGHT refs
 - Start briefing before grouping decisions are finalised
-- Move to execution before Notion sub-pages are created
+- Move to execution before the run-container sub-md files are created (pre-created with the Changes Made sentinel)
 - Split groups by effort or time instead of file ownership boundaries

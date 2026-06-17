@@ -1,0 +1,193 @@
+{
+  "_about": "Fixture query set (A4) — the golden-set / IR-harness seed for the B3 query interface. Each entry is one query against the 14 versioned fixture nodes (nodes/ + flags/) folded into a disposable instance. 'expect_ids' is the SET of node ids the verb surfaces (open_scope/find candidates, fetch/traverse nodes); order is asserted by the unit tests, recall+precision by this set. Optional keys: 'expect_not_found' (fetch), 'expect_auto_broadened' (find), 'expect_view' (open_scope facet entry view). All queries run as archetype 'execute' under default policy. Run by warehouse_robot/tests/test_query_fixtures.py.",
+  "queries": [
+    {
+      "name": "open_scope: complete ux-pattern slice",
+      "verb": "open_scope",
+      "intent": "map the ux-pattern scope",
+      "params": {"scope": "ux-pattern"},
+      "expect_ids": ["demo-n3", "demo-n8"]
+    },
+    {
+      "name": "open_scope: error-handling hides the superseded by default",
+      "verb": "open_scope",
+      "intent": "current error-handling decisions",
+      "params": {"scope": "error-handling"},
+      "expect_ids": ["demo-n7"]
+    },
+    {
+      "name": "open_scope: include_inactive surfaces the superseded chain",
+      "verb": "open_scope",
+      "intent": "full error-handling lineage incl. superseded",
+      "params": {"scope": "error-handling", "include_inactive": true},
+      "expect_ids": ["demo-n2", "demo-n7"]
+    },
+    {
+      "name": "open_scope: complete data-layer slice",
+      "verb": "open_scope",
+      "intent": "map the data-layer scope",
+      "params": {"scope": "data-layer"},
+      "expect_ids": ["demo-n11", "demo-n12"]
+    },
+    {
+      "name": "open_scope: kind-only addressing reaches the unscoped lessons",
+      "verb": "open_scope",
+      "intent": "all lessons regardless of scope",
+      "params": {"kind": "lesson"},
+      "expect_ids": ["demo-n5", "demo-n6", "demo-n10"]
+    },
+    {
+      "name": "open_scope: scope and kind intersect",
+      "verb": "open_scope",
+      "intent": "ux-pattern decisions only",
+      "params": {"scope": "ux-pattern", "kind": "decision"},
+      "expect_ids": ["demo-n8"]
+    },
+    {
+      "name": "open_scope: kind=flag opens the audit plane (open flags only)",
+      "verb": "open_scope",
+      "intent": "open audit flags",
+      "params": {"kind": "flag"},
+      "expect_ids": ["demo-f1"]
+    },
+    {
+      "name": "open_scope: kind=flag include_inactive shows the resolved flag",
+      "verb": "open_scope",
+      "intent": "all audit flags incl. resolved",
+      "params": {"kind": "flag", "include_inactive": true},
+      "expect_ids": ["demo-f1", "demo-f2"]
+    },
+    {
+      "name": "open_scope: empty slice is legitimate ABSENT evidence (no broaden)",
+      "verb": "open_scope",
+      "intent": "architecture lessons",
+      "params": {"scope": "architecture", "kind": "lesson"},
+      "expect_ids": []
+    },
+    {
+      "name": "open_scope: no scope and no kind returns the scope-facet entry view",
+      "verb": "open_scope",
+      "intent": "altitude entry — what scopes exist",
+      "params": {},
+      "expect_ids": [],
+      "expect_view": "scope-facets"
+    },
+
+    {
+      "name": "find: envelopes recalls only the active decision",
+      "verb": "find",
+      "intent": "find the error-envelope decision",
+      "params": {"text": "envelopes"},
+      "expect_ids": ["demo-n7"]
+    },
+    {
+      "name": "find: envelopes include_inactive recalls the superseded too",
+      "verb": "find",
+      "intent": "find every envelope decision incl. superseded",
+      "params": {"text": "envelopes", "include_inactive": true},
+      "expect_ids": ["demo-n2", "demo-n7"]
+    },
+    {
+      "name": "find: cache recalls the decision and the lesson",
+      "verb": "find",
+      "intent": "anything about caching",
+      "params": {"text": "cache"},
+      "expect_ids": ["demo-n5", "demo-n11"]
+    },
+    {
+      "name": "find: confirmation recalls the ux constraint and decision",
+      "verb": "find",
+      "intent": "confirmation handling",
+      "params": {"text": "confirmation"},
+      "expect_ids": ["demo-n3", "demo-n8"]
+    },
+    {
+      "name": "find: multi-token recall narrows to the concurrency constraint",
+      "verb": "find",
+      "intent": "concurrency isolation rule",
+      "params": {"text": "concurrency isolation"},
+      "expect_ids": ["demo-n4"]
+    },
+    {
+      "name": "find: storage recalls the architecture decision",
+      "verb": "find",
+      "intent": "storage default",
+      "params": {"text": "storage"},
+      "expect_ids": ["demo-n1"]
+    },
+    {
+      "name": "find: zero hits in scope auto-broadens by dropping scope (one step)",
+      "verb": "find",
+      "intent": "envelopes within tooling, broaden if empty",
+      "params": {"text": "envelopes", "scope": "tooling"},
+      "expect_ids": ["demo-n7"],
+      "expect_auto_broadened": true
+    },
+    {
+      "name": "find: flag plane is reachable only via explicit kind",
+      "verb": "find",
+      "intent": "orphan-watch audit flag",
+      "params": {"text": "orphan watch", "kind": "flag"},
+      "expect_ids": ["demo-f1"]
+    },
+
+    {
+      "name": "fetch: a single active node body",
+      "verb": "fetch",
+      "intent": "read the envelope decision body",
+      "params": {"ids": ["demo-n7"]},
+      "expect_ids": ["demo-n7"]
+    },
+    {
+      "name": "fetch: explicit id ignores the status filter (superseded body)",
+      "verb": "fetch",
+      "intent": "read the superseded decision body",
+      "params": {"ids": ["demo-n2"]},
+      "expect_ids": ["demo-n2"]
+    },
+    {
+      "name": "fetch: missing ids are reported, not fatal",
+      "verb": "fetch",
+      "intent": "read one present and one absent id",
+      "params": {"ids": ["demo-n1", "demo-n99"]},
+      "expect_ids": ["demo-n1"],
+      "expect_not_found": ["demo-n99"]
+    },
+
+    {
+      "name": "traverse: supersedes walks both edge directions",
+      "verb": "traverse",
+      "intent": "what supersedes / is superseded by demo-n2",
+      "params": {"id": "demo-n2", "edge_type": "supersedes"},
+      "expect_ids": ["demo-n7"]
+    },
+    {
+      "name": "traverse: derived-from reaches the incoming deriver",
+      "verb": "traverse",
+      "intent": "what was derived from demo-n1",
+      "params": {"id": "demo-n1", "edge_type": "derived-from"},
+      "expect_ids": ["demo-n7"]
+    },
+    {
+      "name": "traverse: constrains reaches the incoming constraint",
+      "verb": "traverse",
+      "intent": "what constrains demo-n2",
+      "params": {"id": "demo-n2", "edge_type": "constrains"},
+      "expect_ids": ["demo-n4"]
+    },
+    {
+      "name": "traverse: about reaches the journey lesson",
+      "verb": "traverse",
+      "intent": "lessons about demo-n7",
+      "params": {"id": "demo-n7", "edge_type": "about"},
+      "expect_ids": ["demo-n10"]
+    },
+    {
+      "name": "traverse: relates-to follows the soft link",
+      "verb": "traverse",
+      "intent": "what relates to demo-n9",
+      "params": {"id": "demo-n9", "edge_type": "relates-to"},
+      "expect_ids": ["demo-n8"]
+    }
+  ]
+}

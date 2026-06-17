@@ -51,8 +51,8 @@ _NODE_COLUMNS = (
 )
 
 _TRACE_COLUMNS = (
-    "round_id", "ts", "ticket", "agent", "archetype", "verb", "intent",
-    "params", "result_count", "result_ids", "verdict", "budget",
+    "round_id", "ts", "session_id", "ticket", "agent", "archetype", "verb",
+    "intent", "params", "result_count", "result_ids", "verdict", "budget",
 )
 
 _ANTECHAMBER_COLUMNS = (
@@ -173,6 +173,10 @@ def rebuild(warehouse_root, fresh=False):
     carried over from the previous index. `fresh=True` is the recovery
     escape hatch for a corrupt previous index — it discards the carried
     operational state (trace is lost, an accepted A8 cost).
+
+    `grants` rows are deliberately NOT carried over (owner decision, B3):
+    a continuation grant is fresh owner consent — consent does not survive
+    an index rebuild, and re-issuing one is cheap.
     """
     warehouse_root = Path(warehouse_root)
     cfg = config.load_config(warehouse_root)

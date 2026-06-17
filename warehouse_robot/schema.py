@@ -14,7 +14,11 @@ Tables:
                      markdown (max+1 on rebuild, S7); consumed by the B4 gate
 - antechamber      — index mirror of pending proposals (S6 state machine;
                      'revise' is not a stored state — it re-enters at 'proposed')
-- trace            — intent/verdict bracket per query round (S4); written by B3
+- trace            — intent/verdict bracket per query round (S4); written by
+                     the B3 query path; carried over verbatim on rebuild (A8)
+- grants           — one-shot continuation grants (S4 consent-gate, B3);
+                     deliberately NOT carried over on reconcile rebuild —
+                     a grant is fresh owner consent, re-issuing is cheap
 
 Views (derived status — never stored, S3/S6):
 - v_effective_status — knowledge plane; 'superseded' derived from an incoming
@@ -107,6 +111,7 @@ DDL = [
     CREATE TABLE trace (
       round_id     INTEGER PRIMARY KEY AUTOINCREMENT,
       ts           TEXT NOT NULL,
+      session_id   TEXT NOT NULL,
       ticket       TEXT,
       agent        TEXT,
       archetype    TEXT,
@@ -121,6 +126,16 @@ DDL = [
       budget       TEXT
     )
     """,
+    "CREATE INDEX idx_trace_session ON trace (session_id)",
+    """
+    CREATE TABLE grants (
+      grant_id             INTEGER PRIMARY KEY AUTOINCREMENT,
+      session_id           TEXT NOT NULL,
+      created_at           TEXT NOT NULL,
+      consumed_after_round INTEGER
+    )
+    """,
+    "CREATE INDEX idx_grants_session ON grants (session_id)",
     """
     CREATE VIEW v_effective_status AS
     SELECT n.id,

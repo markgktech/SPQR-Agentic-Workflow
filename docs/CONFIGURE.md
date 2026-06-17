@@ -22,9 +22,7 @@ This file explains every placeholder in the SPQR skill and agent files, and how 
 | `[SPIKE_DOC_PARENT_PAGE_ID]` | `docs/skills/quaestor-relatio-output.md`, `docs/skills/censura-ticketing-input.md` | Notion page ID of the parent page where spike docs are created as sub-pages |
 | `[RETRO_PARENT_ID]` | `docs/retro/output.md` | Notion page ID of the parent page under which each RETROACTIO retro is created as a sub-page. Example value (Foodoire Retroactio parent): `37268d5de1e8808091b6f9c3cd66b648` |
 | `[RETRO_TEMPLATE_ID]` | `docs/retro/output.md` | Notion page ID of your Retrospective template page — the Retrospector mirrors its sections exactly. Example value (Foodoire): `37268d5de1e8819cada8f75817cb790b` |
-| `[RETRO_SESSION_STARTER_ID]` | `docs/retro/session-starter.md` | Notion page ID of the "Session starter — Retro agent" page that mirrors the in-repo retro session starter. Example value (Foodoire): `37268d5de1e881ae9822f3b82755d7f8` |
-| `[MEMORY_PATH]` | `docs/upgrade/upgrade-agent.md` | Absolute path to your MEMORY.md file on disk (e.g. `/Users/you/.claude/projects/your-project/memory/MEMORY.md`) |
-| `[SPQR_REPO_PATH]` | `docs/upgrade/upgrade-agent.md` | Absolute path to your SPQR template repo on disk (e.g. `/Users/you/Projects/spqr-workflow`). Needed for sync group briefs during upgrades. |
+| `[RETRO_SESSION_STARTER_ID]` | `docs/retro/session-starter.md` | Notion page ID of the "Session starter — Retro agent" page that mirrors the in-repo retro session starter. Example value (Foodoire): `37268d5de1e881ae9822f3b82755d7f8` || `[SPQR_REPO_PATH]` | `docs/upgrade/upgrade-agent.md` | Absolute path to your SPQR template repo on disk (e.g. `/Users/you/Projects/spqr-workflow`). Needed for sync group briefs during upgrades. |
 | `[Master Persona 1]` | `docs/upgrade/upgrade-agent.md` | First name of your Dev Process Architect persona for workflow upgrade roundtable |
 | `[Master Persona 2]` | `docs/upgrade/upgrade-agent.md` | First name of your Agentic Trends Expert persona for workflow upgrade roundtable |
 

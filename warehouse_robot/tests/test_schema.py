@@ -15,6 +15,7 @@ EXPECTED_OBJECTS = {
     "id_counter",
     "antechamber",
     "trace",
+    "grants",
     "v_effective_status",
     "v_flag_status",
 }
@@ -99,7 +100,8 @@ class SchemaTests(unittest.TestCase):
             insert_node(self.conn, "demo-n1", "n", "lesson", verdict="OK")
         with self.assertRaises(sqlite3.IntegrityError):  # bad trace verb
             self.conn.execute(
-                "INSERT INTO trace (ts, verb, intent) VALUES ('t', 'grep', 'i')"
+                "INSERT INTO trace (ts, session_id, verb, intent) "
+                "VALUES ('t', 's1', 'grep', 'i')"
             )
         with self.assertRaises(sqlite3.IntegrityError):  # bad antechamber state
             self.conn.execute(

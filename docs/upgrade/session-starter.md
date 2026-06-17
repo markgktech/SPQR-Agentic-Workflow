@@ -2,4 +2,4 @@ UPGRADE MASTER SESSION
 
 Load docs/upgrade/upgrade-agent.md
 
-Scope: [paste ticket URLs here, or describe what you want to upgrade]
+Scope: [paste the SAW ticket URL(s) here, or describe what you want to upgrade; optionally add a PoC path]

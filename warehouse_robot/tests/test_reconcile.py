@@ -20,8 +20,8 @@ from warehouse_robot.ids import KNOWLEDGE_PLANE
 from . import _fold_helpers as h
 
 SAMPLE_TRACE = (
-    1, "2026-06-13T10:00:00Z", "DEMO-9", "Praetor", "builder", "find",
-    "looking for error-handling decisions", '{"top_n": 5}', 2,
+    1, "2026-06-13T10:00:00Z", "sess-demo-1", "DEMO-9", "Praetor", "builder",
+    "find", "looking for error-handling decisions", '{"top_n": 5}', 2,
     "demo-n2,demo-n7", "FOUND-ENOUGH", '{"rounds": 1}',
 )
 
@@ -36,9 +36,10 @@ def insert_operational_rows(wroot):
     try:
         with conn:
             conn.execute(
-                "INSERT INTO trace (round_id, ts, ticket, agent, archetype, verb, "
-                "intent, params, result_count, result_ids, verdict, budget) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO trace (round_id, ts, session_id, ticket, agent, "
+                "archetype, verb, intent, params, result_count, result_ids, "
+                "verdict, budget) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 SAMPLE_TRACE,
             )
             conn.execute(
@@ -105,8 +106,8 @@ class RebuildTests(unittest.TestCase):
         self.assertEqual(result.carried_antechamber, 1)
         trace = h.query_one(
             self.wroot,
-            "SELECT round_id, ts, ticket, agent, archetype, verb, intent, params, "
-            "result_count, result_ids, verdict, budget FROM trace",
+            "SELECT round_id, ts, session_id, ticket, agent, archetype, verb, "
+            "intent, params, result_count, result_ids, verdict, budget FROM trace",
         )
         self.assertEqual(trace, SAMPLE_TRACE)
         ante = h.query_one(

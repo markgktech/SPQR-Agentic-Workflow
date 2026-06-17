@@ -47,7 +47,7 @@ EXECUTION PROTOCOL (mandatory — treat as checklist, not prose)
 OUTPUT
 Master produces a short summary at the end of every roundtable:
 - Decisions made or confirmed
-- Points to update (which phase, which file, which Notion page)
+- Points to update (which phase, which file, which run-container file)
 - Open items requiring new tickets (flagged only — ticket creation and ID assignment is the owner's action)
 Summary drives next action — not the discussion itself.
 

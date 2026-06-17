@@ -10,10 +10,6 @@ Load `docs/upgrade/session-starter.md` into a new Claude Code session. Fill in t
 
 The upgrade process runs in six phases: context loading, roundtable, decision making, planning, execution, and wrap-up. Each phase is defined in the skill files under `docs/upgrade/`.
 
-## Full Way of Working
+## Where the work is recorded
 
-Complete process documentation including worked examples, sub-page breakdowns, and conventions:
-[Agentic Workflow Upgrade — Way of Working]([YOUR_WOW_NOTION_URL])
-
-Replace `[YOUR_WOW_NOTION_URL]` with the URL of your own WoW Notion page.
-If you adopt this from the SPQR template, create your own WoW page by running the upgrade process once and documenting it as you go.
+Each upgrade run is recorded in the repo (not Notion) as a run container under `docs/spqr_self/upgrades/<version>/` — a MAIN folder-note plus one ordered sub-md per execution group, created from the templates in `docs/spqr_self/templates/`. Ticketing stays in Notion (SAW tickets); only the work record is repo-native.

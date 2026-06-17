@@ -240,11 +240,11 @@ SPQR is designed to evolve. When gaps surface — through Censura retrospectives
 
 **Why a structured process?**
 - Workflow changes touch many files at once; ad hoc edits cause inconsistencies
-- Each upgrade is documented in Notion before execution — reviewable and traceable
-- Changes apply to your project repo first, then sync to the generic template
+- Each upgrade is recorded in the repo (a run container under `docs/spqr_self/upgrades/<version>/`) before and during execution — reviewable and traceable; ticketing stays in Notion (SAW tickets)
+- Changes apply to your project repo first, then sync to the generic template _(propagation direction under review)_
 
 **How it works:**
-1. Open DOC tickets for each identified gap or improvement
+1. Open SAW tickets for each identified gap or improvement
 2. Load the master orchestrator session from `docs/upgrade/session-starter.md`
 3. Master agent runs a roundtable → builds a decision log → groups changes into execution sets
 4. Each group runs in a separate agent session driven by a written brief
