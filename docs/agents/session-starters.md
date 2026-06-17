@@ -14,7 +14,7 @@ WARP TAB NAME
 TICKET-XXX — [Agent]
 
 PRAETOR PRE-STEP (before pasting prompt)
-git worktree add ../TICKET-XXX-branch TICKET-XXX-branch
+Ensure the repo is on main and clean. Praetor auto-opens the ticket branch (feature/DEV-XXX-slug) before coding — mechanics in docs/skills/git-workflow.md. If a branch already exists for the ticket, Praetor stops and asks owner.
 
 ---
 

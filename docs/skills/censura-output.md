@@ -23,6 +23,7 @@ verdict: GREEN | YELLOW | RED
 findings:
   - [PASS|FAIL|RISK|NOTE] [area] [HIGH|MED|LOW Impact] [HIGH|MED|LOW Effort] — [one sentence]
 addressed: [Consilium expected_outputs verified — confirm each one]
+commit_message: [GREEN only — final commit text for the owner to copy: one-line title + human-readable bullets at deliverable altitude, synthesized from the ticket trail + diff; describes the delivered state, not the veto journey. Empty on YELLOW/RED. Text output only — Censura never commits.]
 claude_md_flag: NONE | [full consolidated change — incorporates Consilium flag, not just delta]
 adr_proposal: NONE | [domain area — rationale; full content per doc-maintenance.md ADR format]
 owner_override: [if owner overrode a finding — "overridden by Owner — [reason]"; empty if none]
@@ -49,6 +50,7 @@ If count reaches 10: suggest retrospective to owner before writing entry — pip
 NEVER
 Never omit the handoff block
 Never set GREEN with unresolved FAILs
+Never omit commit_message on GREEN — owner copies it into the commit
 Never write only delta for claude_md_flag — always full consolidated change
 Never create follow-up tickets without explicit owner approval in discussion
 Never omit gaps_to_address on RED in EXPLORACIO

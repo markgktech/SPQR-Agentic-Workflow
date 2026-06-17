@@ -2,13 +2,21 @@
 **Ticket:** https://www.notion.so/Git-Branching-Strategy-adopt-PoC-into-SPQR-process-agent-mandates-37e68d5de1e881b49f5bde30b552565a?v=37268d5de1e88125adb5000ce8e8fa12&source=copy_link
 **Epic:** 
 **Component:** 
-**Document status:** DONE
+**Document status:** ADOPTED — refined & integrated via SAW-32 (run: v1.5, see [[02-git-branching-strategy]])
 **Date:** 2026-06-13
 **Session ID:** 938f2e2c-6256-4f5e-8112-6d01e6beb803
 **Usage:** 15.3k input, 74.2k output, 3.4m cache read, 198.7k cache write ($5.61)
 **Session scope:** Git branching, commit & merge strategy for Foodoire (and, where relevant, the companion warehouse) — solo now, scaling to parallel agents / team later.
 **Purpose:** Propose a PoC branching/commit/merge approach and an agent role-division for the SPQR OPUS pipeline. These are well-prepared proposals ("how the meal *could* be cooked"), not fixed decisions — an SPQR developer agent will pick them up, refine with its own decisions, and validate them.
 **Status legend:**
+
+# Adoption (SAW-32, run v1.5)
+Adopted and refined into the SPQR process via SAW-32. Decisions recorded in [[02-git-branching-strategy]] (D1–D14). Divergences from this proposal:
+- **D5/L2** — `commit_authority` is expressed as a config value (`commit_authority: owner`), not the PoC's time-bounded "~6 months" phrasing (an agent cannot measure time).
+- **D9/L1** — mechanics vs policy split: the new `docs/skills/git-workflow.md` carries git **mechanics** only; the owner-only-commit / merge **policy** stays in `senate.md` + `CLAUDE.md.template` and is referenced, not duplicated.
+- **D6** — the Censor commit message lands as a `commit_message` field in Censura's existing Notion handoff (`censura-output.md`); Censura authors text only and never commits.
+- **D14/G4** — the skill states explicitly that an uncommitted feature branch carries no protection until its first commit (seam honesty).
+- **Descoped:** Foodoire `CLAUDE.md ## Branching` replacement → post-1.5 owner action (D13). **Open item:** no `censura.md` mandate file → candidate ticket under SAW-25.
 
 # Overview
 This PoC explores the ideal git branching, commit, and merge approach for Foodoire and how it should be reflected in the SPQR process and agent behaviour. The trigger is that the original AI-devised, worktree-per-milestone approach was flagged as an antipattern and over-complicated things. **In scope:** the branching model, branch lifecycle, who-does-what (role division), commit/merge gating, and the seams that let it scale later. **Out of scope:** building the mechanics now, push timing, and the parallel-execution machinery — these are noted but deliberately not designed here to avoid premature complexity. The angle of this document is **what changes in the SPQR process and what affects agents**, not a full git tutorial.

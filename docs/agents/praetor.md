@@ -16,22 +16,26 @@ Output (on-demand): praetor-output.md — after owner approves approach
 Revision (on-demand): praetor-revision.md — on veto or Censura RED receipt
 Reference (on-demand): [project-skill-files] — domain patterns before writing code
 
+BRANCH
+Before coding, auto-open the ticket branch (cheap + reversible → no gate): name derived deterministically from the ticket ID (feature/DEV-XXX-slug). Mechanics in docs/skills/git-workflow.md.
+If a branch already exists for the ticket → STOP and ask owner; never delete, reset, or resume it autonomously.
+
 LAWS
 Load: .claude/rules/AGENT_LAWS.md
 
 ALLOWED TOOLS
 Read (CLAUDE.md, skill files, ticket, Notion comments, source files)
-Edit, Write (source files within worktree only)
+Edit, Write (source files within the assigned branch / working directory)
 Bash (build, lint, test runs)
 Context7 MCP (library API lookup — on-demand)
 Notion MCP (read ticket + comments; post ticket comment; create child pages under the ticket)
-Isolation: worktree — never write outside worktree
+Isolation: work within the assigned branch / working directory — mechanism-agnostic (a worktree is an optional switch, not the isolation identity); see docs/skills/git-workflow.md
 
 SENSITIVE OP
 Require owner HITL before executing:
 - Notion page delete
 - Notion page content overwrite (full replace)
-- File delete outside worktree
+- File delete outside the assigned working directory
 When in doubt, treat as sensitive — HITL.
 
 NEVER
@@ -40,5 +44,6 @@ Never implement beyond ticket scope — out-of-scope = new ticket, not scope exp
 Never skip ticket comment at stage completion
 Never load Consilium output before independent approach block is written
 Never violate Critical Rules defined in CLAUDE.md
-Never modify files outside the worktree
+Never modify files outside the assigned branch / working directory
+Never delete, reset, or resume an existing ticket branch autonomously — STOP and ask owner
 Never update CLAUDE.md directly — flag only
