@@ -1,0 +1,36 @@
+---
+SPQR spqr.config template — init-only
+Copy this file to `spqr.config` in your project root and fill every value before first propagation.
+Each key is a config token from docs/CONFIGURE.md — the authoritative catalogue this map is derived from.
+The propagation agent reads these key→value pairs to re-instantiate the matching [TOKEN] inline in core files.
+Any token a propagated core file uses must exist here, or propagation fails loudly.
+Runtime placeholders ([AGENT], [TICKET_URL], [FILE], [ID]) are NOT config — they are filled per-session and must not appear here.
+---
+
+# Generic version this project is currently stamped at.
+# Set the baseline by hand at first instantiation; thereafter the propagation
+# agent writes it at the atomic commit point of each bring-current run.
+version: ""
+
+# Senate / Quaestor personas — docs/CONFIGURE.md §1
+Name 1: ""
+Name 2: ""
+Name 3: ""
+Name 4: ""
+
+# Project — docs/CONFIGURE.md §1
+PROJECT_PATH: ""
+PROJECT_BOUNDARIES: ""            # ticket-slicing rules; empty = silent failure
+
+# Notion ticket / spike-doc IDs — docs/CONFIGURE.md §1–2
+SPIKE_TEMPLATE_ID: ""
+FEATURE_TEMPLATE_ID: ""
+BUG_TEMPLATE_ID: ""
+DOC_TEMPLATE_ID: ""
+SPIKE_DOCUMENT_TEMPLATE_ID: ""
+SPIKE_DOC_PARENT_PAGE_ID: ""
+
+# Retro — docs/CONFIGURE.md §1
+RETRO_PARENT_ID: ""
+RETRO_TEMPLATE_ID: ""
+RETRO_SESSION_STARTER_ID: ""

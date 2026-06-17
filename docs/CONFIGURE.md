@@ -2,6 +2,8 @@
 
 This file explains every placeholder in the SPQR skill and agent files, and how to replace them before running the workflow on a new project.
 
+This catalogue is the authoritative token source from which a consuming project's `spqr.config` is derived — the propagation agent re-instantiates these placeholders from `spqr.config` and fails loudly on any propagated token absent from it (see `docs/upgrade/propagation-manifest.md` and `docs/upgrade/propagation-agent.md`).
+
 ---
 
 ## Section 1 — Variable Catalogue

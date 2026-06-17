@@ -10,6 +10,10 @@
 
 **Session note (honest record, Law 4):** The build ran in two passes. A Fable 5 session executed the pre-flight, the owner-approved Phase 1 plan, and checkpoints **CP1 (policy + query library API + DDL/fold extension)** and **CP2 (CLI surface + trace/verdict/budget/grant + DENY)** — both green (169 tests). That session ended at the end of CP2 when the `claude-fable-5` model became unavailable (owner limit reached), immediately after `test_cli_query.py` was written and the suite ran green. A resumed session (Opus 4.8) re-derived the state from the record (delivery notes + working tree + the green suite, per the Session Starters resume rule), reviewed the existing B3 tests clean-eye, and completed **CP3** (fixture query set, its harness, the protocol doc, this delivery note). No code from CP1/CP2 was rewritten; CP3 is purely additive.
 
+Usage:  claude-opus-4-8:  6.1k input, 48.3k output, 3.2m cache read, 136.4k cache write ($4.21)  claude-fable-5:  4.2k input, 102.3k output, 3.4m cache read, 179.7k cache write ($12.14)
+
+Session ID: f6bd0b6a-ebd8-4ed5-a433-3791d8719fe0 (Opus finish)
+
 **Dependency gate at session start:** B1 delivery note GREEN (65/65). B2 delivery note GREEN (95/95 cumulative). PASS.
 
 ---
