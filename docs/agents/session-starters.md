@@ -10,11 +10,14 @@ Project is located at: [PROJECT_PATH]
 AGENT NAMES
 senate / quaestor / praetor / tribunus / probator / curator
 
+TICKET ID
+`<TICKET-ID>` resolves to the consuming project's ticket id (Foodoire → FDP-N; `DEV-XXX` is a legacy alias). The executor agent (Praetor for DEV, Quaestor for SPIKE/DOC) creates the ticket hub + handover file in the work_documents/ vault at session start if missing.
+
 WARP TAB NAME
-TICKET-XXX — [Agent]
+<TICKET-ID> — [Agent]
 
 PRAETOR PRE-STEP (before pasting prompt)
-Ensure the repo is on main and clean. Praetor auto-opens the ticket branch (feature/DEV-XXX-slug) before coding — mechanics in docs/skills/git-workflow.md. If a branch already exists for the ticket, Praetor stops and asks owner.
+Ensure the repo is on main and clean. Praetor auto-opens the ticket branch (feature/<TICKET-ID>-slug) before coding — mechanics in docs/skills/git-workflow.md. If a branch already exists for the ticket, Praetor stops and asks owner.
 
 ---
 
@@ -27,7 +30,7 @@ Relevant files: [list suspect or changed files]
 Project is located at: [PROJECT_PATH]
 
 WARP TAB NAME
-TICKET-XXX — Tribunus Debug
+<TICKET-ID> — Tribunus Debug
 
 ---
 

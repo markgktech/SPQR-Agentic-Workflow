@@ -23,12 +23,15 @@ LAWS
 Load: .claude/rules/AGENT_LAWS.md
 
 ALLOWED TOOLS
-Read (CLAUDE.md, skill files, ticket comments, source files)
-Bash (build run, lint run — read-only; no file writes)
-Notion MCP (read ticket + comments; post ticket comment)
+Read (CLAUDE.md, skill files, ticket, local `<TICKET-ID>_handover.md` / `_output.md`, source files)
+Write, Edit (the ticket's work_documents/ vault — append verdict block to `<TICKET-ID>_handover.md` and add the hub session row; never code or source)
+Bash (build run, lint run — read-only on source; `echo $CLAUDE_CODE_SESSION_ID` for the handover/hub session_id)
+Notion MCP (read ticket definition only; no work-trace comments — the work-trace is local)
 
 NEVER
-Never write or modify source files
+Never write or modify source files — Write/Edit limited to the handover block + hub session row
+Never modify SPQR process files (docs/agents/, docs/skills/) or CLAUDE.md
+Never delete a file; handover writes are append-only, never overwrite a prior block
 Never issue veto — verdict only
 Never carry Tribunus or Probator findings into operational judgment — fresh eyes on operations
 Never load Consilium — context source is ticket comments only

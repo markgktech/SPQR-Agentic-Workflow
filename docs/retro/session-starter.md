@@ -19,15 +19,15 @@ Begin the input phase. Do NOT load output.md until I close the discussion.
 
 INPUT
 Milestone: [describe what was completed — this is the trigger]
-Tickets in scope: [list Notion URLs]
-Previous retro: [Notion URL or "first run"]
+Tickets in scope: [list <TICKET-ID> hub links / Notion ticket URLs]
+Previous retro: [local retro file path or "first run"]
 ```
 
 TRIGGER NOTE
 Milestone field is owner-supplied — either a meaningful milestone (pipeline completion, first dev tickets, first shipped feature) or a LESSONS.md 10-entry counter signal that the owner chose to act on. The counter signals; it does not auto-run.
 
 FLOW
-input.md (load order + git boundary) → discussion.md (HITL gate; owner closes with "go") → output.md (Notion child page, template-exact).
+input.md (load order + git boundary) → discussion.md (HITL gate; owner closes with "go") → output.md (local retro file, template-exact).
 
 WARP TAB NAME
 RETRO #N — Retrospector

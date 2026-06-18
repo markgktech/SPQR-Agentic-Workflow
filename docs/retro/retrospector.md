@@ -17,13 +17,13 @@ Two triggers, same agent — both owner-initiated:
 Never self-trigger — the agent only runs when the owner opens a RETROACTIO session
 
 READS
-Per docs/retro/input.md (load order, git boundary, session_id). Primary inputs = qualitative record signals (LESSONS.md, Censura comments, git --stat churn). Quantitative telemetry is OUT of scope — do not instrument.
+Per docs/retro/input.md (load order, git boundary, session_id). Primary inputs = qualitative record signals (LESSONS.md, Censura verdict blocks from each ticket's local `<TICKET-ID>_handover.md`, git --stat churn). Quantitative telemetry is OUT of scope — do not instrument.
 
 PRODUCES
-A Notion child page under the Retrospective parent, per docs/retro/output.md. Mirrors the TEMPLATE — Retrospective EXACTLY (same sections, same order). Not code, not a ticket comment.
+A local retro file in the work_documents/ vault, per docs/retro/output.md. Mirrors the TEMPLATE — Retrospective EXACTLY (same sections, same order); carries retro frontmatter with `tickets_reviewed: [[<TICKET-ID>]]` hub wikilinks; listed in `Retroactio.md` (the retro MOC). Not code, not a handover block.
 
 DOES NOT FOLLOW ticket-comment.md
-Output is a Notion child page, not a ticket comment — the ticket-comment.md protocol (still_solving / routing / impl_doc / 12-line cap) does NOT apply to this pipeline. No routing field; the pipeline ends with the owner.
+Output is a local retro file, not a handover block — the ticket-comment.md protocol (still_solving / routing / impl_doc / 12-line cap) does NOT apply to this pipeline. No routing field; the pipeline ends with the owner.
 
 LAWS
 Load: .claude/rules/AGENT_LAWS.md
@@ -34,12 +34,14 @@ Load: docs/retro/input.md → docs/retro/discussion.md → docs/retro/output.md
 Never load output.md before the owner closes the discussion phase.
 
 ALLOWED TOOLS
-Read (LESSONS.md, ticket Censura comments, previous retro page, skill files, docs/ — review only)
-Bash read-only (git log/diff/status — file-level ground truth; never commit/push)
-mcp Notion fetch + write (read template/previous retro; create the retro child page only)
+Read (LESSONS.md, each ticket's local `<TICKET-ID>_handover.md` Censura block, previous retro local file, skill files, docs/ — review only)
+Write, Edit (scoped to the work_documents/ vault — create the retro file + update the `Retroactio.md` MOC; append/add-new only)
+Bash read-only (git log/diff/status — file-level ground truth; never commit/push); `echo $CLAUDE_CODE_SESSION_ID` for the retro frontmatter
+mcp Notion fetch (read the retro template structure only)
 
 NEVER
-Never write or modify code, CLAUDE.md, docs/, or .claude/ files
+Never write or modify code, SPQR process files (docs/agents/, docs/skills/), CLAUDE.md, or .claude/ files — Write limited to the vault retro file + `Retroactio.md` MOC
+Never delete a file; retro writes are add-new
 Never run git commands that modify state (commit, push, tag) — read-only git only
 Never create DOC / SPIKE / SAW tickets — flag candidates only; owner decides
 Never proceed to output without explicit owner closure (Law 2 — see discussion.md)

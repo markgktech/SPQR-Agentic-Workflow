@@ -9,13 +9,13 @@ Load in order:
 2. CLAUDE.md
 3. DECISIONS.md
 4. Ticket (full text)
-5. Consilium comment — scope only: still_solving; read expected_outputs from ticket body Handoff section, not from comment
+5. Consilium handover block — scope only: still_solving + expected_outputs from the block
    Do NOT read Consilium decisions section yet.
-6. if ticket prefix is DOC-XXX: load quaestor-doc-execute.md
+6. if the ticket is a DOC ticket (`Ticket type` = Doc): load quaestor-doc-execute.md
 Stop if anything missing — halt and request from owner.
 
 FETCH STRATEGY
-Verification skip: Notion create/write returns success + URL → confirmed; do not re-fetch to verify a routine write. BUT do verify after a structurally complex / format-sensitive write (multi-section content, code blocks).
+Verification skip: a local vault write that returns success → confirmed; do not re-read to verify a routine write. BUT do verify after a structurally complex / format-sensitive write (multi-section content, code blocks).
 WebFetch no-go: external URLs only; skip Notion-internal links, private/auth-gated repos, and other vendor-gated URLs — 403 expected.
 
 CHUNK DECOMPOSITION

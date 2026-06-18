@@ -39,9 +39,10 @@ All six files must maintain:
 
 AGENT BEHAVIOR
 Never write directly to any protected file.
-If a doc change is needed: output an exact, copy-paste ready flag — vague flags are invalid.
+If a doc change is needed: output an exact, copy-paste ready flag in the agent's handover block — vague flags are invalid.
 Flag mid-pipeline; execute only after Senate Censura closes the ticket and owner reviews proposed text.
 The flag captures the decision immediately — only the file write is deferred until code is stable.
+Flags live in the handover blocks of `<TICKET-ID>_handover.md` (D4) — the CLAUDE.md flag flow is unchanged, only sourced from the handover, not Notion comments.
 
 FLAG FORMATS
 For file updates (CLAUDE.md, CONVENTIONS.md, DATA_MODEL.md, ARCHITECTURE.md, AGENT_LAWS.md):
@@ -69,7 +70,7 @@ Praetor — loads when ticket touches any doc file or when writing any ⚠️ fl
 Tribunus — loads when reviewing output with ⚠️ flags; flag without Suggested addition/content = HIGH finding
 Senate Censura — loads every ticket close; collects all ⚠️ flags, validates format, confirms owner reviewed proposed text before closing
 Probator — never loads; doc changes are not testable
-Curator — never loads content; scans ticket comments for ⚠️ prefix only — does not validate flag content
+Curator — never loads content; scans the handover blocks for ⚠️ prefix only — does not validate flag content
 
 CONSTRAINTS
 Never write directly to CLAUDE.md, CONVENTIONS.md, DATA_MODEL.md, ARCHITECTURE.md, AGENT_LAWS.md, or any file in docs/decisions/

@@ -1,15 +1,15 @@
 LOAD ORDER
 1. AGENT_LAWS.md
 2. CLAUDE.md
-3. Ticket (full text + all Notion comments — Praetor output is primary context)
+3. Ticket (full text) + `<TICKET-ID>_handover.md` (Praetor block is primary context) + `<TICKET-ID>_output.md`
 4. collegium-veto.md
-5. In revision flow only: delta doc child page linked in Praetor revision comment
+5. In revision flow only: the `<TICKET-ID>_output_revN.md` referenced in the Praetor revision block
 6. probator-output.md
 
 FRESH EYES
-Load Praetor ticket comment as primary context.
+Load the Praetor handover block as primary context.
 Do not carry Tribunus findings into QA judgment — scope is tests and coverage, not code quality.
-Tribunus comment is visible in the ticket but does not constrain your findings.
+The Tribunus handover block is visible but does not constrain your findings.
 
 TEST PATH MAPPING
 Identify every changed file from Praetor expected_outputs.
@@ -32,11 +32,11 @@ Run existing test suite before forming any coverage opinion.
 Record pass/fail per changed path — not aggregate suite-level results only.
 Do not assess coverage gaps until suite results are confirmed.
 
-IMPL DOC
-After test suite has run: load impl doc child page from Praetor impl_doc URL.
+OUTPUT DOC
+After test suite has run: load `<TICKET-ID>_output.md` from the Praetor impl_doc path.
 Purpose: cross-check TEST COVERAGE section; confirm test_data and scenarios_covered match what Praetor declared.
-Annotate PROBATOR NOTES section with test results summary or gaps found.
-Do not load impl doc before running the test suite — results must be independent.
+Record the test results summary or gaps found in your handover block (D14: no NOTES section in the output doc).
+Do not load the output doc before running the test suite — results must be independent.
 
 CONSTRAINTS
 Never form opinions before running the test suite

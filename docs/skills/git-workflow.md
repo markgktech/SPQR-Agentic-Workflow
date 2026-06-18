@@ -26,19 +26,19 @@ A commit on a feature branch never reaches main by itself — main receives chan
 The agent acts the same either way; this note exists so the skill is not read as "the branch protects the work on its own".
 
 BRANCH NAMING
-Derived deterministically from the ticket ID: feature/DEV-XXX-slug
-  DEV-XXX — the ticket ID, verbatim
+Derived deterministically from the ticket ID: feature/<TICKET-ID>-slug (example: feature/FDP-N-slug)
+  <TICKET-ID> — the consuming project's ticket id, verbatim (Foodoire → FDP-N; `DEV-XXX` is a legacy alias only)
   slug — short kebab-case of the ticket title
 No human judgement in the name — the same ticket always yields the same branch name.
 
 OPEN + ATTACH
 Praetor auto-opens the branch before coding (cheap + reversible → no gate):
-  git switch -c feature/DEV-XXX-slug
+  git switch -c feature/<TICKET-ID>-slug
 Downstream agents (Tribunus → Probator → Curator → Censura) work on the same branch, one folder, sequentially — they attach, they do not branch. Downstream fixes are continued work, not new branches.
 
 EXISTING-BRANCH DETECTION + STOP
 Before opening, detect:
-  git branch --list 'feature/DEV-XXX-*'
+  git branch --list 'feature/<TICKET-ID>-*'
 If a branch already exists for the ticket → STOP and ask owner.
 Never delete, reset, or resume it autonomously — branch deletion is destructive (HITL / owner decision).
 

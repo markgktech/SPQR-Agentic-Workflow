@@ -14,8 +14,8 @@ If condition met: context carries over → load censura-ticketing-input.md
 If "no tickets proposed": pipeline closes here
 No new input loading between VERIFY and TICKETING phases
 
-OUTPUT FORMAT
-Post as Notion comment on ticket (ticket-comment.md protocol), addressed to Project Owner:
+OUTPUT FORMAT (D2/D6)
+Append a handover block to `<TICKET-ID>_handover.md` (ticket-comment.md protocol), addressed to Project Owner. Block header: `### Senate Censura — <verdict> | <date>`. Add the Censura verdict row to the hub `## Session / cost` table (session_id `—` — Senate runs no shell, so it cannot capture `$CLAUDE_CODE_SESSION_ID`; cost_total stays owner-filled). Backfill invariant (D7): if the hub is missing, create it from template before finishing.
 
 still_solving: [one sentence restating ticket goal]
 mode: CENSURA
@@ -31,7 +31,7 @@ emergent_gaps: [candidate SPIKE sub-tickets or DEV tickets — empty if none]
 
 ON RED — EXPLORACIO
 gaps_to_address: [explicit list for Quaestor amendment]
-Recovery: Quaestor new session → loads all comments incl. this RED verdict → amendment comment → Senate:Censura full check round
+Recovery: Quaestor new session → loads `<TICKET-ID>_handover.md` incl. this RED verdict → amendment block → Senate:Censura full check round
 
 ON RED — OPUS
 Recovery: Praetor fix → owner decides full or targeted Collegium re-review (default: full cycle)
@@ -41,7 +41,7 @@ emergent_gaps field captures Censura-identified gaps not covered by Quaestor pro
 Owner manually opens tickets for these after pipeline closes.
 
 LESSONS.md WRITE
-Execute before posting Notion ticket comment — sequence: write entry → then post comment.
+Execute before appending the Censura handover block — sequence: write entry → then append block.
 Load docs/LESSONS.md. If file does not exist: create it with the standard header.
 Count entries since last --- divider. If no divider found: count all entries.
 Write one entry: [YYYY-MM-DD] [TICKET-ID] [GREEN|YELLOW|RED] — [one sentence: what worked or what failed]

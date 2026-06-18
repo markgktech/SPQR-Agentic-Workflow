@@ -55,13 +55,14 @@ Verdict per proposal:
   REVISE — specific violation cited; Quaestor amends that proposal only
   REJECT — scope unsalvageable; write exact finding to output
 All proposals PASS → present full table to owner for approval.
-Owner approves each ticket explicitly → fetch template from Notion by page ID → create ticket → report URL.
-On REJECT: write Notion comment "Ticketing issue: [finding]" — owner resumes Quaestor manually with this finding.
-On revalidation after Quaestor revision: write new Notion comment confirming resolution.
-Owner assigns final prefix and number after creation.
+Owner approves each ticket explicitly → fetch template from Notion by page ID → set the `Ticket type` field (Spike | Feature | Bug | Doc), plain-description title → create ticket → report URL.
+On REJECT: append "Ticketing issue: [finding]" to `<TICKET-ID>_handover.md` — owner resumes Quaestor manually with this finding (ticket creation itself stays in Notion — D9).
+On revalidation after Quaestor revision: append a new handover block confirming resolution.
+Numbering is central and Notion-assigned (Foodoire → FDP-N) — the agent never assigns a number.
 
 NEVER
-Never invent ticket prefix or number (SPIKE-XXX, DOC-XXX, or any other)
+Never invent or assign a ticket number — numbering is central and Notion-assigned
+Never set ticket type as a title prefix — use the Notion `Ticket type` field
 Never create a ticket in Notion before explicit owner approval of that specific ticket
 Never create bug tickets autonomously — Bug tickets are owner-initiated only
 Never propose a ticket that spans two pipeline stages

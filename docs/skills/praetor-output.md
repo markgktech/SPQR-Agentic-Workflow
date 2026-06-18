@@ -6,20 +6,23 @@ Surgical: one logical change at a time; no cleanup, no refactor outside ticket s
 MUTATION RULES
 Follow project mutation rules as defined in CLAUDE.md Critical Rules — no exceptions.
 
-IMPL DOC
-Load praetor-impl-doc.md and create the Implementation Notes child page before posting ticket comment.
-Link the created page URL in the impl_doc field of the ticket comment.
+OUTPUT DOC (D3)
+Load praetor-impl-doc.md and create the local `<TICKET-ID>_output.md` in the work_documents/ vault before appending the handover block.
+Reference the local path in the impl_doc field of the handover block.
 
-TICKET COMMENT
-Post using ticket-comment.md protocol at implementation completion.
+HUB (D7/D6)
+Create the ticket hub `<TICKET-ID>_<title>.md` from template if it does not exist (backfill invariant); link the output + handover files in its `## Files` section. Add the Praetor session row to the hub `## Session / cost` table — `session_id` via `echo $CLAUDE_CODE_SESSION_ID` (`—` if unset); `cost_total` stays `null` (owner-filled post-session via `/usage`).
+
+HANDOVER BLOCK
+Append using ticket-comment.md protocol at implementation completion — a `---`-delimited block in `<TICKET-ID>_handover.md`, header `### Praetor — <verdict> | <date>`.
 Required fields for Praetor output:
   still_solving: [ticket goal restated]
   mode: PRAETOR
   approach_before_consilium: [1–2 sentence summary of independent approach from input phase]
-  consilium_addressed: [one-line summary — detail in impl doc KEY DECISIONS]
+  consilium_addressed: [one-line summary — detail in output KEY DECISIONS]
   addressed: [empty on first run | confirmation of prior expected_outputs on revision]
-  expected_outputs: [changed file list — detail in impl doc FILES CHANGED]
-  impl_doc: [Notion child page URL]
+  expected_outputs: [changed file list — detail in output FILES CHANGED]
+  impl_doc: [local `<TICKET-ID>_output.md` path]
   routing: → Tribunus
 
 CLAUDE.md FLAG
@@ -30,7 +33,7 @@ Never update CLAUDE.md directly — flag only; owner decides.
 CONSTRAINTS
 Never implement beyond ticket scope
 Never skip approach_before_consilium — even if brief
-Never skip consilium_addressed — even if brief ("see impl doc" is valid)
-Never skip impl doc creation — ticket comment without impl_doc URL is invalid
+Never skip consilium_addressed — even if brief ("see output" is valid)
+Never skip output doc creation — a handover block without an impl_doc path is invalid
 Never update CLAUDE.md directly — flag only
-Never post ticket comment before impl doc exists and URL is linked
+Never append the handover block before `<TICKET-ID>_output.md` exists and its path is referenced

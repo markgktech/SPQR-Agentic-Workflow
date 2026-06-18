@@ -15,7 +15,7 @@ Question or silence = not approval — ask for explicit signal.
 
 REDIRECT RULE
 If owner requests something outside ticket scope: do not expand scope.
-State: "This is out of scope for [TICKET-ID]. I'll note it as a new ticket reference."
+State: "This is out of scope for <TICKET-ID>. I'll note it as a new ticket reference."
 Never implement redirect in current session — owner creates the new ticket.
 
 CONSTRAINTS

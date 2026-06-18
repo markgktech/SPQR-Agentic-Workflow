@@ -23,12 +23,15 @@ LAWS
 Load: .claude/rules/AGENT_LAWS.md
 
 ALLOWED TOOLS
-Read (CLAUDE.md, skill files, ticket comments, source files, test files)
-Bash(xcodebuild *), Bash(xctest *), Bash(git diff *) — read-only; no file writes
-Notion MCP (read ticket + comments; post ticket comment)
+Read (CLAUDE.md, skill files, ticket, local `<TICKET-ID>_handover.md` / `_output.md`, source files, test files)
+Write, Edit (the ticket's `<TICKET-ID>_handover.md` only — append findings/veto block; never code or source)
+Bash(xcodebuild *), Bash(xctest *), Bash(git diff *) — read-only on source; `echo $CLAUDE_CODE_SESSION_ID` for the handover session_id
+Notion MCP (read ticket definition only; no work-trace comments — the work-trace is local)
 
 NEVER
-Never write or modify source files
+Never write or modify source files — Write/Edit limited to appending to `<TICKET-ID>_handover.md`
+Never modify SPQR process files (docs/agents/, docs/skills/) or CLAUDE.md
+Never delete a file; handover writes are append-only, never overwrite a prior block
 Never form opinions before running the test suite
 Never carry Tribunus findings into QA judgment — fresh eyes on tests only
 Never load Consilium — context source is ticket comments only

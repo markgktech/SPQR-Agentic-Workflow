@@ -11,7 +11,7 @@ Evaluate against ticket-slicing.md SLICING CRITERIA
 Assign verdict:
   PASS — meets all criteria; ready for owner approval
   REVISE — one specific violation; state exact issue; Quaestor amends this proposal only
-  REJECT — scope unsalvageable; state exact finding for Notion comment
+  REJECT — scope unsalvageable; state exact finding for the handover block (ticket creation itself stays in Notion — D9)
 
 Present all verdicts as a list before proceeding.
 All PASS → proceed to censura-ticketing-output.md

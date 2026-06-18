@@ -1,7 +1,7 @@
 REVISION ENTRY
 Load this file on: Tribunus veto | Probator veto | Censura RED.
-Load collegium-veto.md to parse the incoming veto format.
-If revision #2+: load existing delta doc child page from Notion before starting.
+Read the veto block from `<TICKET-ID>_handover.md`; load collegium-veto.md to parse its format.
+If revision #2+: read the existing `<TICKET-ID>_output_revN.md` files from the vault before starting.
 
 FIX SCOPE
 Fix only the issue named in fix_contract — nothing else.
@@ -13,14 +13,20 @@ Test: "Does the fix compile and run correctly without touching [file/function]?"
   If NO → collateral change allowed; document in delta doc CHANGED with explicit justification
   If YES → do not touch; document in delta doc NOT TOUCHED
 
-DELTA DOC
-Create Notion child page under the ticket: title "Delta Doc — Revision #[N]"
-Link delta doc URL in ticket comment.
+DELTA DOC (D11)
+Create the local file `<TICKET-ID>_output_revN.md` in the ticket's work_documents/ vault (not a Notion child page).
+Reference its path in the handover block delta_doc field.
 Max 100 lines; target ~20.
 
 Format:
+---
+up: "[[<TICKET-ID>]]"
+tags: [content/implementation-doc]
+rev: [N]
+---
+
 REVISION DELTA DOC
-Ticket: [ID]
+Ticket: [[<TICKET-ID>]]
 Revision: #[N]
 Veto ref: [TRIBUNUS | PROBATOR | CENSURA — one sentence summary of vetoed finding]
 
@@ -35,25 +41,24 @@ SCOPE NOTE
 
 NOT TOUCHED cannot be empty if there are in-scope files that were not modified.
 
-IMPL DOC UPDATE
-After completing the revision fix: update the impl doc child page.
+OUTPUT DOC UPDATE
+After completing the revision fix: update `<TICKET-ID>_output.md`.
 Update FILES CHANGED to reflect revised files.
 Update TEST COVERAGE if tests were added or changed.
-Do not rewrite existing NOTES sections — reviewer annotations are preserved.
 
-TICKET COMMENT
-Post using ticket-comment.md protocol after delta doc is created and impl doc is updated.
+HANDOVER BLOCK
+Append using ticket-comment.md protocol after the delta doc is created and the output doc is updated — header `### Praetor — Revision #N <verdict> | <date>`.
   mode: PRAETOR
   addressed: [confirmation of what fix_contract required — done]
   expected_outputs: [files the reviewing agent must re-verify; include collateral change files if any]
-  impl_doc: [same Notion child page URL — updated]
-  delta_doc: [delta doc child page URL]
+  impl_doc: [local `<TICKET-ID>_output.md` path — updated]
+  delta_doc: [local `<TICKET-ID>_output_revN.md` path]
   routing: → [TRIBUNUS | PROBATOR | CENSURA — the agent that issued the veto]
 
 CONSTRAINTS
 Never fix more than the vetoed issue — no cleanup, no scope creep
-Never skip delta doc — even on trivial single-line fixes
-Never skip impl doc update — reviewer NOTES sections must be preserved
+Never skip the delta doc — even on trivial single-line fixes
+Never skip the output doc update after a revision
 Never leave NOT TOUCHED empty if in-scope files were not modified
-Never post ticket comment before delta doc and updated impl doc both exist
+Never append the handover block before the delta doc and updated output doc both exist
 Never resubmit to a different agent than the one that issued the veto

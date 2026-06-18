@@ -1,12 +1,12 @@
 # SPQR v1.3: Sequential Agentic Workflow
 
-A structured, sequential multi-agent development workflow built on Claude Code and Notion. Every task has a ticket. Every agent runs in a stateless session. The external record is truth.
+A structured, sequential multi-agent development workflow built on Claude Code. Every task has a ticket. Every agent runs in a stateless session. The work record lives as files in the project repo — the external record is truth.
 
 ---
 
 ## What is SPQR
 
-SPQR is a development pipeline where each stage of the software delivery cycle is handled by a dedicated Claude Code agent. Agents do not share session memory; they pass state through structured Notion ticket comments. This makes the pipeline auditable, resumable, and contamination-free between stages.
+SPQR is a development pipeline where each stage of the software delivery cycle is handled by a dedicated Claude Code agent. Agents do not share session memory; they pass state through structured handoff files kept in the project repo — a per-ticket hub, an output document, and an append-only handover log. This makes the pipeline auditable, resumable, and contamination-free between stages.
 
 Three pipelines:
 
@@ -36,12 +36,12 @@ Retrospector
 |-------|---------------|------|----------|
 | Senate: Consilium | Tech Lead / Solution Architect | Design authority. Three deliberation personas in one session. | Both |
 | Senate: Censura | Engineering Manager | Post-execution review authority. Verdict only. | Both |
-| Praetor | Software Engineer | Implements the feature ticket in a worktree-isolated session. Never writes code before the owner approves approach. | OPUS |
+| Praetor | Software Engineer | Implements the feature ticket on its own short-lived branch. Never writes code before the owner approves approach. | OPUS |
 | Tribunus | Senior Engineer (code reviewer) | Independent code reviewer. Runs the project linter independently. One veto per pipeline run. | OPUS |
 | Probator | QA Engineer | Independent QA verifier. Runs the test suite. One veto per pipeline run. | OPUS |
 | Curator | DevOps / SRE | Operational steward: build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | OPUS |
 | Quaestor | Technical Analyst / Research Engineer | Spike researcher. Produces a structured decision document. Never writes code. | EXPLORATIO |
-| Retrospector | Agile Coach / Process Lead | Cross-run process-health reviewer. Single agent, single session, no handoff chain. Produces a Notion retro page; flags candidates only, no code, no tickets. | RETROACTIO |
+| Retrospector | Agile Coach / Process Lead | Cross-run process-health reviewer. Single agent, single session, no handoff chain. Produces a retrospective document; flags candidates only, no code, no tickets. | RETROACTIO |
 
 **Deliberation personas**
 
@@ -63,7 +63,7 @@ Every agent operates under the same four laws, in priority order:
 
 1. **Stay in Character**: no stage skipping; challenge through proper channels only
 2. **Anti Meeseeks**: complete pre-flight before acting; owner must explicitly close discussion
-3. **Don't be Dory**: write a ticket comment at every major checkpoint; the external record is truth
+3. **Don't be Dory**: record the handoff at every major checkpoint; the external record is truth
 4. **Be like Spock**: independent view required; no sycophancy; suppress no finding
 
 ---
@@ -93,7 +93,7 @@ SPQR ships as a generic template — every project-specific detail is a named pl
 
 **Why CONFIGURE.md exists.** Without it, placeholders are scattered across a dozen skill and agent files. CONFIGURE.md means one place to configure, not a grep session across the repo.
 
-**Notion is the reference implementation, but not required.** Any ticket system with linkable tickets and comment writing works — Linear, GitHub Issues, Jira, or plain markdown files committed to the repo. CONFIGURE.md Section 3 covers the alternatives.
+**Notion is the reference implementation, but not required.** The ticket system only holds ticket definitions — the work record is files in your repo — so any system with linkable tickets works: Linear, GitHub Issues, Jira, or plain markdown. CONFIGURE.md Section 3 covers the alternatives.
 
 **An agent can perform the configuration.** Provide a project brief, point the agent at `docs/CONFIGURE.md`, and it will substitute all placeholders across the relevant files. Recommended approach for new project setup.
 
@@ -109,7 +109,7 @@ Before filling anything in, open `docs/CONFIGURE.md` — it lists every placehol
 
 3. **Fill in code-review-checklist.md**: the `PROJECT CRITICAL RULES` section contains a placeholder. Populate it from your CLAUDE.md Critical Rules.
 
-4. **Set up Notion**: each ticket needs a Notion page. Agents read tickets and post structured comments as checkpoints. Ticket creation also requires Notion templates (one per type: Spike, Feature, Bug, Doc) and a spike doc parent page — see `docs/CONFIGURE.md` for the full list of IDs needed.
+4. **Set up Notion**: each ticket needs a Notion page that agents read for the ticket definition. The per-ticket work record — hub, output, and handover — is written as files in your project repo, not as comments. Ticket creation requires Notion templates (one per type: Spike, Feature, Bug, Doc) — see `docs/CONFIGURE.md` for the IDs needed.
 
 5. **Update session-starters.md**: fill in `[PROJECT_PATH]` with your project root and the PERSONAS section with your persona names. If you plan to run workflow upgrades, open `docs/upgrade/upgrade-agent.md` and fill in the CONFIG section: persona names, project paths, and memory path. This is the single place for all upgrade configuration.
 
@@ -120,9 +120,9 @@ Before filling anything in, open `docs/CONFIGURE.md` — it lists every placehol
 ## Dependencies
 
 - **Claude Code** (claude.ai/code or CLI)
-- **Notion MCP**: agents read tickets and post comments via Notion MCP
+- **Notion MCP**: agents read ticket definitions and create tickets via Notion MCP; the per-ticket work record is kept as files in the project repo
 - **Context7 MCP**: agents load current library documentation on-demand during implementation and review
-- **git worktree**: Praetor runs in an isolated worktree; branch granularity follows the deliverable (Consilium sets the ticket Branch property, Praetor consumes it)
+- **git**: Praetor opens a short-lived feature branch per ticket; the owner commits and merges
 
 ---
 
@@ -179,7 +179,7 @@ docs/
 │   ├── session-starter.md     (paste prompt — milestone + tickets in scope)
 │   ├── input.md               (pre-flight — load order, git boundary)
 │   ├── discussion.md          (HITL gate — owner closes with "go")
-│   └── output.md              (Notion retro page, template-exact)
+│   └── output.md              (local retro file, template-exact)
 ├── upgrade/
 │   ├── session-starter.md     (paste prompt — scope + paths)
 │   ├── upgrade-agent.md       (master agent definition — identity, config, pipeline, skills)

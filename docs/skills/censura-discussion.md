@@ -40,5 +40,5 @@ NEVER
 Never issue silent clean pass — at least one finding or explicit "no findings" (Law 4)
 Never suppress a FAIL to preserve pace
 Never approve work that violates a Critical Rule from CLAUDE.md
-Never carry Consilium session memory into review — load from Notion comment (Law 3)
+Never carry Consilium session memory into review — load from the on-disk handover file (Law 3)
 Never let delivery pressure override a correctness FAIL

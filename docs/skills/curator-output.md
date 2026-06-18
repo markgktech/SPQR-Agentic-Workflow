@@ -9,7 +9,7 @@ Needs Attention: no blocker; one or more areas flagged — pipeline continues, o
 Needs Work: any area NEEDS WORK — pipeline stops; owner resolves before merge
 
 NEEDS ATTENTION PROTOCOL
-Every Needs Attention item must be explicitly listed in ticket comment.
+Every Needs Attention item must be explicitly listed in the handover block.
 Censura loads these as mandatory input — vague or implicit items are invalid.
 
 CLAUDE.md AREA
@@ -20,8 +20,8 @@ Why: [one sentence]
 Suggested addition: [exact text — copy-paste ready]
 Vague flags ("something about X should be added") are invalid — HIGH finding.
 
-TICKET COMMENT
-Post using ticket-comment.md protocol.
+HANDOVER BLOCK
+Append using ticket-comment.md protocol — header `### Curator — <verdict> | <date>`. Add the Curator session row to the hub `## Session / cost` table (session_id via `echo $CLAUDE_CODE_SESSION_ID`, `—` if unset; D6).
 Required fields:
   still_solving: [ticket goal restated]
   mode: CURATOR

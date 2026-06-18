@@ -12,8 +12,9 @@ LOAD ORDER
 
 MODE
 STANDALONE DEBUGGING — not part of an active OPUS pipeline.
-No Consilium output, no Praetor impl doc, no pipeline ticket comment sequence.
+No Consilium output, no Praetor output doc, no pipeline handover sequence.
 No Consilium output expected — proceed directly to review.
+BUG handover-chain roles are owner-deferred (D15) — this standalone session does not assume a chain.
 
 REVIEW SCOPE
 Limited to the issue and files provided in session starter.
@@ -26,7 +27,7 @@ Propose fix direction only — do not write code.
 
 OUTPUT
 Post findings and fix proposal to owner directly.
-Notion ticket comment optional — only if owner explicitly requests it.
+Local handover block optional — only if owner explicitly requests it.
 
 NEVER
 Never load collegium-veto.md — veto mechanic does not apply outside pipeline

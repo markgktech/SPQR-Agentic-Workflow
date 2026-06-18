@@ -24,6 +24,11 @@ TEMPLATE FETCH RULE
 Fetch template from Notion by page ID at session start — once, before evaluating any proposal.
 Extract section structure. Apply template-first: never delete or reorder existing sections; add sections only if no existing section fits; flag any deviation in output.
 
+NUMBERING + TYPE (D9)
+Ticket creation stays in Notion. Numbering is central and Notion-assigned (Foodoire → FDP-N) — the agent never invents or assigns a number.
+Ticket type is set in the Notion `Ticket type` field (Spike | Feature | Bug | Doc) — not as a title prefix; titles are plain descriptions.
+The template IDs above are the new Notion templates carrying the `Ticket type` field.
+
 LOAD ORDER
 1. ticket-slicing.md
 2. Notion templates (fetch by ID above)

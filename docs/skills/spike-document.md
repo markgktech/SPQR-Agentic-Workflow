@@ -4,17 +4,14 @@ description: Spike Document output format — Quaestor writes, Senate Censura re
 ---
 
 PURPOSE
-Canonical output artifact of the EXPLORACIO pipeline. Quaestor creates and fills as a Notion child page under the spike ticket. Senate Censura reads during review.
-Template: [SPIKE_DOCUMENT_TEMPLATE_ID]
+Canonical output artifact of the EXPLORACIO pipeline. Quaestor creates and fills it as the local `<TICKET-ID>_output.md` in the ticket's work_documents/ vault. Senate Censura reads during review.
+Structure = this spec minus the top metadata block — the hub owns identity (D3).
 
 STRUCTURE
 
-Metadata (top of page)
-Status: In Progress → Done on Censura GREEN
-Created: YYYY-MM-DD
-Author: Quaestor
-Mandate: [link to Consilium output comment]
-Ticket: [SPIKE-ID Notion link]
+Frontmatter (minimal — the hub owns identity; no top metadata block)
+up: "[[<TICKET-ID>]]"
+tags: [content/spike]
 
 Summary
 2–4 sentences: what was investigated and what the outcome is.
@@ -34,12 +31,12 @@ NO DECISION NEEDED — already covered; log as: "Covered by [ADR-XX / file:line 
 OPEN — unresolved; flag to owner; becomes candidate SPIKE sub-ticket
 
 FILL RULES
-Fill order: metadata → per-topic decisions → Summary last
+Fill order: per-topic decisions → Summary last
 If decision count >10: flag to owner before presenting — scope likely too wide
-On Notion write failure: alert owner, output full document as plain text for manual paste
+On file write failure: alert owner, output full document as plain text for manual paste
 
 NEVER
 Never invent a decision to fill the template — use NO DECISION NEEDED if already resolved
 Never write Summary before research is complete
-Never omit Mandate or Ticket links
+Never omit the `up:` hub link in frontmatter
 Never leave Decision Table empty if decisions exist

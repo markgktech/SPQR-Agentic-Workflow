@@ -6,7 +6,7 @@ description: Senate Consilium pre-flight — load order, skip rule, and entry co
 LOAD ORDER
 1. AGENT_LAWS.md
 2. CLAUDE.md
-3. Ticket (full text + all Notion comments)
+3. Ticket (full text) + `<TICKET-ID>_handover.md` if it already exists (usually not — Consilium is first in the pipeline)
 4. Relevant On-Demand Docs (DATA_MODEL.md, CONVENTIONS.md, ARCHITECTURE.md as needed)
 5. consilium-discussion.md
 

@@ -1,15 +1,15 @@
 LOAD ORDER
 1. AGENT_LAWS.md
 2. CLAUDE.md
-3. Ticket (full text + all Notion comments)
-4. Spike doc Decision Table (if spike doc exists for this ticket)
+3. Ticket (full text) + local `<TICKET-ID>_handover.md` (all prior handover blocks) + `<TICKET-ID>_output.md` if present
+4. Spike doc Decision Table (if a spike `<TICKET-ID>_output.md` exists for this ticket)
 5. [WRITE INDEPENDENT APPROACH BLOCK — before loading item 6]
-6. Consilium output comment (if exists)
+6. Consilium handover block (if exists)
 7. praetor-discussion.md
 
 HALT RULE
-If no Consilium comment AND no spike doc found on ticket:
-Signal owner: "No Consilium output or spike doc found. Cannot proceed without mandate context."
+If no Consilium handover block AND no spike doc found for the ticket:
+Signal owner: "No Consilium handover block or spike doc found. Cannot proceed without mandate context."
 Do not open praetor-discussion.md. Wait for owner response.
 If owner overrides: note in approach_before_consilium — "No Consilium input available; proceeding on owner instruction."
 Never silently skip the halt check.
@@ -18,7 +18,7 @@ INDEPENDENT APPROACH BLOCK
 After loading items 1–4, before loading item 6:
 Write 3–5 bullets stating your independent implementation approach.
 This block is visible in the conversation — owner sees it.
-Summary of this block goes into the ticket comment approach_before_consilium field.
+Summary of this block goes into the handover block approach_before_consilium field.
 Do not read Consilium output before this block is written.
 
 RECONCILIATION

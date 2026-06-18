@@ -4,7 +4,7 @@ description: DOC ticket execution skill — DOC-prefixed tickets only; discovery
 ---
 
 INVOKE
-Load when ticket prefix is DOC-XXX — do not load for SPIKE or FEAT tickets
+Load when the ticket is a DOC ticket (`Ticket type` = Doc) — do not load for SPIKE or FEAT tickets
 Load after quaestor-relatio.md pre-flight completes
 
 PRE-FLIGHT
@@ -30,15 +30,17 @@ Agent may propose new tickets for: work clearly out of scope for this DOC ticket
 Agent may NOT create tickets autonomously — propose only; owner creates
 All proposals follow ticket-slicing.md format
 
-OUTPUT COMMENT
-After all items complete: write Notion comment on the ticket listing:
+OUTPUT — CHANGE MANIFEST (D12)
+DOC output is a local change-manifest: `<TICKET-ID>_output.md` in the work_documents/ vault, frontmatter `up: "[[<TICKET-ID>]]"` + `tags: [content/doc-change]` + a `modifies:` property (list of files/docs touched). Body lists:
   each item with DONE / FLAGGED status
-  file paths modified
+  file paths + sections modified
+  any ⚠️ flags (per doc-maintenance.md format)
   any deviations from expected structure
+After all items complete: create the hub from template if missing (backfill invariant) and append a handover block to `<TICKET-ID>_handover.md` (not a closing Notion comment) — header `### Quaestor — <verdict> | <date>`; add the hub session row.
 
 NEVER
 Never append to end of file without finding the correct anchor section first
 Never mark an item done without re-reading the modified section
 Never create tickets in Notion — propose only
-Never skip the output comment at completion
+Never skip the handover block at completion
 Never start a new item before the previous one is verified

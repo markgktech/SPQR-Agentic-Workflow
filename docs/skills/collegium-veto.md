@@ -2,23 +2,24 @@ COLLEGIUM VETO — SHARED FORMAT
 Loaded by: Praetor (to recognize and respond), Tribunus (to issue), Probator (to issue)
 One veto per agent per pipeline run. Single issue only.
 
-VETO FORMAT
+VETO FORMAT (a handover block in `<TICKET-ID>_handover.md` — D11)
 veto_from: [TRIBUNUS | PROBATOR]
 issue: [one sentence — the specific finding that blocks]
 location: [file(s) and function(s) affected]
 fix_contract: [what must change — targeted, not a general rewrite]
 resubmit_to: [TRIBUNUS | PROBATOR — the issuing agent]
+routing: → Praetor (veto issued)
 
 PRAETOR ON RECEIPT
-Load this file before reading the veto comment.
+Load this file before reading the veto block in `<TICKET-ID>_handover.md`.
 Fix only fix_contract scope — open praetor-revision.md.
 Do not editorialize or dispute the veto — fix and resubmit.
 
 TRIBUNUS / PROBATOR ON ISSUE
 Declare all findings (LOW/MED/HIGH) before deciding to veto.
 Veto only the highest-priority finding — one issue per run.
-MED/HIGH: HITL checkpoint with owner before posting veto.
-Post veto as Notion comment using ticket-comment.md format.
+MED/HIGH: HITL checkpoint with owner before appending the veto block.
+Append the veto block to `<TICKET-ID>_handover.md` using ticket-comment.md format.
 
 CONSTRAINTS
 Never veto more than one issue per agent per pipeline run

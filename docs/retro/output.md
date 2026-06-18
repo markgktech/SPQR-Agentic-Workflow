@@ -1,24 +1,28 @@
 ---
 name: retro-output
-description: RETROACTIO output protocol — Notion child page mirroring the template EXACTLY; rule-rot pass; max 3 actions; flag-only; records the next marker
+description: RETROACTIO output protocol — local retro file mirroring the template EXACTLY; rule-rot pass; max 3 actions; flag-only; records the next marker
 ---
 
 PRECONDITION
 Owner has explicitly closed the discussion phase with an affirmative (per docs/retro/discussion.md). Never produce output before closure.
 
 TEMPLATE FIDELITY
-Fetch TEMPLATE — Retrospective and follow it EXACTLY — same sections, same order, no additions or removals.
-Template: [RETRO_TEMPLATE_ID]
-Fetch it first, then populate each section. Do not invent sections; do not drop "skip on first run" sections — mark them skipped.
+Follow the local retro template `templates/retro_template.md` (in the consuming project's work_documents/ vault — not Notion) EXACTLY — same sections, same order, no additions or removals.
+Read it first, then populate each section. Do not invent sections; do not drop "skip on first run" sections — mark them skipped.
 
-OUTPUT TARGET
-Create the retro as a Notion CHILD PAGE under the Retrospective parent.
-Parent: [RETRO_PARENT_ID]
-Title format: Retro #[N] — [Milestone name]
-Write session_id as page metadata — value from input.md ($CLAUDE_CODE_SESSION_ID).
+OUTPUT TARGET (D13)
+Create the retro as a local file in the work_documents/ vault (not a Notion child page).
+Title / H1 format: Retro #[N] — [Milestone name]; add the file to `Retroactio.md` (the retro MOC).
+Frontmatter:
+  content: retro
+  retro_n: [N — start at 1; increment by reading the prior retro for the last number]
+  phase: [the project phase this retro covers]
+  verdict: [the retro template's OWN vocabulary — NOT Censura GREEN/RED]
+  tickets_reviewed: [[<TICKET-ID>]]   # one wikilink per in-scope ticket hub
+  session_id: [$CLAUDE_CODE_SESSION_ID from input.md; `—` if unset]
 
 DOES NOT FOLLOW ticket-comment.md
-Output is a Notion child page, not a ticket comment — ticket-comment.md does NOT apply. No routing / still_solving / impl_doc fields.
+Output is a local retro file, not a handover block — ticket-comment.md does NOT apply. No routing / still_solving / impl_doc fields.
 
 ACTIONS
 Max 3 action items. Every item has a type (DOC / SPIKE / owner decision) and an owner decision.
@@ -37,6 +41,6 @@ Never add, remove, or reorder template sections
 Never create DOC / SPIKE / SAW tickets — flag only
 Never exceed 3 action items
 Never report rule-rot from self-report — evidence from the record only
-Never omit session_id metadata
+Never omit session_id from the frontmatter
 Never omit the closing marker
 Never produce output before explicit owner closure

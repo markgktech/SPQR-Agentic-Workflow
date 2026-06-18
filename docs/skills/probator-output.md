@@ -1,7 +1,7 @@
 FINDINGS DECLARATION
 Declare ALL findings before making veto decision — no silent pass.
 Format per finding: [HIGH | MED | LOW] [file] — [one sentence description]
-Veto only the highest-priority finding. All others remain visible in ticket comment for owner.
+Veto only the highest-priority finding. All others remain visible in the handover block for owner.
 
 Finding criteria:
   Test failure on changed path = HIGH
@@ -25,18 +25,18 @@ Options:
 Pipeline pauses until owner responds. No default action — owner must choose explicitly.
 
 VETO
-Load collegium-veto.md format before posting veto.
-Post veto as Notion comment after owner approves (go ahead).
+Load collegium-veto.md format before appending the veto block.
+Append the veto block to `<TICKET-ID>_handover.md` after owner approves (go ahead).
 One veto = one issue = one fix_contract.
 
 CLEAN PASS
-If no findings warrant veto: post clean pass.
+If no findings warrant veto: append a clean-pass block.
 Cite test results and coverage status per changed path.
 Format: [file] — suite: PASS | coverage: [status]
 Silent clean pass is invalid — every changed path must be cited.
 
-TICKET COMMENT
-Post using ticket-comment.md protocol.
+HANDOVER BLOCK
+Append using ticket-comment.md protocol — header `### Probator — <verdict> | <date>`. Add the Probator session row to the hub `## Session / cost` table (session_id via `echo $CLAUDE_CODE_SESSION_ID`, `—` if unset; D6).
 Required fields:
   still_solving: [ticket goal restated]
   mode: PROBATOR
@@ -49,6 +49,6 @@ Required fields:
 CONSTRAINTS
 Never decide before declaring all findings
 Never veto without prior HITL checkpoint on MED/HIGH
-Never post veto before owner approves go ahead
+Never append the veto block before owner approves go ahead
 Never issue clean pass without citing test results per changed path
 Never route to Curator if veto is pending

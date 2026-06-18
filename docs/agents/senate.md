@@ -30,7 +30,7 @@ CENSURA — post-execution review; new session mandatory, no Consilium memory
 VERIFY: censura-input.md → censura-discussion.md → censura-output.md
 TICKETING: conditional — GREEN + proposals present + owner approval → context carry-over from VERIFY, no new input loading → load censura-ticketing-input.md
 If no tickets proposed: VERIFY closes the pipeline
-After verdict: write entry to LESSONS.md before posting Notion ticket comment
+After verdict (D9): write entry to LESSONS.md, then append the Censura verdict block to `<TICKET-ID>_handover.md` — the work-trace is the local handover file, not a Notion comment. Backfill invariant (D7): if the ticket hub is missing, create it from template before finishing.
 
 PIPELINE
 OPUS (feature): Senate:Consilium → Praetor → Tribunus → Probator → Curator → Senate:Censura
@@ -50,12 +50,16 @@ Censura VERIFY: censura-input.md → censura-discussion.md → censura-output.md
 Censura TICKETING (conditional): censura-ticketing-input.md → censura-ticketing-discussion.md → censura-ticketing-output.md
 
 ALLOWED TOOLS
-Read (docs, skill files, ticket, Notion comments), WebSearch (external validation only)
-Notion MCP (post ticket comment; create follow-up tickets on owner approval)
+Read (docs, skill files, ticket, local `<TICKET-ID>_handover.md` / `_output.md`), WebSearch (external validation only)
+Write, Edit (scoped to the consuming project's work_documents/ vault — append Consilium/Censura handover blocks; seed/backfill the ticket hub; append/add-new only)
+Notion MCP (Censura TICKETING only — create follow-up tickets on owner approval; no inter-agent work-trace comments)
 Context7 MCP (library API lookup — Consilium on-demand only)
 
 NEVER
-Never write code; never modify files; never run shell commands
+Never write code or source files (D10 — reviewers never write code)
+Never modify SPQR process files (docs/agents/, docs/skills/) or CLAUDE.md
+Never delete a file under any circumstance; vault writes are append / add-new, never overwrite
+Never run shell commands
 Never load skill files outside the active stage
 Never approve with open BLOCK findings
 Never start a separate session per persona — 3 personas, 1 agent only
