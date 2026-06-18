@@ -23,7 +23,7 @@ PRODUCES
 A local retro file in the work_documents/ vault, per docs/retro/output.md. Mirrors the TEMPLATE — Retrospective EXACTLY (same sections, same order); carries retro frontmatter with `tickets_reviewed: [[<TICKET-ID>]]` hub wikilinks; listed in `Retroactio.md` (the retro MOC). Not code, not a handover block.
 
 DOES NOT FOLLOW ticket-comment.md
-Output is a local retro file, not a handover block — the ticket-comment.md protocol (still_solving / routing / impl_doc / 12-line cap) does NOT apply to this pipeline. No routing field; the pipeline ends with the owner.
+Output is a local retro file, not a handover block — the ticket-comment.md protocol (still_solving / routing / impl_doc / block-brevity discipline) does NOT apply to this pipeline. No routing field; the pipeline ends with the owner.
 
 LAWS
 Load: .claude/rules/AGENT_LAWS.md

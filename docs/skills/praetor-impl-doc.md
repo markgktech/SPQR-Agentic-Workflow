@@ -38,6 +38,13 @@ scenarios_covered: [nil / boundary / error state — per changed file]
 
 ---
 
+**VERIFICATION (RECEIPT)**
+build: [verbatim — `<build command> → <decisive stdout line>` (e.g. `BUILD SUCCEEDED`)]
+lint: [verbatim — `<lint command> → <decisive stdout line>` (e.g. `0 violations`)]
+[the receipt = the exact decisive tool-output line, not paraphrase; scoped to the decisive line, not the full log — canonical definition in ticket-comment.md. The compact line(s) also go in the handover `receipt:` field.]
+
+---
+
 **KNOWN GAPS**
 [anything uncertain, incomplete, or flagged for follow-up]
 
@@ -48,11 +55,13 @@ FILES CHANGED: every file touched including single-line changes; include why, no
 KEY DECISIONS: non-obvious choices only; pattern-following = omit
 CODE SNIPPETS: tricky logic, novel patterns, non-obvious fixes; not boilerplate
 TEST COVERAGE: mandatory even if no new tests — state "no new tests; existing suite covers [X]"
+VERIFICATION (RECEIPT): mandatory for any build/lint claim — paste the verbatim decisive line(s) (`<command> → <decisive stdout>`); never paraphrase; never omit to save tokens (quality floor)
 KNOWN GAPS: honest; do not omit to appear complete
 Reviewer findings: NOT in this file (D14) — reviewers append their blocks to `<TICKET-ID>_handover.md`; the output carries no NOTES sections
 
 CONSTRAINTS
 Never omit TEST COVERAGE — state coverage status even if unchanged
+Never omit VERIFICATION (RECEIPT) on a build/lint claim — verbatim decisive line(s), never paraphrased
 Never omit FILES CHANGED — every touched file listed
 Never add reviewer NOTES sections — reviewer findings live in the handover (D14)
 Never create the output doc before implementation is complete

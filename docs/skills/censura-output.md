@@ -8,6 +8,12 @@ GREEN: all requirements met, no FAILs
 YELLOW: met but RISK items recorded; owner acknowledges before merge
 RED: one or more FAILs, or Critical Rule violation
 
+RECEIPT ENFORCEMENT (D6/D8 — enforcer only; Senate runs no shell → Censura checks presence, never produces a receipt)
+No GREEN while any build/test/lint claim in the trail lacks its verbatim receipt.
+Missing receipt = HITL flag + cheap producer bounce (producer re-attaches the decisive line) — NOT a standalone veto; a receipt is clerical, a full RED/revision cycle is disproportionate (D6).
+A receipt showing an ACTUAL build/test failure IS a real failure → route the existing Probator-veto / Censura-RED machinery; do not build a new veto/RED path.
+Enforcement lives here only (D8) — Tribunus/Curator do not check receipts.
+
 TICKETING PHASE TRIGGER
 Condition: GREEN + proposals table present (not "no tickets") + owner explicit approval
 If condition met: context carries over → load censura-ticketing-input.md
@@ -50,6 +56,7 @@ If count reaches 10: suggest retrospective to owner before writing entry — pip
 NEVER
 Never omit the handoff block
 Never set GREEN with unresolved FAILs
+Never set GREEN while any build/test/lint claim lacks its verbatim receipt — flag the gap as a HITL producer bounce (cheap, D6), not a standalone veto; a receipt showing an actual failure is RED via the existing machinery, not a new path
 Never omit commit_message on GREEN — owner copies it into the commit
 Never write only delta for claude_md_flag — always full consolidated change
 Never create follow-up tickets without explicit owner approval in discussion

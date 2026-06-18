@@ -30,6 +30,7 @@ Untestable path: document reason explicitly — not a finding.
 TEST SUITE RUN
 Run existing test suite before forming any coverage opinion.
 Record pass/fail per changed path — not aggregate suite-level results only.
+Capture the verbatim decisive output line of the run (e.g. `Executed 42 tests, 0 failures`) — this is the receipt carried into the handover `receipt:` field (canonical definition in ticket-comment.md). Copy it exact, not paraphrased.
 Do not assess coverage gaps until suite results are confirmed.
 
 OUTPUT DOC
