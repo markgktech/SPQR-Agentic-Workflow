@@ -26,19 +26,24 @@ A commit on a feature branch never reaches main by itself — main receives chan
 The agent acts the same either way; this note exists so the skill is not read as "the branch protects the work on its own".
 
 BRANCH NAMING
-Derived deterministically from the ticket ID: feature/<TICKET-ID>-slug (example: feature/FDP-N-slug)
+Derived deterministically from the ticket ID:
+  feature/<TICKET-ID>-slug — OPUS feature tickets (example: feature/FDP-N-slug)
+  fix/<TICKET-ID>-slug     — CORRECTIO bug tickets (D13; example: fix/FDP-N-slug). Sibling of feature/; same deterministic derivation.
   <TICKET-ID> — the consuming project's ticket id, verbatim (Foodoire → FDP-N; `DEV-XXX` is a legacy alias only)
   slug — short kebab-case of the ticket title
 No human judgement in the name — the same ticket always yields the same branch name.
+One bug = one branch (fix/…), no batching — keeps ticket↔branch↔verify 1:1 for Probator's per-ticket receipt. Batching only via an explicit owner tag.
 
 OPEN + ATTACH
 Praetor auto-opens the branch before coding (cheap + reversible → no gate):
-  git switch -c feature/<TICKET-ID>-slug
+  git switch -c feature/<TICKET-ID>-slug   # OPUS
+  git switch -c fix/<TICKET-ID>-slug       # CORRECTIO (after the HITL cause-note gate — see bug-pipeline.md)
 Downstream agents (Tribunus → Probator → Curator → Censura) work on the same branch, one folder, sequentially — they attach, they do not branch. Downstream fixes are continued work, not new branches.
 
 EXISTING-BRANCH DETECTION + STOP
-Before opening, detect:
+Before opening, detect (match the prefix for the flow — feature/ for OPUS, fix/ for CORRECTIO):
   git branch --list 'feature/<TICKET-ID>-*'
+  git branch --list 'fix/<TICKET-ID>-*'
 If a branch already exists for the ticket → STOP and ask owner.
 Never delete, reset, or resume it autonomously — branch deletion is destructive (HITL / owner decision).
 

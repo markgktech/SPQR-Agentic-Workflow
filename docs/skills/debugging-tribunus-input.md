@@ -14,7 +14,11 @@ MODE
 STANDALONE DEBUGGING — not part of an active OPUS pipeline.
 No Consilium output, no Praetor output doc, no pipeline handover sequence.
 No Consilium output expected — proceed directly to review.
-BUG handover-chain roles are owner-deferred (D15) — this standalone session does not assume a chain.
+
+CORRECTIO ESCALATION INVESTIGATOR (D11, D12 — resolves the former "BUG roles owner-deferred / D15" note)
+This standalone-debug mode IS the CORRECTIO escalation investigator: invoked BEFORE Praetor when entry=wild AND the cause is not localizable. Orchestration: docs/skills/bug-pipeline.md.
+Produce a structured fix-spec for Praetor: repro · root-cause file:symbol · proposed change · blast radius.
+Mechanical exit: if the root cause is NOT localizable to a file/subsystem → report that to the owner, who files a normal EXPLORACIO spike ticket (genuine research). There is no in-CORRECTIO quaestor mode — do not assume one.
 
 REVIEW SCOPE
 Limited to the issue and files provided in session starter.
@@ -27,7 +31,8 @@ Propose fix direction only — do not write code.
 
 OUTPUT
 Post findings and fix proposal to owner directly.
-Local handover block optional — only if owner explicitly requests it.
+Local handover block optional in pure standalone use — only if owner explicitly requests it.
+In CORRECTIO investigator mode: record the fix-spec in `<TICKET-ID>_handover.md` so the owner-launched Praetor session can pick it up (handover-driven, D23).
 
 NEVER
 Never load collegium-veto.md — veto mechanic does not apply outside pipeline

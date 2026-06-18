@@ -34,6 +34,33 @@ WARP TAB NAME
 
 ---
 
+CORRECTIO — BUG FLOW (owner-launched, handover-driven)
+The owner moves the Notion bug ticket through stages and launches each hop as a fresh session; context flows via the local handover (D20, D23). Default 2 hops: Praetor (investigate → HITL cause-note gate → fix) → Probator (verify + close). Conditional inserts: [investigator →] before Praetor, [→ Tribunus-review] / [→ Curator] after, [→ Censura iff decision].
+
+PASTE PROMPT — Praetor (bug executor)
+Load docs/agents/praetor.md
+Load docs/skills/bug-pipeline.md
+MODE: CORRECTIO (bug) — investigate-first, STOP at the HITL cause-note gate before any code
+Ticket: [TICKET_URL]
+Project is located at: [PROJECT_PATH]
+
+PASTE PROMPT — Probator (verify + close)
+Load docs/agents/probator.md
+Load docs/skills/bug-pipeline.md
+MODE: CORRECTIO (bug) — verify repro pre/post, tests, conditional regression test, write close + routine knowledge entry
+Ticket: [TICKET_URL]
+Project is located at: [PROJECT_PATH]
+
+Escalation hops (conditional): investigator → use the DEBUGGING TRIBUNUS — STANDALONE starter (CORRECTIO investigator mode); Tribunus-review / Curator → their standard OPUS starters on the same fix/ branch.
+
+WARP TAB NAME
+<TICKET-ID> — [Agent] (CORRECTIO)
+
+PRAETOR PRE-STEP (CORRECTIO)
+Repo on main and clean. Praetor opens the bug branch (fix/<TICKET-ID>-slug) ONLY after the HITL cause-note gate clears — not before. If a branch already exists for the ticket, Praetor stops and asks owner.
+
+---
+
 PERSONAS
 Name 1: [Name 1]
 Name 2: [Name 2]
