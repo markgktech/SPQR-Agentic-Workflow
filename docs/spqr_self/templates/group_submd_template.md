@@ -12,6 +12,7 @@ RUN_CONTAINER: [absolute path to the version folder]
 RUN_DOC:       [absolute path to this file]
 REPO:          [SPQR | project | both]
 RATIONALE:     [one line — why this is one group]
+SOURCE_OF_TRUTH: [path to the run's PoC — authoritative for decisions; derive this brief from it, do not re-decide]
 PRE_FLIGHT:
   - [skill file or repo path the execution agent must load]
 FILES:

@@ -17,6 +17,7 @@ RECORD
 The work record lives in the repo, not Notion: docs/spqr_self/upgrades/<version>/ (an Obsidian vault).
 Ticketing stays in Notion (SAW tickets); only the work record is repo-native.
 Templates: docs/spqr_self/templates/ (run_main, group_submd, session_starter, poc).
+Decisions are authored PoC-first: a run's question/answer/decision log lives in a PoC under docs/spqr_self/poc/ (from poc_template). The run container LINKS the PoC and holds the execution briefs + Changes Made — it does not re-author the decisions.
 
 PIPELINE
 Phase 1 — Context Loading
@@ -34,11 +35,11 @@ Phase 2 — Roundtable
 
 Phase 3 — Decision Making
   Load: docs/upgrade/decision-making.md
-  Item-by-item; record decisions in the run container in real time
+  Item-by-item; record the question, answer and rationale in the run's PoC (poc/ lane, from poc_template) in real time — PoC-first, before any brief
 
 Phase 4 — Planning
   Load: docs/upgrade/planning.md
-  Group items; create the run container docs/spqr_self/upgrades/<version>/ from templates (MAIN folder-note + pre-created ordered group sub-md); write briefs
+  Group items; create the run container docs/spqr_self/upgrades/<version>/ from templates (MAIN folder-note + pre-created ordered group sub-md); derive the briefs FROM the PoC; MAIN links the PoC, does not inline decisions
 
 Phase 5 — Execution
   Load: docs/upgrade/execution.md

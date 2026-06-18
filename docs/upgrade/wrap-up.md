@@ -15,7 +15,7 @@ Open items
 - [ ] No open item left without a ticket or explicit descope decision
 
 Decisions
-- [ ] All decisions from this upgrade recorded in the run container with rationale
+- [ ] All decisions from this upgrade recorded in the run's PoC (poc/ lane) with rationale; the run container's MAIN links the PoC (poc: frontmatter)
 - [ ] Cross-run, durable decisions tagged (e.g. #decision) so they stay findable in the vault — not duplicated
 
 Traceability

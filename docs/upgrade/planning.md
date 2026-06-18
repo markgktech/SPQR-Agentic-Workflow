@@ -17,6 +17,7 @@ If a group has no dependency on anything before it, its position is flexible —
 NOTE — pending: generic→project propagation redesign. The generic-sync ordering above (and the sync group itself) is unchanged by this rework and under review in a separate session. Do not redesign it here.
 
 RUN CONTAINER
+The run's decisions are NOT authored here — they live in the run's PoC (poc/ lane, from poc_template, written in Phase 3). The MAIN folder-note links the PoC (its poc: frontmatter); the group briefs are DERIVED FROM it.
 Before execution starts, the master creates the run container at docs/spqr_self/upgrades/<version>/, from templates:
 - the MAIN folder-note <version>.md (from templates/run_main_template.md): title, summary, why-now, covered SAW tickets, implementation groups
 - one ordered group sub-md per execution group, NN-<slug>.md (from templates/group_submd_template.md): the brief + a "## Changes Made — _(pending execution)_" sentinel
@@ -32,6 +33,7 @@ REPO: [YOUR_PROJECT] | SPQR | Both
 RUN_CONTAINER: [absolute path to the version folder]
 RUN_DOC: [absolute path to this group's sub-md]
 RATIONALE: [one line — why this is one group]
+SOURCE_OF_TRUTH: [path to the run's PoC — authoritative for decisions/content; derive the brief from it, do not re-decide]
 FILL_CHANGES_MADE: yes
 PRE_FLIGHT:
   [skill file or repo path the execution agent must load]

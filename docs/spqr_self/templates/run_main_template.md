@@ -26,7 +26,7 @@ tags: [run]
 | 1 | [name] | 1/N | [[01-slug]] | pending |
 
 ## Decisions
-<!-- #decision — tag cross-run, durable decisions so they stay findable -->
+<!-- Pointer only — decisions live in the run's PoC (see the poc: frontmatter). Link it here; do not inline decisions. Tag durable cross-run decisions (#decision) in the PoC so they stay findable. -->
 
 ## Stalled / Deferred
 - [item → new SAW ticket]
