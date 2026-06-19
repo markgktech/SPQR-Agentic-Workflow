@@ -27,13 +27,18 @@ still_solving: [one sentence restating ticket goal]
 mode: CENSURA
 verdict: GREEN | YELLOW | RED
 findings:
-  - [PASS|FAIL|RISK|NOTE] [area] [HIGH|MED|LOW Impact] [HIGH|MED|LOW Effort] — [one sentence]
+  - [PASS|FAIL|RISK|NOTE] [category:<enum>] [area] [HIGH|MED|LOW Impact] [HIGH|MED|LOW Effort] — [one sentence]
 addressed: [Consilium expected_outputs verified — confirm each one]
 commit_message: [GREEN only — final commit text for the owner to copy: one-line title + human-readable bullets at deliverable altitude, synthesized from the ticket trail + diff; describes the delivered state, not the veto journey. Empty on YELLOW/RED. Text output only — Censura never commits.]
 claude_md_flag: NONE | [full consolidated change — incorporates Consilium flag, not just delta]
 adr_proposal: NONE | [domain area — rationale; full content per doc-maintenance.md ADR format]
 owner_override: [if owner overrode a finding — "overridden by Owner — [reason]"; empty if none]
 emergent_gaps: [candidate SPIKE sub-tickets or DEV tickets — empty if none]
+
+[category:<enum>] — FAILURE-CATEGORY ENUM (D7 — definition home)
+The recurring-failure key the retro harvest counts on (retrospector.md); tag every finding with one value. Evidence-seeded, kept small so producers don't mis-bucket:
+  receipt-missing · scope-creep · test-gap · spec-ambiguity · other
+Additive token ONLY — does NOT change the PASS/FAIL/RISK/NOTE verdict enum, the impact/effort tags, receipt enforcement, or verdict semantics (a RED stays a RED at emit time). The enum DEFINITION lives here — the producer (Censura) writes the tag; the retro reads it and may FLAG a candidate new category, but never adds one (owner decides — rule-rot pattern).
 
 ON RED — EXPLORACIO
 gaps_to_address: [explicit list for Quaestor amendment]

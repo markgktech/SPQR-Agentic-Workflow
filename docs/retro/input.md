@@ -24,7 +24,7 @@ Retrieve via: echo $CLAUDE_CODE_SESSION_ID — written as retro frontmatter by o
 
 SCOPE BOUNDARY
 Metrics at this rung = qualitative record signals already in the record: LESSONS flags, Censura findings, git --stat churn — enough to see "what's bleeding" without overhead.
-Quantitative telemetry is OUT of scope (a later north-star rung). Do not over-build into formal instrumentation.
+Derived, harvested-at-retro detection counters (the four SAW-27 sensors, derived from this same record at retro time — see retrospector.md HARVEST + INTERPRETATION) are IN scope. A standing telemetry store / quantitative instrumentation — a separate aggregation surface that persists between runs — stays OUT of scope (a later north-star rung). Do not over-build into formal instrumentation.
 
 NEVER
 Never start the discussion phase before all LOAD ORDER items are read
@@ -32,4 +32,4 @@ Never read full ticket bodies or full handover chains — the Censura verdict bl
 Never rely on commit messages or commit cadence as a work-structure signal
 Never load full diffs by default
 Never carry state from a prior session — start cold (Law 3)
-Never build quantitative instrumentation — out of scope this rung
+Never build a standing telemetry store / quantitative instrumentation — out of scope this rung; the SAW-27 detection counters are derived at retro time from the record, not a persisted aggregation surface
