@@ -50,3 +50,37 @@ class BudgetExhausted(QueryError):
     def __init__(self, message, packet):
         super().__init__(message)
         self.packet = packet
+
+
+class GateError(RobotError):
+    """Write-path / serializing-gate failure (B4) — proposal could not be
+    formed or a write-path invariant was violated."""
+
+
+class MalformedProposal(GateError):
+    """A proposal file that is not even proposal-shaped (bad fence, bad key
+    syntax, a robot-stamped key present). Cannot be persisted — raised at the
+    door, never costs a Senate call. A proposal that IS well-shaped but fails
+    a hard-schema rule is NOT this error: it is persisted and transitioned to
+    the 'rejected-malformed' state (S6 state machine)."""
+
+
+class AntechamberError(GateError):
+    """Antechamber store / mirror failure (B4) — a missing proposal, an
+    illegal state transition, or a corrupt sidecar."""
+
+
+class RevisionLimitReached(GateError):
+    """The bounded revise loop is exhausted (A15): the proposal has used its
+    N revise rounds and the Senate asked for another. Carries the owner
+    escalation packet, mirroring BudgetExhausted on the read path."""
+
+    def __init__(self, message, packet):
+        super().__init__(message)
+        self.packet = packet
+
+
+class AuditError(RobotError):
+    """Audit-path failure (B5) — the deterministic tripwires cannot run
+    (e.g. no derived index to read). The tripwires themselves never raise on
+    a finding: they FLAG, never fault (S6 Cluster B, flag-only)."""

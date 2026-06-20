@@ -198,6 +198,27 @@ B5 stays **purely graph-structural**; code/convention freshness (SAW-40) is expl
 **Rationale:** propagating once avoids double work; keeping flat docs preserves the reset path the whole test-run regime depends on. Resolves the roadmap discussion, R7, R8, M2.
 **Affected:** Execution Plan (Phases 1.5–5 ordering note), SAW-31, propagation manifest.
 
+## A19 — B4 execution refinements + master verification (2026-06-20)
+
+**Decision:** three refinements surfaced and owner-approved during B4 execution (Starter A plan phase + close):
+- **A12 scoping (from D6):** the broad instance `.gitignore` (node + antechamber markdown) is **TEST-scoped only** — written by `init --disposable` into a system-tmp instance. The **canonical** `init` stays **index-only** so the committed antechamber (A13) is never gitignored. A12's "instance .gitignore must cover node+antechamber" applies to disposable test instances, not the canonical layout.
+- **A15 ID primitive (from D9):** allocation is `SELECT … then UPDATE id_counter` inside one gate transaction — **not** the literal `UPDATE … RETURNING` (which needs SQLite ≥3.35, above the stdlib floor). Identical semantics under the single-writer serialized gate; A15's intent was atomic allocation from the counter, not the specific syntax.
+- **D13 reversed (owner-accepted):** `antechamber_root` is **NOT persisted** in the manifest. The default antechamber equals the A3 sibling (derivable from `warehouse_root.parent`), so persistence was dead weight and would break the manifest's strict-key contract. Reversible in one amendment if a non-sibling antechamber is ever needed (no current case).
+
+**Master A10 critical re-test — PASS (independent):** full suite 215/215 green, 3× consecutive from the repo root (Python 3.9.6 / SQLite 3.51.0); R3/L4 closed in code (`reconcile_antechamber` + `AntechamberDivergenceReport`, the B2-analogue); L1 cross-B vertical slice + L2 real-`subprocess` session present and green; D6 verified (canonical init index-only); no git leakage. No new gaps → no roundtable.
+**Rationale:** record the execution-surfaced refinements (newer takes precedence over A12/A15 literal wording; conflict noted) and the master verification, per Law 3.
+**Affected:** `warehouse_robot/cli.py`, `warehouse_robot/write_gate.py`; A12, A15 (refined here).
+
+## A20 — Phase 1 independent exit check: GREEN-with-waiver (2026-06-20)
+
+**Decision:** the independent Phase-1 exit check was run by **Codex** (a different tool/system, not a Claude/Fable build session) and recorded in [[08-Phase 1 Exit Check — Verification Report (Codex)]]. **Code/behaviour verdict: GREEN, independently** — A8 both parts (two rebuilds byte-identical + live-vs-rebuild logical-digest equal), the full vertical slice, antechamber-mirror re-derivation, flag survival across reconcile, clean-graph-zero-flags, no git leakage, no robot git invocation, and all flagged deviations (D6/D9/D13/PC1b) confirmed present as documented. The verifier returned **RED on evidence-completeness only**, for the R11 session-id assertion.
+**Waiver:** the **R11 session-id-difference sub-check is WAIVED**. The B4/B5 delivery-note session IDs were never recorded and are unrecoverable (owner). The assertion is a *proxy* for verifier independence; independence here is established more strongly by construction — the verifier was a **different tool (Codex)** that provably did not build B1–B5, ran after, and re-derived results with its own scripts. The proxy is moot when the property it stands for holds by a stronger argument. Owner-accepted.
+**B1–B3 receipt/SQLite-version gaps (verifier #2/#3):** accepted as **historical** — B1–B3 shipped before A11; A11 is forward-only. Not exit-blocking; optional backfill only.
+**Therefore: Phase 1 exit = GREEN** (build B1–B5 complete, independently verified; the exit RED-on-governance is adjudicated GREEN by this waiver).
+**Lesson / process fix (flag, candidate):** capture the build session id in the delivery note **at build time**, not from owner memory, so the R11 anchor is never blank again — a small Starter-A / delivery-note-template improvement for future runs.
+**Rationale:** never let a missing proxy-value block a verdict when the underlying property (independence) is established by stronger evidence; record the waiver and the lesson rather than silently passing (Law 4).
+**Affected:** Phase 1 status (→ GREEN); the exit-check report (left as the verifier authored it — RED on its own terms); candidate: delivery-note template + Starter A (session-id capture).
+
 ---
 
 # References

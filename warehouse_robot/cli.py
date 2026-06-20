@@ -9,6 +9,7 @@ Usage:
                                     [--antechamber-root PATH]
     python3 -m warehouse_robot check --warehouse-root PATH
     python3 -m warehouse_robot reconcile --warehouse-root PATH [--fresh]
+    python3 -m warehouse_robot audit --warehouse-root PATH
 
     # B3 query verbs (S4 contract; JSON on stdout, agents are the consumer):
     python3 -m warehouse_robot open-scope --warehouse-root PATH
@@ -40,16 +41,34 @@ import json
 import sys
 from pathlib import Path
 
-from . import config, fold, query, schema, store
-from .errors import BudgetExhausted, ConfigError, ProtocolError, RobotError
+from . import audit, config, fold, query, schema, store, write_gate
+from .errors import (
+    BudgetExhausted, ConfigError, ProtocolError, RevisionLimitReached, RobotError,
+)
 from .ids import PREFIX_RE
 from .policy import ARCHETYPES, VERDICTS, policy_for, tightened
 
+# Production default (A13): a CANONICAL instance VERSIONS its node + antechamber
+# markdown (it is un-ingested truth); only the derived index is gitignored.
 INSTANCE_GITIGNORE = (
     "# Derived index — disposable projection of the markdown truth (S7). Never versioned.\n"
     "index.sqlite\n"
     "index.sqlite-wal\n"
     "index.sqlite-shm\n"
+)
+
+# Disposable TEST instance only (A12 ↔ A13 reconciled): node + antechamber
+# markdown are test data and must never reach git. A12's "instance .gitignore
+# covers node + antechamber markdown" is scoped to throwaway instances; A13
+# keeps the canonical instance versioning them. Selected by `init --disposable`.
+DISPOSABLE_GITIGNORE = INSTANCE_GITIGNORE + (
+    "\n# Disposable test instance (A12): never commit test node/antechamber markdown.\n"
+    "nodes/\n"
+    "flags/\n"
+)
+DISPOSABLE_ANTECHAMBER_GITIGNORE = (
+    "# Disposable test antechamber (A12): never commit test proposals.\n"
+    "*\n"
 )
 
 
@@ -78,6 +97,13 @@ def build_parser():
         default=None,
         help="antechamber directory (default: 'antechamber' sibling of the warehouse root, A3)",
     )
+    p_init.add_argument(
+        "--disposable",
+        action="store_true",
+        help="mark this a throwaway TEST instance: gitignore node + antechamber "
+        "markdown too (A12). A canonical instance versions them (A13) — never "
+        "pass this for a real warehouse.",
+    )
     p_init.set_defaults(func=cmd_init)
 
     p_check = subparsers.add_parser(
@@ -87,6 +113,10 @@ def build_parser():
         "--warehouse-root",
         required=True,
         help="warehouse root directory (mandatory; no default exists)",
+    )
+    p_check.add_argument(
+        "--antechamber-root", default=None,
+        help="antechamber directory (default: 'antechamber' sibling, A3)",
     )
     p_check.set_defaults(func=cmd_check)
 
@@ -181,6 +211,61 @@ def build_parser():
     p_grant.add_argument("--session", required=True,
                          help="session the grant applies to")
     p_grant.set_defaults(func=cmd_grant)
+
+    # --- B4 write path ---
+    def write_cmd(name, help_text):
+        p = subparsers.add_parser(name, help=help_text)
+        p.add_argument("--warehouse-root", required=True,
+                       help="warehouse root directory (mandatory; no default exists)")
+        p.add_argument("--antechamber-root", default=None,
+                       help="antechamber directory (default: 'antechamber' sibling, A3)")
+        return p
+
+    p_propose = write_cmd("propose",
+                          "submit a proposal: hard-gate it, write it to the "
+                          "antechamber, escalate to the Senate (S6)")
+    p_propose.add_argument("--ticket", required=True,
+                           help="self-declared submitter ticket (binding, L5)")
+    p_propose.add_argument("--agent", required=True,
+                           help="self-declared submitter agent (binding, L5)")
+    p_propose.add_argument("--file", required=True, dest="proposal_file",
+                           help="path to the proposal markdown, or '-' for stdin")
+    p_propose.set_defaults(func=cmd_propose)
+
+    p_revise = write_cmd("revise",
+                         "resubmit revised content for a proposal the Senate "
+                         "sent back (re-enters at proposed, A15)")
+    p_revise.add_argument("--proposal-key", required=True, dest="proposal_key",
+                          help="the proposal to revise, e.g. food-p3")
+    p_revise.add_argument("--file", required=True, dest="proposal_file",
+                          help="path to the revised proposal markdown, or '-' for stdin")
+    p_revise.set_defaults(func=cmd_revise)
+
+    p_resolve = write_cmd("resolve",
+                          "apply a Senate verdict to a pending proposal "
+                          "(robot side; the Senate wake is SAW-31)")
+    p_resolve.add_argument("--proposal-key", required=True, dest="proposal_key",
+                           help="the pending proposal, e.g. food-p3")
+    p_resolve.add_argument("--verdict", required=True, choices=write_gate.VERDICTS,
+                           dest="proposal_verdict",
+                           help="ingested | rejected | revise (S6)")
+    p_resolve.set_defaults(func=cmd_resolve)
+
+    p_arecon = write_cmd("reconcile-antechamber",
+                         "re-derive the antechamber mirror from the antechamber "
+                         "dir (recovery after index loss, L4)")
+    p_arecon.set_defaults(func=cmd_reconcile_antechamber)
+
+    # --- B5 audit ---
+    p_audit = subparsers.add_parser(
+        "audit",
+        help="run the deterministic graph-structural tripwires (orphan / "
+        "relates-to overuse / missing recommended edge); flag-only, never "
+        "mutates a target (S6 Cluster B)",
+    )
+    p_audit.add_argument("--warehouse-root", required=True,
+                         help="warehouse root directory (mandatory; no default exists)")
+    p_audit.set_defaults(func=cmd_audit)
     return parser
 
 
@@ -215,7 +300,12 @@ def cmd_init(args):
         warehouse_root,
         config.WarehouseConfig(project_prefix=args.prefix, schema_version=config.SCHEMA_VERSION),
     )
-    (warehouse_root / ".gitignore").write_text(INSTANCE_GITIGNORE, encoding="utf-8")
+    gitignore = DISPOSABLE_GITIGNORE if args.disposable else INSTANCE_GITIGNORE
+    (warehouse_root / ".gitignore").write_text(gitignore, encoding="utf-8")
+    if args.disposable:
+        (antechamber_root / ".gitignore").write_text(
+            DISPOSABLE_ANTECHAMBER_GITIGNORE, encoding="utf-8"
+        )
     schema.create_index(index_path, args.prefix, config.SCHEMA_VERSION)
 
     print("initialised warehouse instance")
@@ -226,11 +316,23 @@ def cmd_init(args):
     print(f"  derived index  : {index_path} (disposable, gitignored)")
 
 
+def _antechamber_root(args):
+    """Resolve the antechamber dir: explicit override, else the A3 sibling
+    (which equals the canonical project_memory/ layout — no manifest field
+    needed for the default)."""
+    if args.antechamber_root:
+        return Path(args.antechamber_root)
+    return Path(args.warehouse_root).parent / "antechamber"
+
+
 def cmd_check(args):
     report = fold.check(Path(args.warehouse_root))
     for line in report.lines():
         print(line)
-    return 0 if report.clean else 1
+    ante = write_gate.check_antechamber(Path(args.warehouse_root), _antechamber_root(args))
+    for line in ante.lines():
+        print(f"antechamber: {line}")
+    return 0 if (report.clean and ante.clean) else 1
 
 
 def _policy_from_args(args):
@@ -325,11 +427,79 @@ def cmd_reconcile(args):
     print(f"  logical digest      : {result.digest}")
 
 
+def _read_proposal_text(args):
+    if args.proposal_file == "-":
+        return sys.stdin.read()
+    return Path(args.proposal_file).read_text(encoding="utf-8")
+
+
+# Exit 1 = a recorded REJECTION (the gate did its job; not a robot fault),
+# the write-path analogue of B3's budget-refusal exit 1.
+_REJECTED_STATES = (write_gate.STATE_REJECTED_MALFORMED, write_gate.STATE_REJECTED)
+
+
+def cmd_propose(args):
+    result = write_gate.propose(
+        Path(args.warehouse_root), _antechamber_root(args),
+        _read_proposal_text(args), args.ticket, args.agent,
+    )
+    _emit(result)
+    return 1 if result["state"] in _REJECTED_STATES else 0
+
+
+def cmd_revise(args):
+    result = write_gate.revise(
+        Path(args.warehouse_root), _antechamber_root(args),
+        args.proposal_key, _read_proposal_text(args),
+    )
+    _emit(result)
+    return 1 if result["state"] in _REJECTED_STATES else 0
+
+
+def cmd_resolve(args):
+    result = write_gate.resolve(
+        Path(args.warehouse_root), _antechamber_root(args),
+        args.proposal_key, args.proposal_verdict,
+    )
+    _emit(result)
+    return 1 if result["state"] in _REJECTED_STATES else 0
+
+
+def cmd_reconcile_antechamber(args):
+    rebuilt = write_gate.reconcile_antechamber(
+        Path(args.warehouse_root), _antechamber_root(args)
+    )
+    print(f"antechamber mirror re-derived: {rebuilt} proposal(s)")
+
+
+def cmd_audit(args):
+    # Like the query verbs, warn (never refuse) if the index lags the markdown:
+    # the audit reads the derived projection, and a stale read is degraded, not
+    # dangerous (B2 #1). The audit then emits any new flags and reports.
+    _warn_if_divergent(args.warehouse_root)
+    result = audit.audit(Path(args.warehouse_root))
+    _emit(result)
+    # Exit 1 = open flags exist (findings present) — the audit analogue of a
+    # divergent `check`; exit 0 = a clean graph. Emission itself is a normal,
+    # idempotent success, so the code reflects the standing condition, not the
+    # act of writing.
+    return 1 if result["open_flag_count"] else 0
+
+
 def main(argv=None):
     parser = build_parser()
     args = parser.parse_args(argv)
     try:
         result = args.func(args)
+    except RevisionLimitReached as exc:
+        # Exit 1 = halt-and-escalate (S4/A15): the packet is what the agent
+        # surfaces to the owner, mirroring the budget consent-gate.
+        print(json.dumps(
+            {"error": "revise-limit-reached", "message": str(exc),
+             "packet": exc.packet},
+            indent=2,
+        ))
+        return 1
     except BudgetExhausted as exc:
         # Exit 1 = halt-and-escalate, never a silent fail (S4): the packet
         # is what the agent must surface to the owner for a grant decision.

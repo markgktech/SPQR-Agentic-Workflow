@@ -4,7 +4,7 @@ group: "Warehouse Initiation — build (B1–B5)"
 order: 8/8
 saw: [SAW-30]
 ticket: B4
-status: pending
+status: green
 type: brief
 tags: [group, warehouse, brief]
 ---
@@ -73,4 +73,5 @@ DEPENDENCY GATE: B1 + B2 delivery notes GREEN (B4 uses B1 schema + B2 fold). Per
 - The Senate wake / session-starter pending-check (G7/G4) — SAW-31.
 - Any Foodoire content or migration (A1 generic-first; M2 migration runs later, through this gate).
 
-## Changes Made — _(pending execution)_
+## Changes Made
+- B4 built (GREEN): `warehouse_robot/write_gate.py` + CLI/errors/fixtures/tests/docs; 215/215 tests, 5× consecutive. Full record: [[08-B4 Delivery Note — Write Gate: Hard-Schema Gate, State Machine, ID Monopoly & Antechamber]].
