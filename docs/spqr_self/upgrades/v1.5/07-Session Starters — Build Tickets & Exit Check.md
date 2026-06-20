@@ -1,3 +1,13 @@
+---
+up: "[[v1.5]]"
+group: "Warehouse Initiation — spec & decisions"
+order: 7/8
+saw: [SAW-30]
+type: session-starter
+poc: ["[[Knowledge Architecture — Pre-Build Decision List (Planning Session Input)]]", "[[Knowledge Architecture & Token Optimization — Direction Checkpoint PoC]]"]
+tags: [group, warehouse]
+---
+
 ## Metadata
 
 **Epic:** SPQR Agentic Workflow — knowledge architecture & token optimization
@@ -36,14 +46,13 @@ LAWS — binding for this session:
 
 PRE-FLIGHT (Law 2/3 — do all of this BEFORE proposing anything):
 1. Read, in this order:
-   - docs/specifications/delivery_notes/Warehouse_Initiation_Project/
-     "Execution Plan — Warehouse Initiation Project.md"
-   - same folder: "Planning Decisions — Warehouse Initiation Project.md"
+   - docs/spqr_self/upgrades/v1.5/
+     "07-Execution Plan — Warehouse Initiation Project.md"
+   - same folder: "07-Planning Decisions — Warehouse Initiation Project.md"
      (originals + amendments A1–A7)
    - the primary architecture inputs for this ticket (see the ticket
      parameter table in "Session Starters"): the named Session docs in
-     docs/specifications/requirements/Knowledge_Architecture_and_Token
-     Optimization_Direction_Checkpoint_PoC/
+     docs/spqr_self/poc/Knowledge_Architecture_and_Token_Optimization/
    - ALL existing delivery notes of completed B tickets (this folder)
 2. DEPENDENCY GATE: verify that every ticket this one depends on
    ({dependencies}) has a delivery note in this folder with a green
@@ -86,8 +95,8 @@ PHASE 3 — CLOSE:
 - Run the full fixture suite one final time; report results honestly,
   including failures (Law 4 — no silent clean pass).
 - Write the delivery note (English) to
-  docs/specifications/delivery_notes/Warehouse_Initiation_Project/
-  named "{B-number} Delivery Note — {short title}.md" with sections:
+  docs/spqr_self/upgrades/v1.5/
+  named "08-{B-number} Delivery Note — {short title}.md" with sections:
     1. Scope delivered (what was built, where it lives)
     2. Decisions made in-session (each: decision, rationale, owner-
        approved or agent-judgment)
@@ -116,7 +125,7 @@ LAWS — binding: .claude/rules/AGENT_LAWS.md (Law 1 > 2 > 3 > 4)
 PRE-FLIGHT:
 - Read the Execution Plan (Phase 1 exit check + testing discipline),
   the Planning Decisions (incl. amendments), and all five B delivery
-  notes in docs/specifications/delivery_notes/Warehouse_Initiation_Project/.
+  notes in docs/spqr_self/upgrades/v1.5/.
 - Decision precedence and contradiction handling: same rules as the
   build starter (amendments > originals > Execution Plan > Pre-Build
   List > Session docs; SUPERSEDED never).
@@ -147,7 +156,7 @@ VERIFICATION TASKS (all against disposable instances, A4 discipline):
 5. Cross-check each delivery note's claims against what you actually
    observe; list every discrepancy.
 
-REPORT (write to the same delivery_notes folder, English,
+REPORT (write to the same docs/spqr_self/upgrades/v1.5/ folder, English,
 "Phase 1 Exit Check — Verification Report.md"):
 - Verdict per task (PASS/FAIL with evidence, commands, outputs)
 - Discrepancies between delivery notes and observed reality
@@ -174,5 +183,5 @@ owner schedules.
 
 - Execution Plan — Warehouse Initiation Project (this folder)
 - Planning Decisions — Warehouse Initiation Project (this folder)
-- Pre-Build Decision List, Sessions 2–8 (PoC requirements folder)
+- Pre-Build Decision List, Sessions 2–8 (docs/spqr_self/poc/Knowledge_Architecture_and_Token_Optimization)
 - SPQR AGENT_LAWS (`.claude/rules/AGENT_LAWS.md`)

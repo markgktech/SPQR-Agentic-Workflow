@@ -1,3 +1,13 @@
+---
+up: "[[v1.5]]"
+group: "Warehouse Initiation — spec & decisions"
+order: 7/8
+saw: [SAW-30]
+type: spec
+poc: ["[[Knowledge Architecture — Pre-Build Decision List (Planning Session Input)]]", "[[Knowledge Architecture & Token Optimization — Direction Checkpoint PoC]]"]
+tags: [group, warehouse]
+---
+
 ## Metadata
 
 **Epic:** SPQR Agentic Workflow — knowledge architecture & token optimization
@@ -8,7 +18,7 @@
 
 **SAW Ticket (SPQR upgrade):** https://app.notion.com/p/37d68d5de1e8813a964ed3855557d2b4
 
-**Document status:** Active — this is the plan to follow. Supersedes the test-draft "Execution Schedule — Warehouse Build & SPQR Cutover - test" (PoC requirements folder) and the former Overview document (deleted 2026-06-12).
+**Document status:** Active — this is the plan to follow. Supersedes the test-draft "Execution Schedule — Warehouse Build & SPQR Cutover - test" (docs/spqr_self/poc/Knowledge_Architecture_and_Token_Optimization) and the former Overview document (deleted 2026-06-12).
 
 **Date:** 2026-06-12
 
@@ -96,7 +106,7 @@ All build work happens in the generic SPQR repo, on `main`, owner-committed at c
 - **One source of truth:** the Obsidian/git flat structure. Notion copies are dead.
 - **New decision → one atomic ADR file; new lesson → append-only LESSONS entry.** Late-arriving knowledge joins the migration batch or ingests after — nothing waits.
 - **Never hand-mint warehouse artifacts:** no hand-assigned IDs, no hand-written node files — ID allocation is the robot gate's monopoly (S7).
-- **This project documents here:** the delivery_notes/Warehouse_Initiation_Project folder is the documentation home (A6); build sessions write their outputs here.
+- **This project documents here:** the `docs/spqr_self/upgrades/v1.5/` folder is the documentation home (A6); build sessions write their outputs here.
 - **Known cost:** flat↔warehouse consistency during the dual-source window is manual. Accepted for the test run; the Phase 4 retro measures drift.
 
 # Git working rules for this project (A4 + A5)
@@ -113,6 +123,6 @@ Golden query set + IR harness (grows out of the fixture query set) · reconcile 
 # References
 
 - Planning Decisions — Warehouse Initiation Project (this folder) — the decision record this plan executes
-- Sessions 3–8 (PoC requirements folder) — the fixed architecture
-- Pre-Build Decision List (PoC requirements folder) — origin of G1–G12
-- Superseded: "Execution Schedule — Warehouse Build & SPQR Cutover - test" (PoC requirements folder)
+- Sessions 3–8 (docs/spqr_self/poc/Knowledge_Architecture_and_Token_Optimization) — the fixed architecture
+- Pre-Build Decision List (docs/spqr_self/poc/Knowledge_Architecture_and_Token_Optimization) — origin of G1–G12
+- Superseded: "Execution Schedule — Warehouse Build & SPQR Cutover - test" (docs/spqr_self/poc/Knowledge_Architecture_and_Token_Optimization)

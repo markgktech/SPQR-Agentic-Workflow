@@ -1,3 +1,13 @@
+---
+up: "[[v1.5]]"
+group: "Warehouse Initiation — build (B1–B5)"
+order: 8/8
+saw: [SAW-30]
+ticket: B2
+status: green
+tags: [group, warehouse, delivery]
+---
+
 ## Metadata
 
 **Epic:** SPQR Agentic Workflow — knowledge architecture & token optimization

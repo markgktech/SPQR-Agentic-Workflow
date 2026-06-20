@@ -1,12 +1,12 @@
 ---
 
 ---
-| Field | Value |
-| --- | --- |
-| Status | Draft |
-| Type | Workflow / Agent Design |
-| Created | 2026-05-23 |
-| Author | Project Owner + Claude |
+| Field   | Value                   |
+| ------- | ----------------------- |
+| Status  | Draft                   |
+| Type    | Workflow / Agent Design |
+| Created | 2026-05-23              |
+| Author  | Project Owner + Claude  |
 
 ## Overview
 
