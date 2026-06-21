@@ -32,6 +32,7 @@ PIPELINE
    - FAIL LOUDLY if a propagated file contains a token that is absent from spqr.config — do not write, do not guess. Surface it; the token catalogue (docs/CONFIGURE.md) is the source spqr.config is derived from.
    - Leave runtime placeholders untouched (any token not in the spqr.config map — e.g. [AGENT], [TICKET_URL], [FILE]).
    - Drift safety net: flag any core file that was locally modified — i.e. differs from the generic file with this project's tokens re-applied (token-normalized). Token-normalized comparison is mandatory, otherwise every freshly-instantiated file false-positives on every run.
+   - Verbatim/code paths (`warehouse_robot/`) are copied byte-for-byte: SKIP token re-instantiation AND the token-absence fail-loud for these paths, and their drift check is a plain (non-token-normalized) compare. RATIONALE: the robot's source carries regex literals like `[a-z][a-z0-9-]*` that the token-absence rule would otherwise read as unresolved tokens and falsely HALT propagation. This exemption is what lets the plain copy work — it is not extra machinery.
 4. Dry-run preview
    - Present the full proposed change set: adds / updates / deletes within the surface, the placeholder re-instantiations, and every drift flag. Change nothing yet.
 5. Owner confirmation
@@ -39,6 +40,7 @@ PIPELINE
    - Record the resolution durably (run-log / owner decision) so a re-run does not re-prompt the same flags (Law 3).
 6. Write
    - On a clean working tree, write the approved core surface into the project: apply adds/updates/deletes within the `propagate` surface and re-instantiate placeholders in place. Touch nothing outside the surface.
+   - Warehouse step (the handbrake — D3): propagation copies `warehouse_robot/`; it NEVER runs the robot (no `init` / ingest / fold / reconcile). The note-format-change trigger is OWNER-PROVIDED at the dry-run confirmation gate (step 5) — it is not an artifact the agent reads autonomously (there is no machine-readable "release notes" source in this mechanism). If the owner indicates this version changes the warehouse note format, HALT at the warehouse step: tell the owner a migration is required, do NOT migrate, and do NOT write the version stamp (step 7). Otherwise the robot copy proceeds normally. This is a documented, owner-gated stop rule, not a computed check — the migration engine itself is owner-initiated and out of scope.
 7. Atomic version stamp
    - Write the new version stamp into the project's spqr.config ONLY after all files are written and all flags resolved. The stamp is the single atomic marker that the project is now at the target version.
 8. Run-log
@@ -66,6 +68,7 @@ NEVER
 - silently overwrite a locally-modified core file — flag it and wait for owner resolution
 - write a token it cannot resolve from spqr.config — fail loudly instead of guessing
 - write the version stamp before all files are written and all flags resolved
+- run the warehouse robot — propagation copies `warehouse_robot/` but NEVER runs it (no init/ingest/fold/reconcile); if the owner flags a warehouse note-format change at the confirmation gate, HALT at the warehouse step and do not write the version stamp (D3)
 - build executable/deterministic copy/delete/merge logic — the mechanism is agent-executed; safety is procedural (AM4)
 - run git commit or git push — the owner commits and pushes (one commit per run; rollback = revert)
 - sync project content back up into the generic — upward travel is a SAW ticket only

@@ -14,6 +14,7 @@ propagate (CORE — flows on every ongoing bring-current update)
 - docs/agents/    — live agent definitions the project runs
 - docs/skills/    — live skill files the project runs
 - docs/retro/     — live retrospective workflow (carries project tokens)
+- warehouse_robot/ — the generic-owned warehouse engine (SAW-44). Carries NO per-project tokens (per-instance identity lives in the project's `warehouse.config.json`), so it is a plain source copy, not a placeholder re-instantiation. Copy set = tracked source only (`git ls-files warehouse_robot/`): the package + its own `docs/`, `fixtures/`, `tests/`. NEVER the generated/derived artifacts (`index.sqlite*`, `__pycache__/`, `*.pyc`, `.pytest_cache/`). Propagation only copies the robot, never runs it.
 
 generic-only (the upgrade machinery + the generic's own work record — never propagates)
 - docs/upgrade/   — upgrade master + propagation agent + upgrade skills (this machinery stays generic; the propagation agent does not propagate itself)
@@ -27,7 +28,7 @@ init-only (consumed once at first instantiation; NOT propagated on ongoing updat
 - spqr.config.template
 
 project-owned (target-side; propagation never overwrites or deletes)
-- warehouse content and data
+- warehouse content and data — the project's ingested nodes (`nodes/`), flags (`flags/`), the derived SQLite index, and per-instance `warehouse.config.json`. The robot ENGINE (`warehouse_robot/`) propagates as CORE; the warehouse DATA it operates on does not — propagation copies the engine and never runs it, so it cannot write or delete a single node, flag, or config.
 - flat documentation in the consuming project
 - instantiated config values (the project's filled spqr.config)
 - any project-owned extension area outside the core surface
@@ -35,5 +36,5 @@ project-owned (target-side; propagation never overwrites or deletes)
 OUT-OF-BAND (not propagated by this mechanism — distributed separately)
 - .claude/rules/ (AGENT_LAWS) — machine-level constitution. Its real home is the central machine-level Claude config (~/.claude/rules/), not the project repo. For a fresh clone / CI / N consumers it is simply absent, so its distribution is an explicit out-of-band setup step, named here, not an unstated assumption.
 
-DEFERRED
-- warehouse_robot/ — descoped (SAW-38 owner decision). Pulled in at first instantiation; thereafter updates only when the robot itself needs a fix. How warehouse-robot propagation works is decided at the warehouse stage, not here. Flagged only; not yet a manifest line.
+SUPERSEDED
+- warehouse_robot/ — the SAW-38 deferred "out-of-band" note (updated only when the robot needs a fix, propagation decided at the warehouse stage) is SUPERSEDED by SAW-44: warehouse_robot/ is now a `propagate` (CORE) line above and flows with every bring-current snapshot. Recorded here so the reversal is explicit, not silent.
