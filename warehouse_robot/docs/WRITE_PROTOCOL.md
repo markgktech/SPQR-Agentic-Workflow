@@ -101,12 +101,23 @@ project_memory/
 ## CLI
 
 ```
-propose  --warehouse-root P [--antechamber-root P] --ticket T --agent A --file F|-
-revise   --warehouse-root P [--antechamber-root P] --proposal-key K --file F|-
-resolve  --warehouse-root P [--antechamber-root P] --proposal-key K --verdict ingested|rejected|revise
+propose       --warehouse-root P [--antechamber-root P] --ticket T --agent A --file F|-
+revise        --warehouse-root P [--antechamber-root P] --proposal-key K --file F|-
+resolve       --warehouse-root P [--antechamber-root P] --proposal-key K --verdict ingested|rejected|revise
+list-pending  --warehouse-root P [--antechamber-root P] [--state STATE]   # read-only listing
 reconcile-antechamber --warehouse-root P [--antechamber-root P]
-check    --warehouse-root P [--antechamber-root P]   # now also reports the antechamber
+check         --warehouse-root P [--antechamber-root P]   # antechamber DIVERGENCE only (dir vs mirror), not a listing
 ```
+
+`list-pending` is the read-only backing of the Senate session-start wake: it
+lists the antechamber proposals straight from the sidecars (the truth, not the
+mirror). With no `--state` it returns the **live queue** — every proposal not in
+a terminal state (`ingested` / `auto-ingested` / `rejected` / `rejected-malformed`
+are excluded); `--state pending-senate` filters to exactly the items awaiting a
+Senate verdict. JSON on stdout (`{verb, count, pending: […]}`), ordered by
+proposal-key number; **exit 0** for any list (even empty). `check` does **not**
+list — it only reports dir-vs-mirror divergence; use `list-pending` to see the
+queue.
 
 `--ticket`/`--agent` on `propose` are the self-declared submitter **binding**
 (the revise-wake handle, L5) — distinct from the node's provenance fields.

@@ -31,7 +31,7 @@ findings:
 addressed: [Consilium expected_outputs verified — confirm each one]
 commit_message: [GREEN only — final commit text for the owner to copy: one-line title + human-readable bullets at deliverable altitude, synthesized from the ticket trail + diff; describes the delivered state, not the veto journey. Empty on YELLOW/RED. Text output only — Censura never commits.]
 claude_md_flag: NONE | [full consolidated change — incorporates Consilium flag, not just delta]
-adr_proposal: NONE | [domain area — rationale; full content per doc-maintenance.md ADR format]
+decision_proposal: NONE | [decision-node proposal per warehouse-ingest.md — title/rationale/body]
 owner_override: [if owner overrode a finding — "overridden by Owner — [reason]"; empty if none]
 emergent_gaps: [candidate SPIKE sub-tickets or DEV tickets — empty if none]
 
@@ -51,12 +51,16 @@ EMERGENT GAPS
 emergent_gaps field captures Censura-identified gaps not covered by Quaestor proposals — not auto-created.
 Owner manually opens tickets for these after pipeline closes.
 
-LESSONS.md WRITE
-Execute before appending the Censura handover block — sequence: write entry → then append block.
-Load docs/LESSONS.md. If file does not exist: create it with the standard header.
-Count entries since last --- divider. If no divider found: count all entries.
-Write one entry: [YYYY-MM-DD] [TICKET-ID] [GREEN|YELLOW|RED] — [one sentence: what worked or what failed]
-If count reaches 10: suggest retrospective to owner before writing entry — pipeline does not block.
+LESSON-NODE PROPOSAL (D2c — warehouse-primary; replaces the flat LESSONS.md write)
+Execute before appending the Censura handover block — sequence: emit the lesson proposal → then append the handover block.
+The lesson is authored as a **lesson-node proposal** to the warehouse antechamber via `docs/skills/warehouse-ingest.md` — NOT a flat-file write. `propose` is free (no owner HITL — the hard-gate + the Senate's own judgment is the control); the Senate later runs `resolve` on owner HITL.
+- MANDATORY read-before-propose: a `find`/`open-scope` dup-check round first (per the WAREHOUSE QUERY POLICY block in senate.md). If the lesson already exists, do not re-propose; if it contradicts an active node, author a superseding decision instead.
+- Proposal frontmatter (NODE_FORMAT minus the 3 robot-stamped keys id/timestamp/schema_version — never hand-mint an id):
+  `kind: lesson` · `status: active` · `title: …` · `verdict: GREEN|YELLOW|RED` (matches the Censura verdict) · `origin: observed` · `ticket: <TICKET-ID>` · `agent: <subject agent — the erring/deciding one>` · then an `edges:` block with the recommended `about` edge (`type: about`, `target: <related node-id>`) when a related node exists. Body = one+ sentence: what worked or what failed.
+  Per the hard-gate, a lesson REQUIRES `agent` + `ticket`; `verdict` is allowed only on a lesson.
+- CLI: `propose --warehouse-root [WAREHOUSE_ROOT] --ticket <TICKET-ID> --agent Senate --file <lesson.md>|-`. Log the propose action + gate verdict (proposal key + state) into the handover receipt (SAW-26 discipline).
+Retro cadence (10-entry trigger) is read off the warehouse trace/heat, not a flat-file divider count — owner-driven (see retrospector).
+(docs/LESSONS.md is not deleted this run — flat-doc physical retirement is a separate owner SAW.)
 
 NEVER
 Never omit the handoff block

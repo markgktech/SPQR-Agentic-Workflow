@@ -7,7 +7,7 @@ PURPOSE
 Mandatory deliberation phase between input (findings gathered) and output (retro page written). Mirrors consilium-discussion.md's HITL pattern: the owner is in the loop before anything is committed to the record.
 
 4-PHASE STRUCTURE
-1. Agent presents findings — observations only, no output block, no template fill yet. State what the record shows (LESSONS patterns, Censura findings, git churn, candidate rule-rot) as observations, not conclusions.
+1. Agent presents findings — observations only, no output block, no template fill yet. State what the record shows (Censura findings, historical LESSONS.md patterns, git churn, candidate rule-rot) as observations, not conclusions.
 2. Owner shares their own observations — the owner's read of the milestone and the process.
 3. Bidirectional debate — the agent may give feedback to the owner on process behaviour it observed (Law 4: arrive with an independent view; do not mirror the owner). Owner and agent reconcile.
 4. Owner closure — the owner explicitly closes with an affirmative ("go" / "engage"). Only then does output proceed.

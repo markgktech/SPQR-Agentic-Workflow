@@ -30,7 +30,7 @@ Flag candidates only — NEVER create DOC / SPIKE / SAW tickets. The owner decid
 
 RULE-ROT PASS
 Run a pruning pass alongside the additive findings: flag pipeline rules / skills that no longer fire — never triggered a real catch in recent runs — as removal candidates.
-Evidence-based: judged from the external record (which rules actually caught something in LESSONS / Censura), NOT from model self-report.
+Evidence-based: judged from the external record (which rules actually caught something in the Censura verdict blocks / historical LESSONS.md), NOT from model self-report.
 Flag only — the owner removes. Rule-rot candidates count toward the max-3 actions or are listed as a clearly-marked subset, never as silent additions.
 
 CLOSING MARKER

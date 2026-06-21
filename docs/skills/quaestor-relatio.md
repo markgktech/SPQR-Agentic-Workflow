@@ -7,7 +7,7 @@ PRE-FLIGHT
 Load in order:
 1. AGENT_LAWS.md
 2. CLAUDE.md
-3. DECISIONS.md
+3. Warehouse query for prior decisions/constraints/lessons in scope — a `find`/`open-scope` round per the WAREHOUSE QUERY POLICY (quaestor.md); an ABSENT verdict is valid evidence, not a blocker. No mandatory flat-doc load.
 4. Ticket (full text)
 5. Consilium handover block — scope only: still_solving + expected_outputs from the block
    Do NOT read Consilium decisions section yet.

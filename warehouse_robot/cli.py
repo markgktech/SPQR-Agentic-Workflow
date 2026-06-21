@@ -256,6 +256,21 @@ def build_parser():
                          "dir (recovery after index loss, L4)")
     p_arecon.set_defaults(func=cmd_reconcile_antechamber)
 
+    # --- list-pending (read-only antechamber listing; the Senate-wake backing) ---
+    p_list = subparsers.add_parser(
+        "list-pending",
+        help="read-only list of live antechamber proposals (the Senate-wake's "
+        "backing, SAW-31); --state filters to one lifecycle state",
+    )
+    p_list.add_argument("--warehouse-root", required=True,
+                        help="warehouse root directory (mandatory; no default exists)")
+    p_list.add_argument("--antechamber-root", default=None,
+                        help="antechamber directory (default: 'antechamber' sibling, A3)")
+    p_list.add_argument("--state", default=None,
+                        help="filter to exactly one lifecycle state, e.g. "
+                        "pending-senate (default: the live queue, non-terminal)")
+    p_list.set_defaults(func=cmd_list_pending)
+
     # --- B5 audit ---
     p_audit = subparsers.add_parser(
         "audit",
@@ -470,6 +485,17 @@ def cmd_reconcile_antechamber(args):
         Path(args.warehouse_root), _antechamber_root(args)
     )
     print(f"antechamber mirror re-derived: {rebuilt} proposal(s)")
+
+
+def cmd_list_pending(args):
+    # Read-only: list the live antechamber queue (or one --state). A list, even
+    # empty, is success (exit 0); an uninitialised root raises a RobotError that
+    # main() turns into exit 2.
+    pending = write_gate.list_pending(
+        Path(args.warehouse_root), _antechamber_root(args), state=args.state
+    )
+    _emit({"verb": "list-pending", "count": len(pending), "pending": pending})
+    return 0
 
 
 def cmd_audit(args):

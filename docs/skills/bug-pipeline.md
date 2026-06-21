@@ -43,7 +43,7 @@ PROBATOR CLOSE (D6, D6b, D8)
 - Repro evidence: pre-fix reproduces, post-fix does not — both recorded in `<TICKET-ID>_handover.md`.
 - Tests run; results cited per changed path.
 - Regression test: REQUIRED unless the owner has tagged the ticket `no-repro-harness` / "untestable because X" (recorded on the hub) — D6b. The trigger is owner-set, not agent-discretionary.
-- Routine knowledge entry: always written at close to the project-knowledge sink (D8) — today LESSONS.md; soon the Warehouse (v1.5). The sink is abstract — swapping it is a one-line change; do not hardcode a path beyond "the project-knowledge sink".
+- Routine knowledge entry: always authored at close as a **lesson-node proposal** to the warehouse antechamber via `docs/skills/warehouse-ingest.md` (D8; D2c extension — warehouse-primary). The project-knowledge sink IS the warehouse: read-before-propose is mandatory, `propose` is free (no owner HITL — the gate + Senate judgment is the control). The flat `LESSONS.md` append is retired in favour of the proposal; LESSONS.md is not physically deleted this run (a separate later owner SAW).
 
 DECISION FLAG → conditional Censura (D7, D7b)
 decision = a choice a future ticket's agent would behave differently knowing. `decision: yes` is raisable by whoever first sees it — Praetor at the HITL gate, or Probator at close. The owner confirms. On a confirmed `decision: yes`, Censura (Senate) runs ONLY to expand the repo project-knowledge sink — knowledge-base expansion, NOT a quality gate for the fix. Routine lessons never need Censura; they are written at close by Probator. There is no standing bug review gate.

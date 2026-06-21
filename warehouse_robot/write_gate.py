@@ -64,6 +64,13 @@ STATE_REJECTED = "rejected"
 
 VERDICTS = ("ingested", "rejected", "revise")
 
+# Terminal lifecycle states: the proposal is closed, nothing further happens to
+# it. The complement — {proposed, validated, pending-senate} — is the LIVE queue
+# that `list_pending` surfaces by default (the Senate-wake's backing, SAW-31).
+TERMINAL_STATES = (
+    STATE_REJECTED_MALFORMED, STATE_AUTO_INGESTED, STATE_INGESTED, STATE_REJECTED,
+)
+
 # Proposal frontmatter: the node spine MINUS the robot-stamped keys.
 ROBOT_STAMPED_KEYS = ("id", "timestamp", "schema_version")
 PROPOSAL_KEY_ORDER = (
@@ -719,3 +726,48 @@ def check_antechamber(warehouse_root, antechamber_root):
         if sidecar.get("node_id") != m_node:
             report.node_id_mismatch.append((key, sidecar.get("node_id"), m_node))
     return report
+
+
+# ---------------------------------------------------------------------------
+# Read-only listing (the Senate-wake's backing — SAW-31 F5/#1)
+# ---------------------------------------------------------------------------
+
+_LIST_FIELDS = ("proposal_key", "state", "ticket", "agent", "created_at", "content_file")
+
+
+def _proposal_key_sort(key):
+    """Numeric sort key for a proposal key, so `food-p2` precedes `food-p10`
+    (a lexical sort would not). `_iter_sidecars` has already validated the key
+    against `_PROPOSAL_KEY_RE`, so the match is guaranteed present."""
+    m = _PROPOSAL_KEY_RE.match(key)
+    return (m.group("prefix"), int(m.group("number")))
+
+
+def list_pending(warehouse_root, antechamber_root=None, state=None):
+    """List antechamber proposals from the SIDECARS (the truth, not the
+    disposable mirror) — the backing the Senate session-start wake needs.
+
+    Default returns the LIVE queue: every proposal NOT in a terminal state
+    (the complement of `TERMINAL_STATES`). `state=<X>` filters to exactly one
+    lifecycle state (the wake passes 'pending-senate'). Order is deterministic
+    by proposal-key number. Read-only — never writes, never mints anything.
+
+    `warehouse_root` is loaded first purely to assert an initialised root (an
+    uninitialised root is a robot error → CLI exit 2), mirroring the rest of
+    the surface; the listing itself is derived only from the antechamber dir.
+    `antechamber_root` defaults to the A3 sibling of the warehouse root.
+    """
+    config.load_config(warehouse_root)  # asserts an initialised root
+    if antechamber_root is None:
+        antechamber_root = Path(warehouse_root).parent / "antechamber"
+    rows = []
+    for _key, sidecar in _iter_sidecars(antechamber_root):
+        current = sidecar["state"]
+        if state is not None:
+            if current != state:
+                continue
+        elif current in TERMINAL_STATES:
+            continue
+        rows.append({field: sidecar.get(field) for field in _LIST_FIELDS})
+    rows.sort(key=lambda row: _proposal_key_sort(row["proposal_key"]))
+    return rows

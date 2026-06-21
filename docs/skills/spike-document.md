@@ -27,7 +27,7 @@ Per section: Problem / Options considered / Decision / Rationale / Affected area
 
 RESOLUTION TYPES
 DECIDED — decision reached, ready for implementation
-NO DECISION NEEDED — already covered; log as: "Covered by [ADR-XX / file:line / prior decision] — no action required"
+NO DECISION NEEDED — already covered; log as: "Covered by [warehouse node-id / file:line / prior decision] — no action required"
 OPEN — unresolved; flag to owner; becomes candidate SPIKE sub-ticket
 
 FILL RULES

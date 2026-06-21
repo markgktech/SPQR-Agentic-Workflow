@@ -67,9 +67,6 @@ CLAUDE.md CHANGE FLAG
 ## On-Demand Docs
 
 Load with Read tool when relevant — not auto-loaded:
-@docs/ARCHITECTURE.md — system topology, invariants
-@docs/DATA_MODEL.md — full schema, constants
-@docs/CONVENTIONS.md — all coding patterns, DI, services
-@docs/decisions/INDEX.md — ADR index
+Prior decisions, constraints, conventions, schema, architecture, and lessons are warehouse knowledge — query the warehouse per the WAREHOUSE QUERY POLICY in the agent file (not a flat doc).
 @docs/agents/ — agent role definitions
 @docs/skills/ — skill files per agent

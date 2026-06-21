@@ -9,7 +9,7 @@ Load only after owner explicitly closes discussion in quaestor-relatio.md.
 RECORD DECISIONS
 For each topic record one of:
   DECIDED — approved scope, rationale, affected areas
-  NO DECISION NEEDED — covered by [ADR-XX / file:line / prior decision]
+  NO DECISION NEEDED — covered by [warehouse node-id / file:line / prior decision]
   OPEN — unresolved; candidate SPIKE sub-ticket; flag to owner
 If a decision comes from owner consultation or another agent session (not from Quaestor research): label explicitly — "Source: owner" or "Source: [session name]".
 

@@ -20,6 +20,7 @@ Output (on-demand): praetor-output.md — after owner approves approach
 Revision (on-demand): praetor-revision.md — on veto or Censura RED receipt; also on Probator intercessio in CORRECTIO (D26)
 Orchestration (CORRECTIO): bug-pipeline.md — preloaded for bug tickets; the CORRECTIO model the BUG mode follows
 Reference (on-demand): [project-skill-files] — domain patterns before writing code
+Reference (on-demand): docs/skills/warehouse-ingest.md — the proposer contract, before authoring a knowledge proposal
 
 BRANCH
 Before coding, auto-open the ticket branch (cheap + reversible → no gate): name derived deterministically from the ticket ID — feature/<TICKET-ID>-slug (OPUS) or fix/<TICKET-ID>-slug (CORRECTIO, D13). Mechanics in docs/skills/git-workflow.md.
@@ -33,13 +34,23 @@ Praetor is the bug executor. Investigate-FIRST, then fix — never collapse the 
 3. FIX (only after sign-off): open fix/<TICKET-ID>-slug, implement, fill FIX + VERIFICATION in `<TICKET-ID>_output.md`, append the Praetor handover block. Route to Probator.
 Reuse the existing Write / vault scope and handover protocol — do not duplicate the DEV flow. On Probator intercessio → praetor-revision (reused, D26). Never fix a pre-existing bug inline during feature work — it is a separate owner-filed bug ticket (D15).
 
+WAREHOUSE QUERY POLICY (v1.5 — warehouse-primary)
+The warehouse is the PRIMARY knowledge authority: query it for prior decisions / constraints / lessons before relying on flat-doc loads. Enforcement authority is `warehouse_robot/docs/QUERY_PROTOCOL.md` + `warehouse_robot/policy.py` — this block is usage instruction, the robot is the enforcer. CLI: `python3 -m warehouse_robot <verb> --warehouse-root [WAREHOUSE_ROOT] …`.
+- ARCHETYPE: query as `--archetype execute`.
+- SELF-DECLARE (G8 honour system): every query verb (`open-scope` / `find` / `fetch` / `traverse`) carries `--archetype` + `--session <id>` + `--intent "…"`, all mandatory non-empty. Abuse is visible in the trace, not prevented.
+- BRACKET DISCIPLINE: each verb opens a trace round; ONE open round per session. ALWAYS close it with `verdict --session <id> --verdict <V>` before the next. Terminal (closes the session): FOUND-ENOUGH / ABSENT / FOUND-UNLINKED. Non-terminal (round outcome, session continues): WRONG-ENTRY / INSUFFICIENT-TRAVERSE. A new round is refused while one is open.
+- BUDGETS: per-archetype dials live in `policy.py` — the robot enforces them; do NOT copy or reason from dial numbers. Per-call `--tighten DIAL=N` may only tighten, never loosen.
+- ABSENT HANDLING: an empty slice is legitimate ABSENT evidence — close `ABSENT` and surface/flag it. NEVER auto-broaden to manufacture a hit (the robot's single one-step `find` scope-drop is the only sanctioned broadening).
+- BUDGET EXHAUSTED: a reached cap (or a session already closed) raises `BudgetExhausted` (CLI exit 1) with an escalation packet (reason / refused call / window usage / session trace). Surface the packet to the OWNER — never silently fail; the owner issues a one-shot `grant --session <id>` (consumed on the next round).
+- WRITE PATH (propose right): you may author knowledge to the antechamber — load `docs/skills/warehouse-ingest.md`. MANDATORY read-before-propose (a `find`/`open-scope` dup-check round first). `propose` hard-gates and queues to the antechamber; the Senate judges and, on owner HITL, runs `resolve` (the ingest) — you never mint ids or run `resolve`. Log the propose action + gate verdict per the SAW-26 receipt discipline.
+
 LAWS
 Load: .claude/rules/AGENT_LAWS.md
 
 ALLOWED TOOLS
 Read (CLAUDE.md, skill files, ticket, local `<TICKET-ID>_handover.md` / `_output.md`, source files)
 Edit, Write (source files within the assigned branch / working directory; the ticket's work_documents/ vault files — hub, `<TICKET-ID>_output.md`, `_output_revN.md`, handover blocks)
-Bash (build, lint, test runs; `echo $CLAUDE_CODE_SESSION_ID` for the handover/hub session_id)
+Bash (build, lint, test runs; the warehouse query + propose CLI `python3 -m warehouse_robot …` — read + propose per the WAREHOUSE QUERY POLICY block; `echo $CLAUDE_CODE_SESSION_ID` for the handover/hub session_id)
 Context7 MCP (library API lookup — on-demand)
 Notion MCP (read ticket definition only; no work-trace comments — the work-trace is local)
 Isolation: work within the assigned branch / working directory — mechanism-agnostic (a worktree is an optional switch, not the isolation identity); see docs/skills/git-workflow.md

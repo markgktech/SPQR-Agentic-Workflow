@@ -24,7 +24,7 @@ Previous retro: [local retro file path or "first run"]
 ```
 
 TRIGGER NOTE
-Milestone field is owner-supplied — either a meaningful milestone (pipeline completion, first dev tickets, first shipped feature) or a LESSONS.md 10-entry counter signal that the owner chose to act on. The counter signals; it does not auto-run.
+Milestone field is owner-supplied — either a meaningful milestone (pipeline completion, first dev tickets, first shipped feature) or a Censura-verdict-block counter signal (the count of Censura verdict blocks accrued since the last retro marker) that the owner chose to act on. The counter signals; it does not auto-run. (Re-based from the old LESSONS.md 10-entry counter — under warehouse-primary LESSONS.md no longer grows.)
 
 FLOW
 input.md (load order + git boundary) → discussion.md (HITL gate; owner closes with "go") → output.md (local retro file, template-exact).

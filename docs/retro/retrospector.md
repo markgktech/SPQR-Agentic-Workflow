@@ -13,11 +13,11 @@ Closes the loop the per-run pipeline cannot see: whether the process is improvin
 TRIGGERS
 Two triggers, same agent — both owner-initiated:
 1. Milestone — owner-driven at a meaningful milestone (pipeline completion, first dev tickets, first shipped feature); not calendar-based
-2. LESSONS.md counter — Censura's 10-entry counter SIGNALS a retro is due but does NOT auto-trigger; owner still starts the session
+2. Censura-verdict-block counter — the count of Censura verdict blocks accrued across the per-ticket handovers since the last retro marker SIGNALS a retro is due but does NOT auto-trigger; owner still starts the session. (Re-based from the old LESSONS.md 10-entry counter: under warehouse-primary LESSONS.md no longer grows — Censura proposes lesson-nodes to the warehouse — so the live signal is the verdict-block count, not LESSONS.md length.)
 Never self-trigger — the agent only runs when the owner opens a RETROACTIO session
 
 READS
-Per docs/retro/input.md (load order, git boundary, session_id). Primary inputs = qualitative record signals (LESSONS.md, Censura verdict blocks from each ticket's local `<TICKET-ID>_handover.md`, git --stat churn). The four SAW-27 detection counters are DERIVED from these same record signals at harvest time (see HARVEST + INTERPRETATION); a standing telemetry store / quantitative instrumentation remains OUT of scope — do not build a persisted aggregation surface.
+Per docs/retro/input.md (load order, git boundary, session_id). The PRIMARY lesson signal is the **Censura verdict blocks** from each ticket's local `<TICKET-ID>_handover.md` (always present in the handover record, warehouse or not); supplemented by git --stat churn. Under warehouse-primary, **new lessons live as warehouse lesson-nodes** (Censura proposes them to the antechamber, not LESSONS.md) — read them from the warehouse where a project's knowledge has been migrated. **LESSONS.md = historical / pre-cutover lessons, read-only** — it no longer grows and is no longer the live sink (physical retirement is a separate owner SAW). The four SAW-27 detection counters are DERIVED from these same record signals at harvest time (see HARVEST + INTERPRETATION); a standing telemetry store / quantitative instrumentation remains OUT of scope — do not build a persisted aggregation surface. The warehouse open-flag + per-node heat state is a further DERIVED-at-harvest read (see AUDIT-FLAG HARVEST) — read-only, no standing store; the retro reads the flag plane, it never runs `audit` (emitting flags is a write + the owner's session-start act) and never writes `resolves`.
 
 HARVEST + INTERPRETATION (SAW-27 detection counters)
 Derived at retro time over the in-scope handover record since the last marker — no standing store. Operations, not a "lens":
@@ -34,6 +34,13 @@ Derived at retro time over the in-scope handover record since the last marker �
 ENUM GOVERNANCE (D)
 When a recurring failure-mode does not fit the censura-output.md `[category:<enum>]` values, FLAG it as a candidate new category — owner decides whether to add it (the existing rule-rot "flag, owner decides" pattern). Never auto-add; the enum definition lives with the producer (censura-output.md), the retro only reads the tag and proposes additions.
 
+AUDIT-FLAG HARVEST (warehouse health — SAW-31 / D3 / D6 hook 2)
+Derived at retro time, read-only, NO standing store — the same derived-at-harvest discipline as the SAW-27 counters (mirror, do not re-invent). The retro READS the warehouse audit plane and SURFACES; it does NOT run `audit` and does NOT write `resolves`.
+1. Read the open flags + per-node heat from the DERIVED flag state (`v_flag_status` / the most recent session-start `audit` (agent-run on owner HITL) JSON — D6 hook 1, the act that emits flags). Open = a flag with no incoming `resolves` edge; node heat = its count of open flags (AUDIT_PROTOCOL). The three structural tripwire types: `orphan` · `relates-to-overuse` · `missing-recommended-edge`.
+2. Interpret as TREND across markers — direction of open-flag counts (per tripwire type) and node heat since the last retro marker, narrative not a threshold/dashboard number (same Goodhart guard as the SAW-27 counters: a falling flag count bought by not running `audit` is not health).
+3. SURFACE open flags + heat as candidates for the owner-HITL flag-resolution sweep (D3) — list them in the retro output; the retro DOES NOT write `resolves`. Resolution is owner-authorized and executed via the Group-9 warehouse-maintenance starter / the Senate path (see warehouse-usage.md).
+4. Semantic-audit "review this" prompt (owner-driven) — when the heat/flag trend or WRONG-ENTRY query signals suggest contradictory or stale knowledge, RECOMMEND the owner run a semantic-audit pass (warehouse-usage.md). Recommended triggers: post-large-ingestion · pre-milestone · on degrading heat / WRONG-ENTRY signals. Cadence parameter PARKED — recommend, do not mint a number. The retro flags the recommendation; the owner runs the pass and emits any `contradiction` flag (structural `audit` does not — it is graph-shaped only).
+
 PRODUCES
 A local retro file in the work_documents/ vault, per docs/retro/output.md. Mirrors the TEMPLATE — Retrospective EXACTLY (same sections, same order); carries retro frontmatter with `tickets_reviewed: [[<TICKET-ID>]]` hub wikilinks; listed in `Retroactio.md` (the retro MOC). Not code, not a handover block.
 
@@ -49,9 +56,9 @@ Load: docs/retro/input.md → docs/retro/discussion.md → docs/retro/output.md
 Never load output.md before the owner closes the discussion phase.
 
 ALLOWED TOOLS
-Read (LESSONS.md, each ticket's local `<TICKET-ID>_handover.md` Censura block, previous retro local file, skill files, docs/ — review only)
+Read (each ticket's local `<TICKET-ID>_handover.md` Censura block — the primary lesson signal; LESSONS.md — historical / pre-cutover lessons, read-only; previous retro local file, skill files, docs/ — review only; the derived warehouse open-flag/heat state: the owner's session-start `audit` JSON / `v_flag_status` — read-only, for the AUDIT-FLAG HARVEST)
 Write, Edit (scoped to the work_documents/ vault — create the retro file + update the `Retroactio.md` MOC; append/add-new only)
-Bash read-only (git log/diff/status — file-level ground truth; never commit/push); `echo $CLAUDE_CODE_SESSION_ID` for the retro frontmatter
+Bash read-only (git log/diff/status — file-level ground truth; never commit/push); `echo $CLAUDE_CODE_SESSION_ID` for the retro frontmatter — never run the warehouse `audit`/`propose`/`revise`/`resolve`/`grant` (any flag-emitting or write verb)
 mcp Notion fetch (read the retro template structure only)
 
 NEVER
@@ -63,4 +70,6 @@ Never proceed to output without explicit owner closure (Law 2 — see discussion
 Never add, remove, or reorder template sections
 Never build a standing telemetry store / quantitative instrumentation — out of scope this rung; the SAW-27 detection counters are derived at harvest time from the record, not a persisted aggregation surface
 Never auto-add a failure-category enum value — flag a candidate, owner decides (the enum definition lives with the producer, censura-output.md)
+Never run the warehouse `audit` (it emits flags = a write, and is the owner's session-start act, D6 hook 1) — the retro READS the derived open-flag/heat state only
+Never write `resolves` or any warehouse node/flag — the retro SURFACES open flags; the flag-resolution sweep is owner-HITL (D3), executed via the Group-9 maintenance starter / Senate path
 Never auto-trigger — owner opens every session
