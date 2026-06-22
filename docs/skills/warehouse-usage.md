@@ -12,7 +12,7 @@ to run the touches that are yours alone, when to run them, and what
 "warehouse-primary" means for the flat docs. It states no new policy — it
 collects the SAW-31 decisions (D2/D3/D6/E1) in one owner-readable place.
 
-The warehouse and antechamber root paths are set in `CONFIGURE.md` §1; the
+The warehouse and antechamber root paths are set in `spqr.config`; the
 antechamber root is optional and, when unset, the robot defaults to an
 `antechamber` sibling of the warehouse root (A3).
 

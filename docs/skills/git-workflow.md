@@ -9,7 +9,7 @@ LOAD: on demand — when a ticket opens a branch or reaches merge / release
 SCOPE
 This file carries git MECHANICS only — branch naming, open, attach, existing-branch detection, merge, tag.
 Git POLICY (who may commit, who merges) lives in its mandate homes and is referenced here, never restated:
-  owner-only commit: senate.md ("never run shell commands") + CLAUDE.md.template (git commit/push: NEVER)
+  owner-only commit: senate.md ("never run shell commands") + CLAUDE.md (git commit/push: NEVER)
   owner merge gate: documented below as an owner action — no agent merges
 Agents reference this file by name; they never embed git commands. One copy only — divergence is structurally impossible.
 
@@ -49,7 +49,7 @@ Never delete, reset, or resume it autonomously — branch deletion is destructiv
 
 COMMIT AUTHORITY
 commit_authority: owner
-The owner is the only committer — a value an agent reads now, not a time-bounded rule. Policy home is senate.md + CLAUDE.md.template; referenced here, not duplicated.
+The owner is the only committer — a value an agent reads now, not a time-bounded rule. Policy home is senate.md + CLAUDE.md; referenced here, not duplicated.
 No intermediate / checkpoint commits inside an OPUS run — the pipeline runs on an uncommitted working tree to the end.
 On failure → restart the ticket, discard the changes, no commit. Tickets are sliced small enough that restart is cheap.
 
