@@ -2,7 +2,7 @@
 type: poc
 title: "SPQR v1.5 README Refresh — PoC"
 decides: "How the release README presents SPQR v1.5 at product-overview altitude, including the warehouse and upgrade/propagation model without exposing implementation or rollout detail"
-status: draft        # draft | done
+status: done         # draft | done
 date: 2026-06-21
 tags: [poc, readme, v1.5, warehouse, upgrade, propagation]
 ---
@@ -229,21 +229,44 @@ There is deliberately no `Current v1.5 rollout status` section. The README ships
 | Version history | Stops at v1.3 | Add a concise v1.5 entry |
 
 ### 9. Repository structure presentation
-The current exhaustive file enumeration is already expensive to maintain. The replacement should show stable conceptual areas and only name the entry-point files:
+**FINAL OWNER DECISION (2026-06-22): retain a detailed repository tree.** The file-level map is useful onboarding material: a new reader can see which concrete agent, skill, retro, upgrade, and warehouse files form the system without first navigating the repo.
+
+The old tree is not preserved verbatim; it is updated to the active v1.5 surface. It should enumerate:
+
+- all live agent definitions + session starters;
+- the stage skills and the new cross-pipeline entry points (`bug-pipeline.md`, `git-workflow.md`, `warehouse-ingest.md`, `warehouse-usage.md`, `ticket-comment.md`);
+- the RETROACTIO surface;
+- the generic upgrade + propagation machinery;
+- the generic-only `docs/spqr_self/` record areas;
+- the warehouse robot's main modules, protocol docs, fixtures, and tests;
+- `CLAUDE.md.template` and `spqr.config.template`.
+
+Legacy flat knowledge documents must **not** be presented as active v1.5 system components. Canonical consuming-project knowledge lives in the warehouse, and warehouse content itself is project-owned rather than part of the generic repository tree.
+
+The target shape is detailed at the useful entry-point level, for example:
 
 ```text
-.claude/rules/              shared agent constitution
-docs/agents/                live agent definitions and session starters
-docs/skills/                stage, flow, handover, git, and ingest skills
-docs/retro/                 RETROACTIO workflow
-docs/upgrade/               upgrade and propagation machinery
-docs/spqr_self/             generic repo's planning and run records
-warehouse_robot/            deterministic warehouse implementation, protocols, fixtures, tests
-CLAUDE.md.template          consuming-project rule template
-spqr.config.template        consuming-project configuration shape
+.claude/rules/
+└── AGENT_LAWS.md
+
+docs/
+├── agents/                 named live agent files
+├── skills/                 named stage + cross-pipeline skill files
+├── retro/                  named RETROACTIO files
+├── upgrade/                named upgrade + propagation files
+└── spqr_self/              poc / roadmap / templates / upgrades
+
+warehouse_robot/
+├── main implementation modules
+├── docs/                   NODE / QUERY / WRITE / AUDIT protocols
+├── fixtures/
+└── tests/
+
+CLAUDE.md.template
+spqr.config.template
 ```
 
-This preserves orientation without turning the README into a second manifest.
+This is intentionally more detailed than a directory-only conceptual map, but it still avoids enumerating every warehouse test or fixture filename and therefore does not become a second propagation manifest.
 
 ### 10. Explicit exclusions
 The README must not contain:
@@ -279,5 +302,7 @@ owner-orchestrated agents
 The four named pipelines describe project work. **Evolving SPQR** separately explains the generic upgrade and propagation lifecycle and is placed directly before **Repository structure**.
 
 Warehouse coverage stays conceptual: scoped query, gated proposal/ingest, reviewer independence, and flag-driven maintenance. Implementation detail is linked, not duplicated.
+
+**Repository-structure decision (owner-confirmed 2026-06-22):** keep the detailed file tree and update it to v1.5. Include the live agent/skill/retro/upgrade/warehouse entry points; exclude legacy flat knowledge documentation from the active structure.
 
 Do not add `Current v1.5 rollout status` or equivalent transitional content. The README is the released v1.5 introduction and should read as stable product documentation.
