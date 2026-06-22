@@ -1,259 +1,590 @@
-# SPQR v1.3: Sequential Agentic Workflow
+# SPQR v1.5: Sequential Agentic Workflow
 
-A structured, sequential multi-agent development workflow built on Claude Code. Every task has a ticket. Every agent runs in a stateless session. The work record lives as files in the project repo — the external record is truth.
+SPQR is a structured, owner-orchestrated multi-agent workflow for software delivery. Every agent runs in a fresh session with a narrowly defined role. Durable state does not live in session memory: work moves through repo-native ticket records and append-only handovers, while reusable project knowledge lives in a git-native knowledge warehouse.
+
+The owner starts each stage, closes every major judgment gate, and remains the commit and merge authority. SPQR improves structure, traceability, knowledge reuse, and independent review without automating control away from the human.
 
 ---
 
-## What is SPQR
+## What is SPQR?
 
-SPQR is a development pipeline where each stage of the software delivery cycle is handled by a dedicated Claude Code agent. Agents do not share session memory; they pass state through structured handoff files kept in the project repo — a per-ticket hub, an output document, and an append-only handover log. This makes the pipeline auditable, resumable, and contamination-free between stages.
+SPQR separates software work into specialized agent stages. Each stage reconstructs its context from durable sources:
 
-Three pipelines:
+- the ticket definition;
+- the project rules;
+- the local ticket hub;
+- the implementation or research output;
+- the append-only handover chain;
+- relevant decisions, constraints, and lessons retrieved from the warehouse.
 
-**EXPLORATIO**: research / spike:
-```
-Senate: Consilium  →  Quaestor  →  Senate: Censura
-  (scope)             (research)     (verdict)
+This makes a run auditable, resumable, and resistant to cross-stage contamination.
+
+SPQR provides four project-work pipelines:
+
+- **EXPLORACIO** — research and spikes;
+- **OPUS** — feature delivery;
+- **CORRECTIO** — defect investigation and correction;
+- **RETROACTIO** — cross-run process-health review.
+
+The workflow remains deliberately manual. SPQR does not autonomously start agents, approve decisions, commit code, or merge changes.
+
+---
+
+## The four workflows
+
+### EXPLORACIO — research and spikes
+
+```text
+Senate: Consilium → Quaestor → Senate: Censura
 ```
 
-**OPUS**: feature development:
-```
-Senate: Consilium  →  Praetor  →  Tribunus  →  Probator  →  Curator  →  Senate: Censura
-  (design)            (build)     (review)      (QA)         (ops)        (verdict)
+- **Consilium** frames the question and challenges its premise.
+- **Quaestor** researches the problem and produces a structured result.
+- **Censura** reviews the result and records the final verdict.
+- Reusable findings can be submitted to the knowledge warehouse.
+
+EXPLORACIO answers questions before implementation begins.
+
+### OPUS — feature delivery
+
+```text
+Senate: Consilium
+    → Praetor
+    → Tribunus
+    → Probator
+    → Curator
+    → Senate: Censura
 ```
 
-**RETROACTIO**: cross-run retrospective:
+- **Consilium** establishes the design and scope.
+- **Praetor** implements the approved approach.
+- **Tribunus** independently reviews the code.
+- **Probator** independently verifies behavior and tests.
+- **Curator** checks operational and delivery concerns.
+- **Censura** evaluates the completed run and issues the final verdict.
+
+Each stage runs in a fresh session and passes state through the local handover chain.
+
+### CORRECTIO — bug investigation and correction
+
+The default bug flow is intentionally smaller than OPUS:
+
+```text
+Praetor: investigate → owner cause-note gate → fix
+    → Probator: verify → close
 ```
+
+Conditional stages enter only when mechanically triggered:
+
+```text
+[Tribunus investigator →]
+Praetor
+[→ Tribunus review]
+→ Probator
+[→ Curator]
+[→ Censura if a new decision was created]
+```
+
+Investigation and implementation never collapse into one step. Praetor stops after identifying the root cause, and the owner must approve the cause note before code is written. Probator reproduces the defect before the fix and verifies its absence afterward. Censura is not a standing bug quality gate: it enters only when the fix creates reusable decision knowledge.
+
+### RETROACTIO — process-health review
+
+```text
 Retrospector
-  (process-health review across runs — single agent, owner-initiated, no handoff chain)
 ```
+
+RETROACTIO is a single-agent, owner-initiated review across multiple completed runs. The Retrospector derives trends from existing records:
+
+- Censura verdicts and verdict rounds;
+- revision rounds;
+- where failures were first caught;
+- recurring failure categories;
+- warehouse flags and per-node heat;
+- repository churn and previous retrospective markers.
+
+It produces narrative trends, not automated scores or pass/fail thresholds. It never modifies code, emits warehouse flags, resolves findings, or creates tickets without owner action.
 
 ---
 
 ## Agents
 
-| Agent | IT Equivalent | Role | Pipeline |
-|-------|---------------|------|----------|
-| Senate: Consilium | Tech Lead / Solution Architect | Design authority. Three deliberation personas in one session. | Both |
-| Senate: Censura | Engineering Manager | Post-execution review authority. Verdict only. | Both |
-| Praetor | Software Engineer | Implements the feature ticket on its own short-lived branch. Never writes code before the owner approves approach. | OPUS |
-| Tribunus | Senior Engineer (code reviewer) | Independent code reviewer. Runs the project linter independently. One veto per pipeline run. | OPUS |
-| Probator | QA Engineer | Independent QA verifier. Runs the test suite. One veto per pipeline run. | OPUS |
-| Curator | DevOps / SRE | Operational steward: build, lint, CLAUDE.md compliance, scope boundary, localization, dead code, operational risk. Verdict only, no veto. | OPUS |
-| Quaestor | Technical Analyst / Research Engineer | Spike researcher. Produces a structured decision document. Never writes code. | EXPLORATIO |
-| Retrospector | Agile Coach / Process Lead | Cross-run process-health reviewer. Single agent, single session, no handoff chain. Produces a retrospective document; flags candidates only, no code, no tickets. | RETROACTIO |
+| Agent | Equivalent role | Responsibility | Pipelines |
+|---|---|---|---|
+| Senate: Consilium | Tech Lead / Solution Architect | Challenges the premise, defines scope, and establishes the approved direction | EXPLORACIO, OPUS |
+| Senate: Censura | Review authority | Reviews completed work, enforces evidence requirements, judges knowledge proposals, and issues verdicts | EXPLORACIO, OPUS; conditional in CORRECTIO |
+| Praetor | Software Engineer | Implements features and investigates/fixes bugs | OPUS, CORRECTIO |
+| Tribunus | Senior Engineer / Reviewer | Independently reviews code and may act as a bug investigator | OPUS; conditional in CORRECTIO |
+| Probator | QA Engineer | Independently verifies behavior and tests, and closes routine bug fixes | OPUS, CORRECTIO |
+| Curator | DevOps / SRE | Reviews operational, deployment, configuration, runtime, and delivery risks | OPUS; conditional in CORRECTIO |
+| Quaestor | Technical Researcher | Executes spikes, verifies external claims, and synthesizes structured findings | EXPLORACIO |
+| Retrospector | Process-health reviewer | Examines trends across runs without participating in ticket delivery | RETROACTIO |
 
-**Deliberation personas**
+### Deliberation personas
 
-**Senate deliberation model:** The Senate runs as three distinct personas in a single session: [Name 1], [Name 2], and [Name 3]. Each arrives with an independent position, challenges the others, and synthesizes toward a decision. One persona acts as Devil's Advocate per Consilium session. Persona names are customizable in `session-starters.md`, not in the agent files, keeping them project-specific without forking the core workflow.
+The Senate uses three perspectives in one session:
 
-| Agent | Customize as | Roman inspiration | IT inspiration | IT Role | Focus |
-|-------|-------------|-------------------|----------------|---------|-------|
-| Senate Member 1 | [Name 1] | Cicero | Rich Hickey | Principal Engineer | First-principles, anti-complexity. Questions the premise before accepting any solution. |
-| Senate Member 2 | [Name 2] | Caesar | Kelsey Hightower | Engineering Manager | Pragmatic and delivery-focused. Shortest path to working and shipped. |
-| Senate Member 3 | [Name 3] | Cato | Charity Majors | SRE / Maintenance | Stability-first, skeptical of hype. Thinks about what breaks in production before it's built. |
-| Quaestor | [Name 4] | — | Julia Evans | Staff Engineer | Systematic and evidence-driven. Decomposes every unknown into chunks before drawing conclusions. Researches wide, explains simply, documents precisely. |
-| Other agents | — | — | — | — | No personalization: role is execution-focused and fully defined by agent file; no deliberation persona required. |
+| Persona | Primary focus |
+|---|---|
+| `[Name 1]` | Premise validity, first principles, and unnecessary complexity |
+| `[Name 2]` | Delivery, scope, and the shortest responsible path |
+| `[Name 3]` | Reliability, maintenance, and production risk |
+
+Quaestor may use a project-specific `[Name 4]` research persona. Execution and review agents do not require personas. Persona values are project configuration; they are not hardcoded into the generic workflow.
 
 ---
 
-## Four Laws
+## The Four Laws
 
 Every agent operates under the same four laws, in priority order:
 
-1. **Stay in Character**: no stage skipping; challenge through proper channels only
-2. **Anti Meeseeks**: complete pre-flight before acting; owner must explicitly close discussion
-3. **Don't be Dory**: record the handoff at every major checkpoint; the external record is truth
-4. **Be like Spock**: independent view required; no sycophancy; suppress no finding
+1. **Stay in Character** — remain inside the active role and pipeline stage.
+2. **Anti Meeseeks** — complete pre-flight and stop at required owner gates.
+3. **Don't Be Dory** — durable external records are the truth; session memory is not.
+4. **Be Like Spock** — form an independent view and suppress no relevant finding.
+
+These laws apply across delivery, research, review, maintenance, and retrospective work.
+
+---
+
+## How work state flows
+
+Each ticket has a repo-native work record:
+
+```text
+Ticket definition
+      ↓
+Ticket hub
+      ↓
+Output document
+      ↓
+Append-only handover chain
+      ↓
+Next fresh agent session
+```
+
+The ticket system defines what must be done. The repository records what happened.
+
+A typical ticket record contains:
+
+- a ticket hub with identity and session information;
+- an implementation, research, or investigation output;
+- optional revision outputs;
+- an append-only handover chain;
+- verification receipts;
+- warehouse trace references.
+
+Agents may read ticket definitions from Notion, Linear, GitHub Issues, Jira, or another tracker. The inter-agent work trace remains in the repository rather than in ticket comments.
+
+---
+
+## Evidence, handovers, and independent review
+
+Claims about verification must carry evidence. Build, test, lint, and warehouse-write claims use a compact receipt containing the decisive verbatim tool output:
+
+```text
+receipt: test-command → Executed 42 tests, 0 failures
+```
+
+The handover also carries an immutable warehouse trace pointer when the stage queried or wrote through the warehouse.
+
+This produces a clear separation:
+
+- the output document contains implementation or research detail;
+- the handover contains routing, verdict, evidence, and trace handles;
+- the warehouse contains reusable cross-ticket knowledge.
+
+Censura enforces receipt presence but does not rerun another agent's build or test merely to manufacture missing evidence. Independent review is protected both by fresh sessions and by warehouse retrieval boundaries that hide reasoning lineage from scrutiny agents.
+
+---
+
+## Knowledge Warehouse
+
+SPQR v1.5 replaces monolithic knowledge loading with a git-native knowledge warehouse. Reusable knowledge is stored as small, connected nodes:
+
+- **decision** — a choice future agents must know;
+- **constraint** — a rule or limitation future work must respect;
+- **lesson** — an observed result worth reusing.
+
+Typed edges connect related knowledge. The store is append-only: history is superseded or resolved through new edges rather than silently rewritten.
+
+### Storage model
+
+- Markdown node files are the canonical source of truth.
+- SQLite is a derived, disposable query index.
+- The index can be rebuilt from Markdown.
+- The warehouse robot never commits or pushes.
+- Project knowledge remains owned by the consuming project.
+
+### Query flow
+
+Agents retrieve knowledge in a scoped sequence:
+
+```text
+declare intent
+    → discover candidates
+    → fetch selected bodies
+    → traverse relevant relationships
+    → record a verdict
+```
+
+Agents do not load the entire knowledge base by default. The robot applies per-archetype query policies:
+
+| Archetype | Agents | Purpose |
+|---|---|---|
+| `deliberate` | Senate | Evaluate decisions and their lineage |
+| `execute` | Praetor | Retrieve implementation-relevant knowledge |
+| `synthesize` | Quaestor | Combine research and existing knowledge |
+| `scrutinize` | Tribunus, Probator, Curator | Review independently without reasoning-chain contamination |
+| `consult` | Reserved | Parked for a future strategic advisory role |
+
+The `scrutinize` policy hides reasoning-lineage relationships from independent reviewers. This turns “fresh eyes” from a convention into an enforced retrieval boundary.
+
+### Knowledge ingest
+
+Agents never write canonical warehouse nodes directly.
+
+```mermaid
+flowchart LR
+    Author[Authoring agent] --> Read[Read before proposing]
+    Read --> Proposal[Knowledge proposal]
+    Proposal --> Gate[Structural gate]
+    Gate --> Queue[Antechamber queue]
+    Queue --> Senate[Senate judgment]
+    Senate --> Resolve[Owner-authorized resolve]
+    Resolve --> Warehouse[Canonical warehouse]
+```
+
+- A **proposal** is an identity-free knowledge candidate.
+- The **hard gate** performs deterministic structural validation.
+- The **antechamber** queues valid proposals awaiting judgment.
+- The **Senate** evaluates their meaning.
+- An **owner-authorized resolve** ingests, rejects, or returns a proposal for revision.
+
+The robot allocates identities. Agents never mint warehouse IDs manually.
+
+### Warehouse maintenance
+
+Warehouse maintenance consists of distinct operations:
+
+```text
+audit → flags → retro harvest → owner review → correction → resolution
+```
+
+- **Audit** detects structural graph conditions and emits flags.
+- **Flags** report issues without modifying the affected node.
+- **Heat** is the number of open flags associated with a node.
+- **Retro harvest** reads flags and heat as cross-run trends.
+- **Flag resolution** closes a handled flag through an explicit write-path action.
+- **Semantic audit** is an owner-driven contradiction review, separate from the structural robot audit.
+- **Reconcile** rebuilds the disposable SQLite projection from canonical Markdown.
+
+The maintenance model is daemon-free. The owner decides when privileged maintenance runs.
+
+For the detailed contracts, see [`warehouse_robot/docs/`](warehouse_robot/docs/).
 
 ---
 
 ## Ticket system
 
-Every unit of work maps to one of four ticket types:
+Every unit of work maps to a ticket type:
 
-| Type | Purpose |
-|------|---------|
-| **Spike** | Research and exploration — produces a structured decision document |
-| **Feature** | New functionality — runs the full OPUS pipeline |
-| **Bug** | Defect captured during QA — fed back into OPUS |
-| **Doc** | Workflow documentation maintenance — handled by Quaestor |
+| Type | Purpose | Primary workflow |
+|---|---|---|
+| **Spike** | Research an unknown and produce a structured result | EXPLORACIO |
+| **Feature** | Deliver new functionality | OPUS |
+| **Bug** | Investigate and correct a defect | CORRECTIO |
+| **Doc** | Maintain workflow or project documentation | Quaestor-driven document flow |
 
-**Ticket creation is automated, owner-gated.** After every spike, Quaestor proposes follow-up tickets. Censura validates them in a dedicated ticketing phase. No ticket is created in your ticket system until the owner explicitly approves:
+Follow-up ticket creation is owner-gated:
 
+```text
+Agent proposes → Censura validates → owner approves → ticket is created
 ```
-Quaestor proposes  →  Censura validates  →  Owner approves  →  Tickets created
-```
+
+Notion is the reference implementation for ticket definition and ticket creation, but the durable work trace is repo-native. Another tracker can be used if its read/create operations are wired into the relevant skills.
+
+---
+
+## Git workflow
+
+SPQR uses GitHub Flow:
+
+- `main` remains the releasable line;
+- one short-lived branch is created per ticket;
+- OPUS uses `feature/<TICKET-ID>-slug`;
+- CORRECTIO uses `fix/<TICKET-ID>-slug`;
+- downstream agents continue on the same ticket branch;
+- dependent tickets are completed sequentially from `main`;
+- agents never commit, merge, push, or tag;
+- the owner performs the final commit and merge.
+
+Praetor stops if a matching ticket branch already exists. It never deletes, resets, or resumes that branch without owner direction.
+
+A branch does not protect uncommitted work by itself. Under owner-only commit authority, it becomes an actual history boundary only when the owner commits.
+
+See [`docs/skills/git-workflow.md`](docs/skills/git-workflow.md) for the complete mechanics.
 
 ---
 
 ## Configuration
 
-SPQR ships as a generic template — every project-specific detail is a named placeholder. Before running any pipeline, those placeholders need to be filled in: persona names, project path, ticket system IDs. `docs/CONFIGURE.md` is the single inventory: every placeholder, which files contain it, and what to put there.
+SPQR is maintained as a generic source workflow and instantiated into consuming projects. Project-specific values include:
 
-**Why CONFIGURE.md exists.** Without it, placeholders are scattered across a dozen skill and agent files. CONFIGURE.md means one place to configure, not a grep session across the repo.
+- persona names;
+- project paths;
+- warehouse root;
+- ticket-system configuration;
+- project skill references;
+- project testing guidance;
+- ticket-slicing boundaries.
 
-**Notion is the reference implementation, but not required.** The ticket system only holds ticket definitions — the work record is files in your repo — so any system with linkable tickets works: Linear, GitHub Issues, Jira, or plain markdown. CONFIGURE.md Section 3 covers the alternatives.
+A consuming project stores its instantiated values and current core version in `spqr.config`. The generic repository keeps placeholders. Propagation re-applies the consuming project's configured values when updating its core workflow files.
 
-**An agent can perform the configuration.** Provide a project brief, point the agent at `docs/CONFIGURE.md`, and it will substitute all placeholders across the relevant files. Recommended approach for new project setup.
+Before first use:
 
----
-
-## How to adopt
-
-Before filling anything in, open `docs/CONFIGURE.md` — it lists every placeholder in the workflow, which file it lives in, and what to put in it.
-
-1. **Fill in CLAUDE.md**: copy `CLAUDE.md.template`, fill every `[PLACEHOLDER]` with your project's rules, stack, and phase boundaries. This is the single most important step; every agent loads it.
-
-2. **Provide project skill files**: the workflow references `[project-skill-files]` and `[project-testing-guidelines]` in several places. Replace these with your actual domain skill files (e.g. language patterns, framework conventions, testing scope rules).
-
-3. **Fill in code-review-checklist.md**: the `PROJECT CRITICAL RULES` section contains a placeholder. Populate it from your CLAUDE.md Critical Rules.
-
-4. **Set up Notion**: each ticket needs a Notion page that agents read for the ticket definition. The per-ticket work record — hub, output, and handover — is written as files in your project repo, not as comments. Ticket creation requires Notion templates (one per type: Spike, Feature, Bug, Doc) — see `docs/CONFIGURE.md` for the IDs needed.
-
-5. **Update session-starters.md**: fill in `[PROJECT_PATH]` with your project root and the PERSONAS section with your persona names. If you plan to run workflow upgrades, open `docs/upgrade/upgrade-agent.md` and fill in the CONFIG section: persona names, project paths, and memory path. This is the single place for all upgrade configuration.
-
-6. **Set up MCP servers**: register Context7 MCP in your Claude Code settings. Session-starters.md specifies the `--allowedTools` flags per agent; verify these match your setup before first run.
+1. Review [`docs/CONFIGURE.md`](docs/CONFIGURE.md).
+2. Create and fill the project's `spqr.config` from [`spqr.config.template`](spqr.config.template).
+3. Instantiate the project rules from [`CLAUDE.md.template`](CLAUDE.md.template).
+4. Configure project-specific development, review, and testing skills.
+5. Configure the ticket-system integration.
+6. Install the warehouse robot and initialize the project warehouse.
+7. Verify the required MCP or external tools.
+8. Run a workflow and warehouse smoke test.
 
 ---
 
 ## Dependencies
 
-- **Claude Code** (claude.ai/code or CLI)
-- **Notion MCP**: agents read ticket definitions and create tickets via Notion MCP; the per-ticket work record is kept as files in the project repo
-- **Context7 MCP**: agents load current library documentation on-demand during implementation and review
-- **git**: Praetor opens a short-lived feature branch per ticket; the owner commits and merges
+Core workflow:
+
+- **Claude Code** or a compatible agent runtime;
+- **git**;
+- a project repository;
+- a linkable ticket system.
+
+Knowledge warehouse:
+
+- **Python 3**;
+- **SQLite with FTS5 support**;
+- a filesystem location for the canonical Markdown warehouse and antechamber.
+
+Optional integrations:
+
+- **Notion MCP** for the reference ticket implementation;
+- **Context7 MCP** for current library documentation;
+- tracker-specific MCP, API, or CLI integrations.
+
+The durable work record and canonical warehouse do not depend on Notion.
 
 ---
 
-## File structure
+## Evolving SPQR
 
+Project delivery and evolution of the workflow are separate processes. The four SPQR workflows operate on project tickets; the upgrade workflow changes SPQR itself.
+
+```mermaid
+flowchart LR
+    Gap[Process gap] --> Ticket[SAW ticket]
+    Ticket --> Upgrade[Structured upgrade run]
+    Upgrade --> Release[Generic SPQR release]
+    Release --> Preview[Propagation preview]
+    Preview --> Approval[Owner approval]
+    Approval --> Project[Consuming project updated]
 ```
+
+### Upgrade workflow
+
+A workflow change is developed through a structured upgrade run:
+
+```text
+evidence and scope
+    → roundtable
+    → decisions
+    → planning
+    → bounded execution
+    → verification
+    → wrap-up
+```
+
+The durable upgrade record lives under `docs/spqr_self/upgrades/<version>/`. This keeps process changes reviewable and prevents cross-file workflow edits from being applied as unrelated patches.
+
+### Propagation
+
+The generic SPQR repository is the source of truth for the reusable workflow core. Updates flow in one direction:
+
+```text
+generic SPQR
+    → manifest-defined snapshot
+    → dry-run and drift detection
+    → owner confirmation
+    → consuming project
+```
+
+Each consuming project keeps its own configuration, warehouse content, project knowledge, and local extensions. Propagation updates only the manifest-defined core surface and never overwrites project-owned knowledge or configuration.
+
+Project insight travels back to generic SPQR through a SAW ticket, not through automatic reverse synchronization.
+
+See:
+
+- [`docs/UPGRADE.md`](docs/UPGRADE.md)
+- [`docs/upgrade/propagation-agent.md`](docs/upgrade/propagation-agent.md)
+- [`docs/upgrade/propagation-manifest.md`](docs/upgrade/propagation-manifest.md)
+
+---
+
+## Repository structure
+
+```text
 .claude/
 └── rules/
-    └── AGENT_LAWS.md          (four laws, auto-loaded every session)
+    └── AGENT_LAWS.md                 shared agent constitution
+
 docs/
-├── CONFIGURE.md               (placeholder reference — start here when setting up)
-├── LESSONS.md                 (pipeline retrospective log; written by Censura after every run)
-├── agents/
+├── CONFIGURE.md                      project-configuration reference
+├── UPGRADE.md                        upgrade and propagation entry point
+│
+├── agents/                           live agent definitions
 │   ├── senate.md
 │   ├── praetor.md
 │   ├── tribunus.md
 │   ├── probator.md
 │   ├── curator.md
 │   ├── quaestor.md
-│   └── session-starters.md
-├── skills/
-    ├── consilium-input.md
-    ├── consilium-discussion.md
-    ├── consilium-output.md
-    ├── censura-input.md
-    ├── censura-discussion.md
-    ├── censura-output.md
-    ├── praetor-input.md
-    ├── praetor-discussion.md
-    ├── praetor-output.md
-    ├── praetor-revision.md
-    ├── praetor-impl-doc.md
-    ├── tribunus-input.md
-    ├── tribunus-output.md
-    ├── probator-input.md
-    ├── probator-output.md
-    ├── curator-input.md
-    ├── curator-output.md
-    ├── quaestor-relatio.md
-    ├── quaestor-relatio-output.md
-    ├── spike-document.md
-    ├── collegium-veto.md
-    ├── ticket-comment.md
-    ├── doc-maintenance.md
-    ├── code-review-checklist.md
-    ├── debugging-tribunus-input.md
-    ├── ticket-slicing.md
-    ├── censura-ticketing-input.md
-    ├── censura-ticketing-discussion.md
-    ├── censura-ticketing-output.md
-    └── quaestor-doc-execute.md
-├── retro/
-│   ├── retrospector.md        (Retrospector agent identity)
-│   ├── session-starter.md     (paste prompt — milestone + tickets in scope)
-│   ├── input.md               (pre-flight — load order, git boundary)
-│   ├── discussion.md          (HITL gate — owner closes with "go")
-│   └── output.md              (local retro file, template-exact)
-├── upgrade/
-│   ├── session-starter.md     (paste prompt — scope + paths)
-│   ├── upgrade-agent.md       (master agent definition — identity, config, pipeline, skills)
+│   └── session-starters.md           project-work and warehouse-maintenance starters
+│
+├── skills/                           stage and cross-pipeline contracts
+│   ├── consilium-input.md
+│   ├── consilium-discussion.md
+│   ├── consilium-output.md
+│   ├── censura-input.md
+│   ├── censura-discussion.md
+│   ├── censura-output.md
+│   ├── censura-ticketing-input.md
+│   ├── censura-ticketing-discussion.md
+│   ├── censura-ticketing-output.md
+│   ├── praetor-input.md
+│   ├── praetor-discussion.md
+│   ├── praetor-output.md
+│   ├── praetor-revision.md
+│   ├── praetor-impl-doc.md
+│   ├── tribunus-input.md
+│   ├── tribunus-output.md
+│   ├── probator-input.md
+│   ├── probator-output.md
+│   ├── curator-input.md
+│   ├── curator-output.md
+│   ├── quaestor-relatio.md
+│   ├── quaestor-relatio-output.md
+│   ├── quaestor-doc-execute.md
+│   ├── debugging-tribunus-input.md
+│   ├── bug-pipeline.md               CORRECTIO orchestration
+│   ├── git-workflow.md               canonical GitHub Flow mechanics
+│   ├── ticket-comment.md             append-only handover and receipt contract
+│   ├── ticket-slicing.md
+│   ├── collegium-veto.md
+│   ├── warehouse-ingest.md           warehouse proposal contract
+│   ├── warehouse-usage.md            warehouse owner/agent usage guide
+│   └── supporting review and documentation skills
+│
+├── retro/                            RETROACTIO workflow
+│   ├── retrospector.md
+│   ├── session-starter.md
+│   ├── input.md
+│   ├── discussion.md
+│   └── output.md
+│
+├── upgrade/                          generic upgrade and propagation machinery
+│   ├── session-starter.md
+│   ├── upgrade-agent.md
 │   ├── roundtable.md
 │   ├── decision-making.md
 │   ├── planning.md
 │   ├── execution.md
 │   ├── context-window.md
-│   └── wrap-up.md
-CLAUDE.md.template             (fill this in for your project)
+│   ├── wrap-up.md
+│   ├── propagation-agent.md
+│   └── propagation-manifest.md
+│
+└── spqr_self/                        generic repo's own non-propagated work record
+    ├── poc/
+    ├── roadmap/
+    ├── templates/
+    └── upgrades/
+
+warehouse_robot/                      deterministic warehouse package
+├── cli.py                            per-call CLI entry surface
+├── store.py                          Markdown node codec and physical store
+├── schema.py                         disposable SQLite projection schema
+├── fold.py                           incremental fold, check, and reconcile
+├── query.py                          scoped query and trace protocol
+├── policy.py                         archetype budgets and SCRUTINIZE DENY
+├── write_gate.py                     proposal gate, antechamber, and ingest
+├── audit.py                          structural tripwires, flags, and heat
+├── docs/
+│   ├── NODE_FORMAT.md
+│   ├── QUERY_PROTOCOL.md
+│   ├── WRITE_PROTOCOL.md
+│   └── AUDIT_PROTOCOL.md
+├── fixtures/                         versioned synthetic test data
+└── tests/                            robot regression and vertical-slice tests
+
+CLAUDE.md.template                    consuming-project rule template
+spqr.config.template                  consuming-project configuration shape
 ```
 
+The tree shows the active v1.5 workflow and its entry points rather than legacy flat knowledge documents. Canonical project knowledge lives in each consuming project's warehouse; warehouse content is project-owned and is therefore not part of the generic repository tree above.
+
+`docs/spqr_self/` contains the generic repository's own planning and execution record. It is not propagated into consuming projects.
+
 ---
 
-## Version History
+## Version history
 
-### v1.3 (2026-06)
-- RETROACTIO pipeline: new Retrospector agent — single-agent, single-session cross-run process-health review; new `docs/retro/` folder (5 files: agent, input, discussion HITL gate, output, session-starter). Triggers: owner milestone + LESSONS.md 10-entry counter (signals, no auto-trigger). Includes a rule-rot pass; flags candidates only — no code, no tickets (DOC-18)
-- Censura CONVERGENCE stop-branch: co-located gate evaluated before verdict commitment; owner check-in required on a significant emergent gap, resume only on explicit owner closure (DOC-15)
-- Quaestor external-claim verification: decision-bearing external claims must be verified against a primary source during research, never inherited — ACCEPTED / REFUTED / UNKNOWN (DOC-16)
-- Fetch strategy / token hygiene: `quaestor-relatio.md` FETCH STRATEGY — skip re-fetch on routine writes (verify after format-sensitive ones); WebFetch external URLs only (DOC-14)
-- session_id resumability: `ticket-comment.md` now carries session_id on every checkpoint comment; never omitted (DOC-17)
-- Branch strategy: branch granularity follows the deliverable, not per-ticket; Consilium decides scope and sets the ticket Branch property, Praetor consumes it; worktree teardown gate (commit or stash before removal)
-- CONFIGURE.md: three new retro placeholders (`[RETRO_PARENT_ID]`, `[RETRO_TEMPLATE_ID]`, `[RETRO_SESSION_STARTER_ID]`)
-- Generic-template hygiene: genericized residual iOS tooling references (swiftlint / xcodebuild) in the README (SAW-16)
+### v1.5 (2026-06) — Knowledge Warehouse and workflow hardening
 
-### v1.2.1 (2026-05)
-- Upgrade Way of Working: new `docs/upgrade/` folder with master orchestrator session starter and six skill files covering roundtable, decision making, planning, execution order, context window management, and wrap-up
-- README: Ticket system, Configuration, and Upgrading SPQR sections added
-- CONFIGURE.md: `[Master Persona 1]` and `[Master Persona 2]` placeholders added for upgrade roundtable personas
+- Git-native knowledge warehouse for decisions, constraints, and lessons.
+- Deterministic query, write-gate, reconcile, and structural-audit robot.
+- Warehouse-primary agent policies and per-archetype retrieval.
+- Enforced reasoning-lineage blindness for independent reviewers.
+- Proposal → antechamber → Senate judgment → owner-authorized ingest.
+- Warehouse trace and write receipts in the handover protocol.
+- CORRECTIO lean bug pipeline with investigate-first and an owner cause-note gate.
+- Repo-native ticket hub, output, and append-only handover chain.
+- Verbatim build, test, lint, and warehouse-write evidence.
+- Retrospective detection-health sensors derived without a standing telemetry store.
+- GitHub Flow with one branch per ticket and owner-only commit/merge.
+- Generic-to-project propagation through a manifest and `spqr.config`.
 
-### v1.2 (2026-05)
-- Ticket creation automated: Quaestor proposes → Censura validates → owner approves → Notion tickets created; shared ticket-slicing.md skill (two modes)
-- Censura two-phase model: VERIFY (existing) + TICKETING phase (3 new skill files)
-- Agent hygiene: 8 fixes from SPIKE-004 — handoff accuracy, date validation, context alerts, spike doc location, discussion depth calibration
-- DOC process: new quaestor-doc-execute.md for DOC-type ticket handling with per-fix re-verification
-- SPQR repo public-ready: all project-specific data replaced with named placeholders; CONFIGURE.md setup guide added
+### v1.3 (2026-06) — Retrospective and process controls
 
-### v1.1 (2026-05)
-- LESSONS.md retrospective log: Censura writes one entry per pipeline run; suggests retrospective at 10 entries
-- Devil's Advocate role: one persona designated as DA per Consilium session; argument captured in output
-- Granular Bash permissions: Tribunus (linter only), Probator (build + test + git diff)
-- Context7 MCP: Praetor and Tribunus load current library docs on-demand
-- Sensitive op HITL: Praetor confirms before Notion delete or file delete outside worktree
-- Parent ticket tracing: Censura sets parent_ticket when creating follow-up tickets (requires Notion DB self-referential relation)
-- ADR proposal field: Censura surfaces ADR candidates at ticket close
-- Standalone Debugging Tribunus: dedicated session starter and skill file for non-pipeline debugging
-- senate.md Notion MCP write declared (was assumed, not specified in v1.0)
+- RETROACTIO pipeline and Retrospector agent.
+- Censura convergence gate.
+- External-claim verification for research.
+- Session ID resumability.
+- Token-hygiene and context-loading improvements.
+
+### v1.2.1 (2026-05) — Upgrade workflow
+
+- Structured upgrade agent and supporting roundtable, decision, planning, execution, context, and wrap-up skills.
+
+### v1.2 (2026-05) — Generic workflow and ticketing
+
+- Owner-gated follow-up ticket creation.
+- Censura VERIFY and TICKETING phases.
+- Generic placeholder configuration.
+- DOC-ticket execution support.
+
+### v1.1 (2026-05) — Review and operational foundations
+
+- LESSONS retrospective log.
+- Devil's Advocate role.
+- Granular tool permissions.
+- Sensitive-operation HITL.
+- Standalone debugging Tribunus.
 
 ### v1.0 (2025)
-- Initial release
 
----
-
-## Upgrading SPQR
-
-SPQR is designed to evolve. When gaps surface — through Censura retrospectives, spike findings, or operational experience — the upgrade process turns them into versioned improvements applied consistently across all files.
-
-**Why a structured process?**
-- Workflow changes touch many files at once; ad hoc edits cause inconsistencies
-- Each upgrade is recorded in the repo (a run container under `docs/spqr_self/upgrades/<version>/`) before and during execution — reviewable and traceable; ticketing stays in Notion (SAW tickets)
-- Changes apply to your project repo first, then sync to the generic template _(propagation direction under review)_
-
-**How it works:**
-1. Open SAW tickets for each identified gap or improvement
-2. Load the master orchestrator session from `docs/upgrade/session-starter.md`
-3. Master agent runs a roundtable → builds a decision log → groups changes into execution sets
-4. Each group runs in a separate agent session driven by a written brief
-5. Results reviewed; open items become new tickets
-
-**When to run an upgrade:**
-- After Censura surfaces recurring friction in the retrospective log
-- When a spike reveals a gap in the current workflow
-- When syncing your project fork back to the generic template
+- Initial sequential agent workflow.
 
 ---
 
