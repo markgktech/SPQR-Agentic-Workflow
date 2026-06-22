@@ -5,7 +5,7 @@ description: RETROACTIO session starter — paste block to open a retrospective 
 
 HOW TO RUN
 Copy the block below into a new Claude Code session. Fill the bracketed fields before sending.
-Mirrors the Notion "Session starter — Retro agent" page ([RETRO_SESSION_STARTER_ID]); the in-repo skill files are the source of truth.
+The in-repo skill files are the source of truth.
 
 PASTE PROMPT
 ```

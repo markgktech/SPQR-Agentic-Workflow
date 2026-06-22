@@ -6,7 +6,7 @@ Sync group runs after all project-specific groups are complete and owner-confirm
 
 MANDATORY SUBSTITUTIONS
 During sync, replace:
-- Real persona names → [Name 1]–[Name 4] / [Master Persona 1]–[Master Persona 2]
+- Real persona names → [Name 1]–[Name 4] / [MASTER_PERSONA_1_NAME]–[MASTER_PERSONA_2_NAME]
 - Project-specific content → [PROJECT_BOUNDARIES] or equivalent placeholder
 - Hardcoded Notion page IDs → named placeholders from CONFIGURE.md
 

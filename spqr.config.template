@@ -35,5 +35,7 @@ SPIKE_DOCUMENT_TEMPLATE_ID: ""
 SPIKE_DOC_PARENT_PAGE_ID: ""
 
 # Retro — docs/CONFIGURE.md §1
-# RETRO_PARENT_ID / RETRO_TEMPLATE_ID removed in v1.5 (SAW-46) — RETROACTIO went local (SAW-31/33).
-RETRO_SESSION_STARTER_ID: ""
+# All retro tokens removed in v1.5 (SAW-46): pass 1 dropped RETRO_PARENT_ID / RETRO_TEMPLATE_ID
+# (RETROACTIO went local, SAW-31/33); the second pass (Item 4) dropped RETRO_SESSION_STARTER_ID —
+# retro is now fully local, Notion retained only for ticket creation/maintenance, so no retro
+# Notion mirror remains. No retro config slots.

@@ -24,11 +24,10 @@ This catalogue is the authoritative token source from which a consuming project'
 | `[DOC_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md` | Notion page ID of your Doc ticket template |
 | `[SPIKE_DOCUMENT_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md`, `docs/skills/spike-document.md` | Notion page ID of your Spike Document template |
 | `[SPIKE_DOC_PARENT_PAGE_ID]` | `docs/skills/quaestor-relatio-output.md`, `docs/skills/censura-ticketing-input.md` | Notion page ID of the parent page where spike docs are created as sub-pages |
-| `[RETRO_SESSION_STARTER_ID]` | `docs/retro/session-starter.md` | Notion page ID of the "Session starter — Retro agent" page that mirrors the in-repo retro session starter. Example value (Foodoire): `37268d5de1e881ae9822f3b82755d7f8` |
 
 **Senate personas** (`[Name 1]`–`[Name 3]`) appear together in each file. Each persona covers a fixed review angle: premise validity, delivery scope, and production risk. Choose names that are meaningful to your team — real names, fictional characters, or industry figures all work.
 
-> **Removed in v1.5 (SAW-46):** `[RETRO_PARENT_ID]` and `[RETRO_TEMPLATE_ID]` were dropped from this catalogue and from `spqr.config.template`. RETROACTIO went fully local in SAW-31/33 — the retro now writes a `work_documents/` vault file and mirrors the in-repo `templates/retro_template.md` rather than creating Notion pages, so those two IDs are no longer read by any file. Only `[RETRO_SESSION_STARTER_ID]` remains live (it still mirrors a Notion starter page).
+> **Removed in v1.5 (SAW-46):** all three retro tokens — `[RETRO_PARENT_ID]`, `[RETRO_TEMPLATE_ID]`, and `[RETRO_SESSION_STARTER_ID]` — were dropped from this catalogue and from `spqr.config.template`. `[RETRO_PARENT_ID]` and `[RETRO_TEMPLATE_ID]` went stale when RETROACTIO went fully local in SAW-31/33 — the retro writes a `work_documents/` vault file and mirrors the in-repo `templates/retro_template.md` rather than creating Notion pages. `[RETRO_SESSION_STARTER_ID]` was dropped in the SAW-46 second pass (Item 4): the retro is now fully local and Notion is retained only for ticket creation/maintenance, so no retro Notion mirror remains and the in-repo skill files are the source of truth. None of the three IDs is read by any file.
 
 ---
 
