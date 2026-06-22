@@ -7,7 +7,7 @@ Finding criteria:
   Test failure on changed path = HIGH
   Missing coverage on changed core logic path = MED
   Missing edge case coverage (nil, boundary, error state) on changed path = MED if core logic, LOW if secondary
-  Untestable path (per ios-testing.md scope rules) = document reason, not a finding
+  Untestable path (per project testing constraints from the warehouse; general judgment if ABSENT) = document reason, not a finding
 
 HITL CHECKPOINT
 Trigger on any MED or HIGH finding before posting veto.

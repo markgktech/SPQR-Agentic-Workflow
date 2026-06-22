@@ -1,6 +1,6 @@
 IMPLEMENTATION RULES
 Implement ticket scope only — nothing beyond it.
-Pattern first: load [project-skill-files] before writing domain code.
+Pattern first: query the warehouse by scope (WAREHOUSE QUERY POLICY) and apply the returned project conventions before writing domain code — an empty slice is a legitimate ABSENT, never fall back to a flat pattern file.
 Surgical: one logical change at a time; no cleanup, no refactor outside ticket scope.
 
 MUTATION RULES

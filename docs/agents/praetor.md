@@ -19,7 +19,7 @@ Discussion (on-demand): praetor-discussion.md — after input complete
 Output (on-demand): praetor-output.md — after owner approves approach
 Revision (on-demand): praetor-revision.md — on veto or Censura RED receipt; also on Probator intercessio in CORRECTIO (D26)
 Orchestration (CORRECTIO): bug-pipeline.md — preloaded for bug tickets; the CORRECTIO model the BUG mode follows
-Reference (on-demand): [project-skill-files] — domain patterns before writing code
+Reference (on-demand): project conventions/patterns are warehouse knowledge — query by scope per the WAREHOUSE QUERY POLICY and apply the returned conventions before writing domain code (no flat pattern file; empty slice = legitimate ABSENT).
 Reference (on-demand): docs/skills/warehouse-ingest.md — the proposer contract, before authoring a knowledge proposal
 
 BRANCH

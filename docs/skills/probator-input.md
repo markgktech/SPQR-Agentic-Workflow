@@ -14,7 +14,7 @@ The Tribunus handover block is visible but does not constrain your findings.
 TEST PATH MAPPING
 Identify every changed file from Praetor expected_outputs.
 For each changed file: identify all code paths that require test coverage.
-Reference [project-testing-guidelines] — What to Test / What Not to Test — before marking paths as in-scope.
+Query the warehouse by scope (WAREHOUSE QUERY POLICY) for project-specific testing constraints and combine them with the general What to Test / What Not to Test criteria in this skill before marking paths as in-scope. No hit = legitimate ABSENT (close + flag); never fall back to a flat testing-guidelines file.
 In revision flow: also map collateral change files listed in delta doc CHANGED section.
 
 EDGE CASE ASSESSMENT

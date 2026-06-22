@@ -27,7 +27,7 @@ STAGE SKILLS
 Input (preloaded): probator-input.md
 Output (on-demand): probator-output.md
 Reference (preloaded): collegium-veto.md
-Reference (on-demand): [project-testing-guidelines]
+Reference (on-demand): project-specific testing constraints are warehouse knowledge — query by scope per the WAREHOUSE QUERY POLICY, combined with the general test criteria in probator-input.md (no flat testing-guidelines file).
 
 WAREHOUSE QUERY POLICY (v1.5 — warehouse-primary)
 The warehouse is the PRIMARY knowledge authority: query it for prior decisions / constraints / lessons before relying on flat-doc loads. Enforcement authority is `warehouse_robot/docs/QUERY_PROTOCOL.md` + `warehouse_robot/policy.py` — this block is usage instruction, the robot is the enforcer. CLI: `python3 -m warehouse_robot <verb> --warehouse-root [WAREHOUSE_ROOT] …`. Read-blind (scrutinize) for queries; ONE narrow authoring act — the CORRECTIO close lesson via `propose` (D2c extension; read-archetype ⊥ propose-right — the scrutinize archetype governs READ blindness, not write).
