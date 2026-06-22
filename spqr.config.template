@@ -22,6 +22,10 @@ Name 4: ""
 PROJECT_PATH: ""
 PROJECT_BOUNDARIES: ""            # ticket-slicing rules; empty = silent failure
 
+# Knowledge Warehouse — docs/CONFIGURE.md §1
+WAREHOUSE_ROOT: ""               # warehouse root passed to the warehouse_robot CLI; required, empty = silent failure
+ANTECHAMBER_ROOT: ""             # optional; empty = robot defaults to an `antechamber` sibling of WAREHOUSE_ROOT
+
 # Notion ticket / spike-doc IDs — docs/CONFIGURE.md §1–2
 SPIKE_TEMPLATE_ID: ""
 FEATURE_TEMPLATE_ID: ""
@@ -31,6 +35,5 @@ SPIKE_DOCUMENT_TEMPLATE_ID: ""
 SPIKE_DOC_PARENT_PAGE_ID: ""
 
 # Retro — docs/CONFIGURE.md §1
-RETRO_PARENT_ID: ""
-RETRO_TEMPLATE_ID: ""
+# RETRO_PARENT_ID / RETRO_TEMPLATE_ID removed in v1.5 (SAW-46) — RETROACTIO went local (SAW-31/33).
 RETRO_SESSION_STARTER_ID: ""

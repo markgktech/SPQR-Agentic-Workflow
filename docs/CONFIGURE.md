@@ -1,4 +1,4 @@
-# CONFIGURE.md — SPQR v1.2 Setup Guide
+# CONFIGURE.md — SPQR v1.5 Setup Guide
 
 This file explains every placeholder in the SPQR skill and agent files, and how to replace them before running the workflow on a new project.
 
@@ -16,19 +16,33 @@ This catalogue is the authoritative token source from which a consuming project'
 | `[Name 4]` | `README.md`, `docs/agents/quaestor.md`, `docs/agents/session-starters.md` | First name of your Quaestor persona |
 | `[PROJECT_PATH]` | `docs/agents/session-starters.md`, `docs/retro/session-starter.md` | Absolute path to your project root directory (e.g. `/Users/you/Projects/myapp`) |
 | `[PROJECT_BOUNDARIES]` | `docs/skills/ticket-slicing.md` | Project-specific ticket slicing rules — layer and entity boundaries. **Silent failure risk if left empty** — the agent will not slice tickets correctly without this. |
+| `[WAREHOUSE_ROOT]` | `docs/agents/senate.md`, `docs/agents/quaestor.md`, `docs/agents/praetor.md`, `docs/agents/tribunus.md`, `docs/agents/probator.md`, `docs/agents/curator.md`, `docs/agents/session-starters.md`, `docs/skills/warehouse-usage.md`, `docs/skills/warehouse-ingest.md`, `docs/skills/censura-output.md` | Absolute path to your Knowledge Warehouse root directory, passed as `--warehouse-root` to the `warehouse_robot` CLI. **Required** — silent failure risk if left empty. |
+| `[ANTECHAMBER_ROOT]` | `docs/skills/warehouse-usage.md` | Absolute path to the antechamber (staging) root. **Optional** — if left empty the robot defaults to an `antechamber` sibling directory of `[WAREHOUSE_ROOT]` (not a silent failure). |
 | `[SPIKE_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md` | Notion page ID of your Spike ticket template |
 | `[FEATURE_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md` | Notion page ID of your Feature ticket template |
 | `[BUG_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md` | Notion page ID of your Bug ticket template |
 | `[DOC_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md` | Notion page ID of your Doc ticket template |
 | `[SPIKE_DOCUMENT_TEMPLATE_ID]` | `docs/skills/censura-ticketing-input.md`, `docs/skills/spike-document.md` | Notion page ID of your Spike Document template |
 | `[SPIKE_DOC_PARENT_PAGE_ID]` | `docs/skills/quaestor-relatio-output.md`, `docs/skills/censura-ticketing-input.md` | Notion page ID of the parent page where spike docs are created as sub-pages |
-| `[RETRO_PARENT_ID]` | `docs/retro/output.md` | Notion page ID of the parent page under which each RETROACTIO retro is created as a sub-page. Example value (Foodoire Retroactio parent): `37268d5de1e8808091b6f9c3cd66b648` |
-| `[RETRO_TEMPLATE_ID]` | `docs/retro/output.md` | Notion page ID of your Retrospective template page — the Retrospector mirrors its sections exactly. Example value (Foodoire): `37268d5de1e8819cada8f75817cb790b` |
-| `[RETRO_SESSION_STARTER_ID]` | `docs/retro/session-starter.md` | Notion page ID of the "Session starter — Retro agent" page that mirrors the in-repo retro session starter. Example value (Foodoire): `37268d5de1e881ae9822f3b82755d7f8` || `[SPQR_REPO_PATH]` | `docs/upgrade/upgrade-agent.md` | Absolute path to your SPQR template repo on disk (e.g. `/Users/you/Projects/spqr-workflow`). Needed for sync group briefs during upgrades. |
-| `[Master Persona 1]` | `docs/upgrade/upgrade-agent.md` | First name of your Dev Process Architect persona for workflow upgrade roundtable |
-| `[Master Persona 2]` | `docs/upgrade/upgrade-agent.md` | First name of your Agentic Trends Expert persona for workflow upgrade roundtable |
+| `[RETRO_SESSION_STARTER_ID]` | `docs/retro/session-starter.md` | Notion page ID of the "Session starter — Retro agent" page that mirrors the in-repo retro session starter. Example value (Foodoire): `37268d5de1e881ae9822f3b82755d7f8` |
 
 **Senate personas** (`[Name 1]`–`[Name 3]`) appear together in each file. Each persona covers a fixed review angle: premise validity, delivery scope, and production risk. Choose names that are meaningful to your team — real names, fictional characters, or industry figures all work.
+
+> **Removed in v1.5 (SAW-46):** `[RETRO_PARENT_ID]` and `[RETRO_TEMPLATE_ID]` were dropped from this catalogue and from `spqr.config.template`. RETROACTIO went fully local in SAW-31/33 — the retro now writes a `work_documents/` vault file and mirrors the in-repo `templates/retro_template.md` rather than creating Notion pages, so those two IDs are no longer read by any file. Only `[RETRO_SESSION_STARTER_ID]` remains live (it still mirrors a Notion starter page).
+
+---
+
+## Section 1b — Upgrade-master config (generic-only; NOT in spqr.config)
+
+These tokens belong to the **upgrade machinery** under `docs/upgrade/`, which is generic-only and never propagates to a consuming project. They are filled directly in the CONFIG block of `docs/upgrade/upgrade-agent.md` by the upgrade-master — **not** via `spqr.config` — and they must **not** be added to `spqr.config.template`. They are catalogued here only so their home and naming are unambiguous, separate from the §1 project tokens.
+
+| Placeholder | File(s) | What to fill in |
+|---|---|---|
+| `[YOUR_PROJECT_NAME]` | `docs/upgrade/upgrade-agent.md` | Display name of the project being upgraded |
+| `[PROJECT_REPO_PATH]` | `docs/upgrade/upgrade-agent.md` | Absolute path to the repo of the project being upgraded |
+| `[SPQR_REPO_PATH]` | `docs/upgrade/upgrade-agent.md` | Absolute path to your SPQR template repo on disk (e.g. `/Users/you/Projects/spqr-workflow`). Needed for sync group briefs during upgrades. |
+| `[MASTER_PERSONA_1_NAME]` | `docs/upgrade/upgrade-agent.md` | First name of your Dev Process Architect persona for the workflow-upgrade roundtable |
+| `[MASTER_PERSONA_2_NAME]` | `docs/upgrade/upgrade-agent.md` | First name of your Agentic Trends Expert persona for the workflow-upgrade roundtable |
 
 ---
 
