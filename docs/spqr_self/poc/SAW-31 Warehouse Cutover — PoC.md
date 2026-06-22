@@ -12,7 +12,7 @@ tags: [poc, decision, warehouse, saw-31]
 ## Context / question
 SAW-31 is the generic-side cutover that makes the SPQR agents/skills **warehouse-primary**: every agent queries the warehouse for knowledge (instead of loading flat-doc monoliths), hot-path agents propose new knowledge through the write gate, the Senate session-starter surfaces pending antechamber items + audit heat, and the handoff carries warehouse state. The warehouse build (B1–B5) is GREEN; this PoC settles the cutover decisions. Scope confirmed at the SCOPE GATE (see SAW-31 ticket comment 2026-06-21). Warehouse = **PRIMARY authority immediately**, no flat-doc fallback instructions; flat-doc physical deletion is a separate later SAW (owner-gated). Runs **before** propagation+migration (A18 order) so warehouse-aware agents propagate once.
 
-Sources: `warehouse_robot/docs/{QUERY,WRITE,AUDIT,NODE_FORMAT}_PROTOCOL.md`; Session 6 (write path/audit), Session 4 (query), 07-Planning Decisions (G7/G4/G5/G8 + A1–A18). Related: [[SAW-27 Detection-Health Sensors — PoC]] (retro-as-reader pattern this reuses), [[SAW-29 Bug Pipeline — PoC]].
+Sources: `warehouse_robot/docs/{QUERY,WRITE,AUDIT}_PROTOCOL.md` + `NODE_FORMAT.md`; Session 6 (write path/audit), Session 4 (query), 07-Planning Decisions (G7/G4/G5/G8 + A1–A18). Related: [[SAW-27 Detection-Health Sensors — PoC]] (retro-as-reader pattern this reuses), [[SAW-29 Bug Pipeline — PoC]].
 
 ## Decision items (Phase 3 — PoC-first; PROPOSED = my position, not yet owner-confirmed)
 

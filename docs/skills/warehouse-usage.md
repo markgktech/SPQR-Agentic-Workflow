@@ -5,17 +5,16 @@ description: Owner-facing usage + doc-regime guide for the knowledge warehouse �
 
 PURPOSE
 The owner-facing companion to the warehouse. The robot specs
-(`warehouse_robot/docs/{QUERY,WRITE,AUDIT,NODE_FORMAT}_PROTOCOL.md`) are the
+(`warehouse_robot/docs/{QUERY,WRITE,AUDIT}_PROTOCOL.md` + `NODE_FORMAT.md`) are the
 enforcement authority; the per-agent query/ingest skills are the producer
 contracts. This file is the OWNER's map: who is allowed to run which verb, how
 to run the touches that are yours alone, when to run them, and what
 "warehouse-primary" means for the flat docs. It states no new policy — it
 collects the SAW-31 decisions (D2/D3/D6/E1) in one owner-readable place.
 
-`[WAREHOUSE_ROOT]` is the warehouse root path; `[ANTECHAMBER_ROOT]` defaults to
-an `antechamber` sibling (A3). (Catalogue note: `[WAREHOUSE_ROOT]` rides the
-pending CONFIGURE.md token-catalogue reconciliation — Group-9 discovery F1 — to be
-added before first propagation; it is not re-discovered here.)
+The warehouse and antechamber root paths are set in `CONFIGURE.md` §1; the
+antechamber root is optional and, when unset, the robot defaults to an
+`antechamber` sibling of the warehouse root (A3).
 
 ## 1. Who-runs-which-CLI matrix (D2)
 
