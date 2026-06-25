@@ -36,12 +36,13 @@ CONSENT, not keystrokes: the owner approves, the agent executes (refined 2026-06
 | `resolve … ingested/rejected/revise` | apply a Senate verdict; ingest burns the id + writes the markdown truth | agent-executed (Senate judges) | explicit owner HITL — **per-proposal** (`--proposal-key K`), never bulk all-or-nothing |
 | `audit` | emit structural flags onto the audit plane | agent-executed at session start | explicit owner HITL — D6 hook 1; emits flags = a write |
 | flag `resolves` (clear a handled flag) | write a `resolves` edge onto the audit plane | agent-executed sweep | explicit owner HITL — D3; the retro SURFACES, it does not write |
-| `reconcile` · `check` · `reconcile-antechamber` | rebuild / divergence-check the derived index | owner / maintenance | owner-run; no semantic judgment |
+| `reconcile` · `check` · `reconcile-antechamber` | rebuild / divergence-check the derived index | owner / maintenance — **EXCEPT** the write-gate path | owner-run; no semantic judgment — **EXCEPT** non-fresh `reconcile` + `reconcile-antechamber` are agent-EXECUTED maintenance on the write-gate clean path (D7 — see §5) |
 
 Notes:
 - **Read ⊥ write.** The `scrutinize` archetype (Tribunus, Probator, Curator) governs READ blindness (the SCRUTINIZE DENY hides `supersedes`/`derived-from`/`about` + `include_inactive`) — it does NOT bar a narrow propose right. Probator keeps one narrow authoring act (the CORRECTIO close lesson, D2c); Tribunus and Curator read but do not author.
 - **The Senate's "Never run shell" is amended** to permit the warehouse CLI (read + propose freely; `resolve`/`grant` only on explicit owner HITL). "Never write code/source" and "never modify SPQR process files" still stand.
 - **Three distinct acts, never conflated** (PoC clarification): `audit` (robot detects → emits flags) · retro harvest (reads open flags + heat → trend) · flag-sweep (`resolves` closes a handled flag). The owner-driven sweep is NOT the audit.
+- **Write-gate exception to the `reconcile`/`check`/`reconcile-antechamber` row (D7).** On the pre/post-write clean path (§5), `check` and a **non-fresh** `reconcile` + `reconcile-antechamber` are SANCTIONED agent-executed maintenance to restore a clean projection when `check` reports index/projection divergence — no owner HITL. This is the ONE carve-out from the owner-run reading of that row; it is purely mechanical (rebuild the derived index), carries no semantic judgment, and does NOT extend to `--fresh`, which stays explicit owner-authorization only (§5).
 
 ## 2. How to run an owner semantic-audit pass
 
@@ -124,3 +125,39 @@ never silently fall back to a flat monolith).
   monoliths (e.g. `LESSONS.md`) is a **separate owner-gated SAW** — the cutover is
   authority-first, deletion-later. Until then the flat docs may physically remain;
   they are simply no longer the authority the agents read from.
+
+## 5. Clean warehouse write gates (SAW-55)
+
+Warehouse writes are clean-in / clean-out: a mutation runs only from a clean
+projection and must leave one. The robot's `check` is the divergence probe; a
+**non-fresh** `reconcile` + `reconcile-antechamber` is the sanctioned agent-executed
+repair (D7 — the §1 matrix exception). `--fresh` is NEVER part of this path.
+
+**Pre-write clean check (item 1).** Before `propose`, `revise`,
+`resolve … ingested/rejected/revise`, a manifest / scope-vocabulary edit, or G3
+verification:
+1. Run `check`. If it reports clean → proceed with the write.
+2. If `check` reports FTS / index / projection divergence → run a **non-fresh**
+   `reconcile`, then `reconcile-antechamber`, then `check` again (agent-executed, no
+   owner HITL — D7).
+3. If `check` is still not clean after that recovery → **BLOCK**: do not write.
+   Surface the divergence to the owner; do not reach for `--fresh` to force past it.
+
+**Post-write leave-clean invariant (item 2).** After any warehouse / antechamber /
+manifest mutation:
+1. Run `check`.
+2. If non-clean due to index / projection divergence → non-fresh `reconcile` +
+   `reconcile-antechamber` + `check` (agent-executed — D7).
+3. Stop the session ONLY from a clean `check`; otherwise report **BLOCK**. A session
+   never leaves the warehouse in a divergent state to be inherited by the next write.
+
+**`--fresh` is owner-only (item 3).** `--fresh` is NEVER a default repair path and
+is NOT covered by the D7 agent sanction. **`--fresh` requires explicit owner
+authorization because it drops trace / grant / mirror state.** An agent that finds a
+non-`--fresh` recovery insufficient BLOCKS and surfaces to the owner — it does not
+escalate to `--fresh` on its own.
+
+**Receipt.** Every warehouse-mutating session records a write-gate receipt (command,
+exit code, final `check` result, pending/proposed count if relevant, whether reconcile
+was needed, confirmation that no `--fresh` was used) — see `ticket-comment.md`
+`receipt:` FIELD RULE. Censura YELLOWs/FAILs a mutating session that lacks it (C-55).

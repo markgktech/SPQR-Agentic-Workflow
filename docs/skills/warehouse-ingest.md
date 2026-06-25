@@ -85,6 +85,15 @@ revise  --warehouse-root [WAREHOUSE_ROOT] --proposal-key <key> --file <revised.m
   escalation (packet on stdout) · **2** robot error (structural / protocol — e.g.
   a robot-stamped key present, bad fence, out-of-order key).
 
+WRITE-GATE CLEAN CHECK (SAW-55)
+`propose` / `revise` / `resolve` are clean-in / clean-out: they are GATED by the
+pre/post-write clean check defined in `warehouse-usage.md` §5 — run `check` first
+(proceed if clean; on index/projection divergence run a non-fresh `reconcile` +
+`reconcile-antechamber` + `check`; BLOCK if still not clean), then run `check` again
+after the write so the session leaves a clean projection. `--fresh` is never part of
+this path — owner-authorized only. Carry the write-gate receipt (warehouse-usage.md
+§5 / ticket-comment.md `receipt:`).
+
 ANTECHAMBER DISCIPLINE
 - Proposals live in `antechamber/` **outside** the warehouse: `<key>.md`
   (+ `.rN.md` revisions) are **append-only content**; the mutable lifecycle lives
@@ -94,6 +103,14 @@ ANTECHAMBER DISCIPLINE
   `pending-senate`. The id is burned and the markdown written only when the Senate
   runs `resolve … ingested` on owner HITL. Do not assume your proposal is live; do not query for
   it as an active node until the ingest lands.
+
+OWNER APPROVAL BEFORE ACCEPTANCE — NO AUTO-INGEST (SAW-54)
+Owner approval is REQUIRED before an antechamber proposal or a canonical ingest is
+treated as accepted knowledge — neither the act of proposing nor a session's
+Warehouse Delta declaration is an ingest trigger. A `## Warehouse Delta` (SAW-54,
+ticket-comment.md) records a *recommended disposition* only; it never auto-ingests.
+Acceptance happens solely when the Senate runs `resolve … ingested` on explicit
+owner HITL (D2/D5). Until then a candidate is recommendation, not knowledge.
 
 WHAT YOU NEVER DO
 - Never mint an id / set `timestamp` / `schema_version`.

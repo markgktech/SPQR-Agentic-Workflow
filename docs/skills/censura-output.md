@@ -14,6 +14,11 @@ Missing receipt = HITL flag + cheap producer bounce (producer re-attaches the de
 A receipt showing an ACTUAL build/test failure IS a real failure → route the existing Probator-veto / Censura-RED machinery; do not build a new veto/RED path.
 Enforcement lives here only (D8) — Tribunus/Curator do not check receipts.
 
+CLOSE-OUT CHECKLIST (fixed order per D3 — mandate in senate.md CENSURA CHECKLIST)
+C-56: hub session/status row exists, references the correct handover/output artifacts, and matches the actual routing/verdict.
+C-54: Warehouse Delta present + credible; `none` only with rationale; candidates owner-understandable and dispositioned; owner approval required before antechamber proposal or canonical ingest — no auto-ingest.
+C-55: write-gate receipt present for any warehouse-MUTATING session (command, exit code, final `check` result, reconcile-needed, no-`--fresh`); missing → YELLOW/FAIL.
+
 TICKETING PHASE TRIGGER
 Condition: GREEN + proposals table present (not "no tickets") + owner explicit approval
 If condition met: context carries over → load censura-ticketing-input.md
