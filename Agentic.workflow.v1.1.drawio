@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="JFLBprkHoMmRzrTV_8lZ">
-    <mxGraphModel dx="964" dy="2877" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="833" dy="2785" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -736,11 +736,53 @@
         <mxCell id="c26nzNJIS2InIiC4Uw3E-99" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Praetor coding" vertex="1">
           <mxGeometry height="60" width="390" x="1170" y="1440" as="geometry" />
         </mxCell>
-        <mxCell id="c26nzNJIS2InIiC4Uw3E-100" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Opus start" vertex="1">
+        <mxCell id="c26nzNJIS2InIiC4Uw3E-100" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ingest" vertex="1">
           <mxGeometry height="60" width="120" x="1170" y="1530" as="geometry" />
         </mxCell>
         <mxCell id="c26nzNJIS2InIiC4Uw3E-101" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Delivery plan" vertex="1">
           <mxGeometry height="60" width="120" x="2310" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;A session futások mostmár elég jók - nem akakork mindig approveolni - auto approve mindnere kell automatizáláshoz&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="120" x="2100" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="A lokalizációs fájl módosítása ne írja át feleslegesen az egész fájlt; &lt;br/&gt;ha ez mégis szükséges, az agent indokolja meg és igazolja, hogy csak a &lt;br/&gt;tervezett szövegek változtak." vertex="1">
+          <mxGeometry height="160" width="120" x="2250" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Evaluation - planning" vertex="1">
+          <mxGeometry height="60" width="120" x="1320" y="1530" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Consilium contract" vertex="1">
+          <mxGeometry height="60" width="120" x="1170" y="1610" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Goals and owner requirements" vertex="1">
+          <mxGeometry height="60" width="120" x="1170" y="1670" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Review assumed affected code" vertex="1">
+          <mxGeometry height="60" width="120" x="1170" y="1730" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Earlier findings and relevant project knowledge" vertex="1">
+          <mxGeometry height="60" width="120" x="1170" y="1790" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Identify affected invariant vulnerability - its related findings and test proof" vertex="1">
+          <mxGeometry height="60" width="120" x="1170" y="1850" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Consilium plan interpretation" vertex="1">
+          <mxGeometry height="60" width="120" x="1320" y="1610" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;Technical reality check (is it all clear?)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="1320" y="1670" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Gap and risk eval" vertex="1">
+          <mxGeometry height="60" width="120" x="1320" y="1730" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Investigation planning" vertex="1">
+          <mxGeometry height="60" width="120" x="1320" y="1790" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-14" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Scope and effort check" vertex="1">
+          <mxGeometry height="60" width="120" x="1320" y="1850" as="geometry" />
+        </mxCell>
+        <mxCell id="Tq2t-u0BdALlpaICGXBn-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Presenting: technical understanding,&amp;nbsp;" vertex="1">
+          <mxGeometry height="60" width="120" x="1320" y="1940" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
